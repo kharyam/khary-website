@@ -1097,7 +1097,236 @@
             transform: translateY(-3px);
             box-shadow: var(--glow-primary);
         }
-        
+
+        /* Work Card Click Hint */
+        .timeline-click-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .timeline-click-hint::after {
+            content: '↻';
+            font-size: 1.4rem;
+            animation: rotate 2s linear infinite;
+        }
+
+        .timeline-item.work-card {
+            cursor: pointer;
+        }
+
+        .timeline-item.work-card .timeline-content:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .timeline-item.work-card:hover .timeline-click-hint {
+            color: var(--accent-primary);
+        }
+
+        /* Work Detail Modal */
+        .work-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .work-modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .work-modal {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            width: min(90vw, 800px);
+            max-height: 85vh;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transform: scale(0.9) rotateY(-5deg);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .work-modal-overlay.active .work-modal {
+            transform: scale(1) rotateY(0deg);
+            opacity: 1;
+        }
+
+        .work-modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00D9FF 0%, #0077B6 100%);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            z-index: 10;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .work-modal-close:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .work-modal-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+            border-bottom: 2px solid var(--border-color);
+            background: var(--bg-card);
+            flex-shrink: 0;
+        }
+
+        .work-modal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem 2.5rem 2.5rem 2.5rem;
+        }
+
+        .work-modal-header img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .work-modal-header-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .work-modal-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin: 0;
+        }
+
+        .work-modal-header .company {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .work-modal-header .dates {
+            font-size: 0.95rem;
+            color: var(--accent-secondary);
+            font-family: var(--font-mono);
+            margin-top: 0.25rem;
+        }
+
+        .work-modal-section-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 0 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .work-modal-projects {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .work-modal-project {
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .work-modal-project:hover {
+            border-color: var(--accent-primary);
+            background: rgba(0, 217, 255, 0.1);
+        }
+
+        .work-modal-project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .work-modal-project-name {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-secondary);
+        }
+
+        .work-modal-project-dates {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        .work-modal-project-desc {
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .work-modal-project-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .work-modal-project-bullets li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .work-modal-project-bullets li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
         /* Testimonials Section */
         .testimonials-section {
             padding: 6rem 2rem;
@@ -1714,7 +1943,7 @@
         
         <div class="timeline">
             <!-- Red Hat -->
-            <div class="timeline-item">
+            <div class="timeline-item work-card" data-work="redhat">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <img src="assets/images/redhat-logo.svg" alt="Red Hat" class="timeline-company-logo">
@@ -1736,11 +1965,12 @@
                         <span class="tech-badge">Python</span>
                         <span class="tech-badge">Go</span>
                     </div>
+                    <div class="timeline-click-hint">Click for details</div>
                 </div>
             </div>
             
             <!-- Placeholder Company (ready for Lockheed Martin rocket!) -->
-            <div class="timeline-item">
+            <div class="timeline-item work-card" data-work="previous">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-company-logo" style="width: 70px; height: 70px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">🚀</div>
@@ -1759,6 +1989,7 @@
                         <span class="tech-badge">Linux</span>
                         <span class="tech-badge">Distributed Systems</span>
                     </div>
+                    <div class="timeline-click-hint">Click for details</div>
                 </div>
             </div>
             
@@ -2496,6 +2727,151 @@
         
         // Start after page load
         setTimeout(startLogoZoomEffect, 3000);
+
+        // Work Experience Modal
+        const workModalOverlay = document.createElement('div');
+        workModalOverlay.className = 'work-modal-overlay';
+        workModalOverlay.id = 'workModalOverlay';
+        workModalOverlay.innerHTML = `
+            <div class="work-modal">
+                <button class="work-modal-close">&times;</button>
+                <div id="workModalContent"></div>
+            </div>
+        `;
+        document.body.appendChild(workModalOverlay);
+
+        // Work experience detail data
+        const workDetails = {
+            redhat: {
+                logo: 'assets/images/redhat-logo.svg',
+                title: 'Senior Principal Consultant',
+                company: 'Red Hat, Inc.',
+                dates: '2015 - Present',
+                projects: [
+                    {
+                        name: 'Enterprise OpenShift Platform Architecture',
+                        dates: '2020 - Present',
+                        description: 'Lead architect for enterprise OpenShift deployments across Federal and Fortune 500 customers.',
+                        bullets: [
+                            'Designed and implemented multi-cluster Kubernetes architectures serving 10,000+ developers',
+                            'Established GitOps workflows and infrastructure-as-code patterns adopted organization-wide',
+                            'Reduced deployment times by 70% through automated CI/CD pipeline implementations'
+                        ]
+                    },
+                    {
+                        name: 'Technical Enablement & Mentorship',
+                        dates: '2018 - Present',
+                        description: 'Created technical training content and mentored consultants in container platforms and cloud-native architecture.',
+                        bullets: [
+                            'Mentored 20+ consultants in Kubernetes, container platforms, and cloud-native patterns',
+                            'Developed training curriculum consumed by 500+ engineers globally',
+                            'Led hands-on workshops for customers on OpenShift, Ansible, and DevOps practices'
+                        ]
+                    },
+                    {
+                        name: 'Cloud Migration & Modernization',
+                        dates: '2015 - 2020',
+                        description: 'Guided enterprise customers through application modernization and cloud adoption journeys.',
+                        bullets: [
+                            'Led containerization initiatives for legacy Java applications to OpenShift',
+                            'Implemented hybrid cloud strategies connecting on-premises and AWS/Azure environments',
+                            'Drove adoption of microservices architecture patterns across customer engagements'
+                        ]
+                    }
+                ]
+            },
+            previous: {
+                logo: '',
+                title: 'Senior Software Engineer',
+                company: 'Previous Company',
+                dates: '20XX - 20XX',
+                projects: [
+                    {
+                        name: 'Distributed Systems Development',
+                        dates: '',
+                        description: 'Led development of mission-critical distributed systems.',
+                        bullets: [
+                            'Architected high-performance backend services handling thousands of transactions per second',
+                            'Mentored junior engineers in software design and system architecture',
+                            'Drove adoption of modern development practices and CI/CD pipelines'
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // Open modal function
+        function openWorkModal(workId) {
+            const data = workDetails[workId];
+            if (!data) return;
+
+            const content = document.getElementById('workModalContent');
+            let projectsHtml = data.projects.map(p => `
+                <div class="work-modal-project">
+                    <div class="work-modal-project-header">
+                        <span class="work-modal-project-name">${p.name}</span>
+                        ${p.dates ? `<span class="work-modal-project-dates">${p.dates}</span>` : ''}
+                    </div>
+                    <p class="work-modal-project-desc">${p.description}</p>
+                    ${p.bullets.length ? `
+                        <ul class="work-modal-project-bullets">
+                            ${p.bullets.map(b => `<li>${b}</li>`).join('')}
+                        </ul>
+                    ` : ''}
+                </div>
+            `).join('');
+
+            content.innerHTML = `
+                <div class="work-modal-header">
+                    ${data.logo ? `<img src="${data.logo}" alt="${data.company} logo">` : `<div style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; flex-shrink: 0;">🚀</div>`}
+                    <div class="work-modal-header-text">
+                        <h3>${data.title}</h3>
+                        <span class="company">${data.company}</span>
+                        <span class="dates">${data.dates}</span>
+                    </div>
+                </div>
+                <div class="work-modal-body">
+                    <div class="work-modal-section-title">Projects & Achievements</div>
+                    <div class="work-modal-projects">
+                        ${projectsHtml}
+                    </div>
+                </div>
+            `;
+
+            workModalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal function
+        function closeWorkModal() {
+            workModalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Add click listeners to work cards
+        document.querySelectorAll('.timeline-item.work-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                const workId = card.getAttribute('data-work');
+                openWorkModal(workId);
+            });
+        });
+
+        // Close modal on overlay click
+        workModalOverlay.addEventListener('click', (e) => {
+            if (e.target === workModalOverlay) {
+                closeWorkModal();
+            }
+        });
+
+        // Close modal on close button click
+        workModalOverlay.querySelector('.work-modal-close').addEventListener('click', closeWorkModal);
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && workModalOverlay.classList.contains('active')) {
+                closeWorkModal();
+            }
+        });
     </script>
 </body>
 </html>
