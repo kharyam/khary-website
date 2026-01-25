@@ -1783,7 +1783,243 @@
             color: var(--text-secondary);
             font-family: var(--font-mono);
         }
-        
+
+        /* GitHub Projects Section */
+        .github-section {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 100;
+        }
+
+        .github-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .github-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .github-card {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .github-card:hover {
+            transform: translateY(-8px);
+            border-color: #58a6ff;
+            box-shadow: 0 16px 48px rgba(88, 166, 255, 0.15), 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .github-card-header {
+            background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .github-card-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .github-card-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .github-card-dot.red { background: #ff5f56; }
+        .github-card-dot.yellow { background: #ffbd2e; }
+        .github-card-dot.green { background: #27ca40; }
+
+        .github-card-title {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #8b949e;
+            flex: 1;
+        }
+
+        .github-card-body {
+            padding: 1.5rem;
+        }
+
+        .github-card-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #58a6ff;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .github-card-name svg {
+            width: 24px;
+            height: 24px;
+            fill: #8b949e;
+        }
+
+        .github-card-desc {
+            color: #8b949e;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .github-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.3em;
+            background: #58a6ff;
+            margin-left: 3px;
+            vertical-align: text-bottom;
+            opacity: 0.6;
+            animation: blink1 1s step-end infinite;
+        }
+
+        .github-card:nth-child(2) .github-cursor {
+            animation: blink2 1.3s step-end infinite;
+        }
+
+        .github-card:nth-child(3) .github-cursor {
+            animation: blink3 0.8s step-end infinite;
+        }
+
+        @keyframes blink1 {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes blink2 {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes blink3 {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0; }
+        }
+
+        .github-card-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .github-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            color: #8b949e;
+        }
+
+        .github-stat svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .github-stat.stars svg {
+            fill: #e3b341;
+        }
+
+        .github-stat.lang {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .github-lang-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .github-lang-dot.python { background: #3572A5; }
+        .github-lang-dot.go { background: #00ADD8; }
+        .github-lang-dot.html { background: #e34c26; }
+
+        .github-card-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .github-feature {
+            background: rgba(56, 139, 253, 0.1);
+            border: 1px solid rgba(56, 139, 253, 0.3);
+            color: #58a6ff;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            transition: all 0.3s ease;
+        }
+
+        .github-feature:hover {
+            background: rgba(56, 139, 253, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .github-card-links {
+            display: flex;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #30363d;
+        }
+
+        .github-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            background: rgba(56, 139, 253, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .github-link:hover {
+            background: rgba(56, 139, 253, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .github-link svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .github-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .github-card-stats {
+                gap: 1rem;
+            }
+
+            .github-card-name {
+                font-size: 1.2rem;
+            }
+        }
+
         /* Publications Section */
         .publications-section {
             padding: 6rem 2rem;
@@ -2482,6 +2718,7 @@
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#publications">Publications</a></li>
                 <li><a href="#connect">Connect</a></li>
             </ul>
@@ -2956,6 +3193,120 @@
                     <img src="assets/images/redhat-logo.svg" alt="Red Hat" class="cert-logo">
                     <div class="cert-name">Red Hat Certified System Administrator (RHCSA)</div>
                     <div class="cert-info">October 2015</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Projects Section -->
+    <section class="github-section" id="projects">
+        <div class="github-container">
+            <h2 class="section-title">
+                <span class="section-title-gradient">Open Source Projects</span>
+            </h2>
+            <p class="section-subtitle">Personal projects and contributions to the developer community</p>
+
+            <div class="github-grid">
+                <!-- Litra Driver Card -->
+                <div class="github-card">
+                    <div class="github-card-header">
+                        <div class="github-card-dots">
+                            <span class="github-card-dot red"></span>
+                            <span class="github-card-dot yellow"></span>
+                            <span class="github-card-dot green"></span>
+                        </div>
+                        <span class="github-card-title">~/projects/litra-driver</span>
+                    </div>
+                    <div class="github-card-body">
+                        <h3 class="github-card-name">
+                            <svg viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8z"/></svg>
+                            Litra Driver
+                        </h3>
+                        <p class="github-card-desc">
+                            Linux CLI and GUI for controlling Logitech Litra Glow & Beam lighting devices. Reverse-engineered USB protocols enable brightness and color temperature control without proprietary software. Originally built in Python, then rewritten in Go for improved performance.<span class="github-cursor"></span>
+                        </p>
+                        <div class="github-card-stats">
+                            <span class="github-stat stars">
+                                <svg viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>
+                                195+ stars
+                            </span>
+                            <span class="github-stat lang">
+                                <span class="github-lang-dot python"></span>
+                                Python
+                            </span>
+                            <span class="github-stat lang">
+                                <span class="github-lang-dot go"></span>
+                                Go
+                            </span>
+                        </div>
+                        <div class="github-card-features">
+                            <span class="github-feature">USB Control</span>
+                            <span class="github-feature">CLI + GUI</span>
+                            <span class="github-feature">Reverse Engineering</span>
+                            <span class="github-feature">Cross-Platform</span>
+                        </div>
+                        <div class="github-card-links">
+                            <a href="https://github.com/kharyam/litra-driver" target="_blank" rel="noopener noreferrer" class="github-link">
+                                <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                                Python Version
+                            </a>
+                            <a href="https://github.com/kharyam/go-litra-driver" target="_blank" rel="noopener noreferrer" class="github-link">
+                                <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                                Go Version
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OpenShift Networking Presentation Card -->
+                <div class="github-card">
+                    <div class="github-card-header">
+                        <div class="github-card-dots">
+                            <span class="github-card-dot red"></span>
+                            <span class="github-card-dot yellow"></span>
+                            <span class="github-card-dot green"></span>
+                        </div>
+                        <span class="github-card-title">~/projects/openshift-networking</span>
+                    </div>
+                    <div class="github-card-body">
+                        <h3 class="github-card-name">
+                            <svg viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8z"/></svg>
+                            OpenShift Networking Presentation
+                        </h3>
+                        <p class="github-card-desc">
+                            Interactive, web-based technical presentation on OpenShift networking. Features 20 animated slides, 12 interactive SVG diagrams with zoom/pan, presenter mode with speaker notes, and embedded live demos. Built with pure HTML5—no frameworks, no dependencies.<span class="github-cursor"></span>
+                        </p>
+                        <div class="github-card-stats">
+                            <span class="github-stat lang">
+                                <span class="github-lang-dot html"></span>
+                                HTML5 / SVG
+                            </span>
+                            <span class="github-stat">
+                                <svg viewBox="0 0 16 16" fill="#8b949e"><path d="M8.75 1.75a.75.75 0 00-1.5 0V5H4a.75.75 0 000 1.5h3.25v3.25a.75.75 0 001.5 0V6.5H12A.75.75 0 0012 5H8.75V1.75z"/></svg>
+                                20 slides
+                            </span>
+                            <span class="github-stat">
+                                <svg viewBox="0 0 16 16" fill="#8b949e"><path d="M8.75 1.75a.75.75 0 00-1.5 0V5H4a.75.75 0 000 1.5h3.25v3.25a.75.75 0 001.5 0V6.5H12A.75.75 0 0012 5H8.75V1.75z"/></svg>
+                                12 diagrams
+                            </span>
+                        </div>
+                        <div class="github-card-features">
+                            <span class="github-feature">Interactive Diagrams</span>
+                            <span class="github-feature">Presenter Mode</span>
+                            <span class="github-feature">Live Demos</span>
+                            <span class="github-feature">AI-Assisted</span>
+                        </div>
+                        <div class="github-card-links">
+                            <a href="https://github.com/kharyam/openshift-networking-presentation" target="_blank" rel="noopener noreferrer" class="github-link">
+                                <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                                View Source
+                            </a>
+                            <a href="https://kharyam.github.io/openshift-networking-presentation/" target="_blank" rel="noopener noreferrer" class="github-link">
+                                <svg viewBox="0 0 16 16"><path d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"/><path d="M6.5 7.5A.75.75 0 017.25 6h2.5a.75.75 0 01.75.75v4a.75.75 0 01-1.5 0V8.5h-1.75a.75.75 0 01-.75-.75z"/></svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
