@@ -23,6 +23,8 @@ A modern, professional personal brand website showcasing technical expertise, le
 ```
 /
 ├── index.html              # Main HTML file (contains all CSS and JS inline)
+├── sitemap.xml             # XML sitemap for search engines
+├── robots.txt              # Search engine crawler instructions
 ├── assets/
 │   └── images/             # Logos and headshot
 │       ├── headshot.jpg
@@ -141,6 +143,42 @@ Edit the CSS custom properties in the `<style>` section of `index.html`:
     </div>
 </div>
 ```
+
+## SEO Optimization
+
+The site is optimized for search engine visibility, particularly for "Khary Mendez" name searches.
+
+### Meta Tags
+- Primary meta tags (title, description, keywords, author)
+- Canonical URL pointing to https://khary.net/
+- Robots directive allowing indexing
+
+### Open Graph (Facebook/LinkedIn)
+- og:type, og:url, og:title, og:description
+- og:image with headshot for rich previews
+- og:site_name and og:locale
+
+### Twitter Cards
+- Large image card format
+- Title, description, and image for tweet previews
+
+### Structured Data (JSON-LD)
+Three schema.org structured data blocks:
+1. **Person** - Name, job title, education (CMU, JHU), credentials, social profiles, employer
+2. **WebSite** - Site name, URL, description
+3. **BreadcrumbList** - Navigation structure for search results
+
+### Supporting Files
+- `sitemap.xml` - XML sitemap with all page sections
+- `robots.txt` - Crawler instructions pointing to sitemap
+
+### Post-Deployment Checklist
+After deploying to https://khary.net/:
+1. Submit sitemap to [Google Search Console](https://search.google.com/search-console)
+2. Submit sitemap to [Bing Webmaster Tools](https://www.bing.com/webmasters)
+3. Verify structured data with [Google Rich Results Test](https://search.google.com/test/rich-results)
+4. Test Open Graph tags with [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
+5. Ensure LinkedIn profile links back to https://khary.net/
 
 ## Technical Details
 
