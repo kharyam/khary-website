@@ -1123,58 +1123,107 @@
             cursor: pointer;
         }
 
-        .timeline-item.work-card .timeline-content:hover {
-            border-color: var(--accent-primary);
-        }
+        /* Hover handled by .work-flip-front:hover */
 
         .timeline-item.work-card:hover .timeline-click-hint {
             color: var(--accent-primary);
         }
 
-        /* Work Detail Modal */
-        .work-modal-overlay {
-            display: none;
-            position: fixed;
+        /* Work Card Flip Animation */
+        .timeline-item.work-card {
+            perspective: 1500px;
+            cursor: pointer;
+        }
+
+        /* Container for the flip card */
+        .work-flip-container {
+            position: relative;
+            transform-style: preserve-3d;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+
+        /* Inner element - static in normal state */
+        .work-flip-inner {
+            position: relative;
+            width: 100%;
+            transform-style: preserve-3d;
+        }
+
+        /* Both faces */
+        .work-flip-front,
+        .work-flip-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 16px;
+            background: var(--bg-card);
+        }
+
+        /* Front face - card styling */
+        .work-flip-front {
+            position: relative;
+            padding: 2.5rem;
+            border: 2px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .work-flip-front:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-triple);
+            transform: translateY(-5px);
+        }
+
+        /* Back face - hidden initially */
+        .work-flip-back {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .work-modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .work-modal {
-            background: var(--bg-card);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            width: min(90vw, 800px);
-            max-height: 85vh;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            position: relative;
-            transform: scale(0.9) rotateY(-5deg);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: rotateY(180deg);
+            overflow-y: auto;
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
+            border: 2px solid var(--accent-primary);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        .work-modal-overlay.active .work-modal {
-            transform: scale(1) rotateY(0deg);
-            opacity: 1;
+        /* The animated clone that gets appended to body */
+        .work-flip-clone {
+            position: fixed;
+            z-index: 10001;
+            transform-style: preserve-3d;
+            pointer-events: auto;
         }
 
-        .work-modal-close {
+        .work-flip-clone .work-flip-front,
+        .work-flip-clone .work-flip-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .work-flip-clone .work-flip-front {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .work-flip-clone .work-flip-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Close button */
+        .work-flip-close {
             position: absolute;
             top: 1.5rem;
             right: 1.5rem;
@@ -1193,10 +1242,30 @@
             transition: transform 0.3s ease;
         }
 
-        .work-modal-close:hover {
+        .work-flip-close:hover {
             transform: scale(1.1) rotate(90deg);
         }
 
+        /* Overlay - simple dark background, NO blur */
+        .work-flip-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .work-flip-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Modal content styles (reused from original modal) */
         .work-modal-header {
             display: flex;
             align-items: flex-start;
@@ -1945,51 +2014,65 @@
             <!-- Red Hat -->
             <div class="timeline-item work-card" data-work="redhat">
                 <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <img src="assets/images/redhat-logo.svg" alt="Red Hat" class="timeline-company-logo">
-                    <h3 class="timeline-role">Senior Principal Consultant</h3>
-                    <div class="timeline-company">Red Hat, Inc.</div>
-                    <div class="timeline-dates">2015 - Present</div>
-                    <ul class="timeline-achievements">
-                        <li>Lead architect for enterprise OpenShift deployments across Federal and Fortune 500 customers</li>
-                        <li>Mentored 20+ consultants in container platforms, Kubernetes, and cloud-native architecture</li>
-                        <li>Created technical training content consumed by 500+ engineers globally</li>
-                        <li>Drove adoption of GitOps and infrastructure-as-code practices across customer base</li>
-                    </ul>
-                    <div class="timeline-tech-stack">
-                        <span class="tech-badge">OpenShift</span>
-                        <span class="tech-badge">Kubernetes</span>
-                        <span class="tech-badge">AWS</span>
-                        <span class="tech-badge">Ansible</span>
-                        <span class="tech-badge">Java</span>
-                        <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Go</span>
+                <div class="timeline-content work-flip-container">
+                    <div class="work-flip-inner">
+                        <!-- FRONT: existing card content -->
+                        <div class="work-flip-front">
+                            <img src="assets/images/redhat-logo.svg" alt="Red Hat" class="timeline-company-logo">
+                            <h3 class="timeline-role">Senior Principal Consultant</h3>
+                            <div class="timeline-company">Red Hat, Inc.</div>
+                            <div class="timeline-dates">2015 - Present</div>
+                            <ul class="timeline-achievements">
+                                <li>Lead architect for enterprise OpenShift deployments across Federal and Fortune 500 customers</li>
+                                <li>Mentored 20+ consultants in container platforms, Kubernetes, and cloud-native architecture</li>
+                                <li>Created technical training content consumed by 500+ engineers globally</li>
+                                <li>Drove adoption of GitOps and infrastructure-as-code practices across customer base</li>
+                            </ul>
+                            <div class="timeline-tech-stack">
+                                <span class="tech-badge">OpenShift</span>
+                                <span class="tech-badge">Kubernetes</span>
+                                <span class="tech-badge">AWS</span>
+                                <span class="tech-badge">Ansible</span>
+                                <span class="tech-badge">Java</span>
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Go</span>
+                            </div>
+                            <div class="timeline-click-hint">Click for details</div>
+                        </div>
+                        <!-- BACK: populated dynamically on click -->
+                        <div class="work-flip-back"></div>
                     </div>
-                    <div class="timeline-click-hint">Click for details</div>
                 </div>
             </div>
-            
+
             <!-- Placeholder Company (ready for Lockheed Martin rocket!) -->
             <div class="timeline-item work-card" data-work="previous">
                 <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-company-logo" style="width: 70px; height: 70px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">🚀</div>
-                    <h3 class="timeline-role">Senior Software Engineer</h3>
-                    <div class="timeline-company">[Previous Company - Ready for custom animation]</div>
-                    <div class="timeline-dates">20XX - 20XX</div>
-                    <ul class="timeline-achievements">
-                        <li>Led development of mission-critical distributed systems</li>
-                        <li>Architected high-performance backend services handling X transactions/second</li>
-                        <li>Mentored junior engineers in software design and system architecture</li>
-                        <li>Drove adoption of modern development practices and CI/CD pipelines</li>
-                    </ul>
-                    <div class="timeline-tech-stack">
-                        <span class="tech-badge">C++</span>
-                        <span class="tech-badge">Java</span>
-                        <span class="tech-badge">Linux</span>
-                        <span class="tech-badge">Distributed Systems</span>
+                <div class="timeline-content work-flip-container">
+                    <div class="work-flip-inner">
+                        <!-- FRONT: existing card content -->
+                        <div class="work-flip-front">
+                            <div class="timeline-company-logo" style="width: 70px; height: 70px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem;">🚀</div>
+                            <h3 class="timeline-role">Senior Software Engineer</h3>
+                            <div class="timeline-company">[Previous Company - Ready for custom animation]</div>
+                            <div class="timeline-dates">20XX - 20XX</div>
+                            <ul class="timeline-achievements">
+                                <li>Led development of mission-critical distributed systems</li>
+                                <li>Architected high-performance backend services handling X transactions/second</li>
+                                <li>Mentored junior engineers in software design and system architecture</li>
+                                <li>Drove adoption of modern development practices and CI/CD pipelines</li>
+                            </ul>
+                            <div class="timeline-tech-stack">
+                                <span class="tech-badge">C++</span>
+                                <span class="tech-badge">Java</span>
+                                <span class="tech-badge">Linux</span>
+                                <span class="tech-badge">Distributed Systems</span>
+                            </div>
+                            <div class="timeline-click-hint">Click for details</div>
+                        </div>
+                        <!-- BACK: populated dynamically on click -->
+                        <div class="work-flip-back"></div>
                     </div>
-                    <div class="timeline-click-hint">Click for details</div>
                 </div>
             </div>
             
@@ -2728,18 +2811,7 @@
         // Start after page load
         setTimeout(startLogoZoomEffect, 3000);
 
-        // Work Experience Modal
-        const workModalOverlay = document.createElement('div');
-        workModalOverlay.className = 'work-modal-overlay';
-        workModalOverlay.id = 'workModalOverlay';
-        workModalOverlay.innerHTML = `
-            <div class="work-modal">
-                <button class="work-modal-close">&times;</button>
-                <div id="workModalContent"></div>
-            </div>
-        `;
-        document.body.appendChild(workModalOverlay);
-
+        // Work Experience Flip Card Animation
         // Work experience detail data
         const workDetails = {
             redhat: {
@@ -2800,30 +2872,149 @@
             }
         };
 
-        // Open modal function
-        function openWorkModal(workId) {
+        // ========== WORK CARD FLIP ANIMATION ==========
+        // Uses clone approach: clone element, append to body, animate
+        // This completely avoids stacking context issues
+
+        let flipClone = null;
+        let flipOriginalCard = null;
+        let flipStartRect = null;
+        let isFlipAnimating = false;
+
+        // Create overlay element
+        const flipOverlay = document.createElement('div');
+        flipOverlay.className = 'work-flip-overlay';
+        document.body.appendChild(flipOverlay);
+
+        function openFlipCard(workCard) {
+            if (isFlipAnimating || flipClone) return;
+            isFlipAnimating = true;
+
+            const workId = workCard.dataset.work;
+            const container = workCard.querySelector('.work-flip-container');
+            const inner = container.querySelector('.work-flip-inner');
+            const frontFace = inner.querySelector('.work-flip-front');
+
+            // 1. Capture the starting position
+            const startRect = inner.getBoundingClientRect();
+            flipStartRect = {
+                top: startRect.top,
+                left: startRect.left,
+                width: startRect.width,
+                height: startRect.height
+            };
+
+            // 2. Calculate final centered position
+            const viewW = window.innerWidth;
+            const viewH = window.innerHeight;
+            const finalW = Math.min(viewW * 0.9, 800);
+            const finalH = Math.min(viewH * 0.85, 600);
+            const finalLeft = (viewW - finalW) / 2;
+            const finalTop = (viewH - finalH) / 2;
+
+            // 3. Create the animated clone - append directly to body
+            flipClone = document.createElement('div');
+            flipClone.className = 'work-flip-clone';
+
+            // Create front face (copy of original)
+            const cloneFront = document.createElement('div');
+            cloneFront.className = 'work-flip-front';
+            cloneFront.innerHTML = frontFace.innerHTML;
+
+            // Create back face with detail content
+            const cloneBack = document.createElement('div');
+            cloneBack.className = 'work-flip-back';
+            populateBackContent(cloneBack, workId);
+
+            flipClone.appendChild(cloneFront);
+            flipClone.appendChild(cloneBack);
+
+            // 4. Style clone at START position (no transition yet)
+            flipClone.style.cssText = `
+                position: fixed;
+                top: ${flipStartRect.top}px;
+                left: ${flipStartRect.left}px;
+                width: ${flipStartRect.width}px;
+                height: ${flipStartRect.height}px;
+                transform: perspective(1500px) rotateY(0deg);
+                transform-style: preserve-3d;
+                z-index: 10001;
+            `;
+
+            // 5. Hide original card
+            inner.style.visibility = 'hidden';
+            flipOriginalCard = workCard;
+
+            // 6. Append clone to body (escapes all stacking contexts!)
+            document.body.appendChild(flipClone);
+
+            // 7. Show overlay
+            flipOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // 8. Force style application, then animate
+            flipClone.getBoundingClientRect(); // Force reflow
+
+            // 9. Add transition and animate to final position + flip
+            requestAnimationFrame(() => {
+                flipClone.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                flipClone.style.top = finalTop + 'px';
+                flipClone.style.left = finalLeft + 'px';
+                flipClone.style.width = finalW + 'px';
+                flipClone.style.height = finalH + 'px';
+                flipClone.style.transform = 'perspective(1500px) rotateY(180deg)';
+            });
+
+            setTimeout(() => { isFlipAnimating = false; }, 600);
+        }
+
+        function closeFlipCard() {
+            if (isFlipAnimating || !flipClone) return;
+            isFlipAnimating = true;
+
+            // Recalculate original position (may have scrolled)
+            const originalInner = flipOriginalCard.querySelector('.work-flip-inner');
+            const currentRect = originalInner.getBoundingClientRect();
+
+            // Animate back to original position
+            flipClone.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            flipClone.style.top = currentRect.top + 'px';
+            flipClone.style.left = currentRect.left + 'px';
+            flipClone.style.width = flipStartRect.width + 'px';
+            flipClone.style.height = flipStartRect.height + 'px';
+            flipClone.style.transform = 'perspective(1500px) rotateY(0deg)';
+
+            // Hide overlay
+            flipOverlay.classList.remove('active');
+
+            // After animation, clean up
+            setTimeout(() => {
+                // Show original card
+                originalInner.style.visibility = '';
+
+                // Remove clone
+                if (flipClone && flipClone.parentNode) {
+                    flipClone.parentNode.removeChild(flipClone);
+                }
+                flipClone = null;
+                flipOriginalCard = null;
+                flipStartRect = null;
+                document.body.style.overflow = '';
+                isFlipAnimating = false;
+            }, 600);
+        }
+
+        function populateBackContent(backElement, workId) {
             const data = workDetails[workId];
             if (!data) return;
 
-            const content = document.getElementById('workModalContent');
-            let projectsHtml = data.projects.map(p => `
-                <div class="work-modal-project">
-                    <div class="work-modal-project-header">
-                        <span class="work-modal-project-name">${p.name}</span>
-                        ${p.dates ? `<span class="work-modal-project-dates">${p.dates}</span>` : ''}
-                    </div>
-                    <p class="work-modal-project-desc">${p.description}</p>
-                    ${p.bullets.length ? `
-                        <ul class="work-modal-project-bullets">
-                            ${p.bullets.map(b => `<li>${b}</li>`).join('')}
-                        </ul>
-                    ` : ''}
-                </div>
-            `).join('');
-
-            content.innerHTML = `
+            backElement.innerHTML = `
+                <button class="work-flip-close" onclick="closeFlipCard(); event.stopPropagation();">&times;</button>
                 <div class="work-modal-header">
-                    ${data.logo ? `<img src="${data.logo}" alt="${data.company} logo">` : `<div style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; flex-shrink: 0;">🚀</div>`}
+                    ${data.logo
+                        ? `<img src="${data.logo}" alt="${data.company}">`
+                        : `<div style="width:80px;height:80px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;flex-shrink:0;">🚀</div>`
+                    }
                     <div class="work-modal-header-text">
                         <h3>${data.title}</h3>
                         <span class="company">${data.company}</span>
@@ -2833,43 +3024,40 @@
                 <div class="work-modal-body">
                     <div class="work-modal-section-title">Projects & Achievements</div>
                     <div class="work-modal-projects">
-                        ${projectsHtml}
+                        ${data.projects.map(p => `
+                            <div class="work-modal-project">
+                                <div class="work-modal-project-header">
+                                    <span class="work-modal-project-name">${p.name}</span>
+                                    ${p.dates ? `<span class="work-modal-project-dates">${p.dates}</span>` : ''}
+                                </div>
+                                <p class="work-modal-project-desc">${p.description}</p>
+                                ${p.bullets.length ? `<ul class="work-modal-project-bullets">${p.bullets.map(b => `<li>${b}</li>`).join('')}</ul>` : ''}
+                            </div>
+                        `).join('')}
                     </div>
                 </div>
             `;
-
-            workModalOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
         }
 
-        // Close modal function
-        function closeWorkModal() {
-            workModalOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // Add click listeners to work cards
+        // Attach click handlers to work cards
         document.querySelectorAll('.timeline-item.work-card').forEach(card => {
             card.addEventListener('click', (e) => {
-                const workId = card.getAttribute('data-work');
-                openWorkModal(workId);
+                // Don't open if clicking close button
+                if (e.target.closest('.work-flip-close')) return;
+                // Don't open if already animating
+                if (!flipClone) {
+                    openFlipCard(card);
+                }
             });
         });
 
-        // Close modal on overlay click
-        workModalOverlay.addEventListener('click', (e) => {
-            if (e.target === workModalOverlay) {
-                closeWorkModal();
-            }
-        });
+        // Close on overlay click
+        flipOverlay.addEventListener('click', closeFlipCard);
 
-        // Close modal on close button click
-        workModalOverlay.querySelector('.work-modal-close').addEventListener('click', closeWorkModal);
-
-        // Close modal on Escape key
+        // Close on Escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && workModalOverlay.classList.contains('active')) {
-                closeWorkModal();
+            if (e.key === 'Escape' && flipClone) {
+                closeFlipCard();
             }
         });
     </script>
