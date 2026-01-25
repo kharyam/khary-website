@@ -2231,28 +2231,110 @@
             .hero-name {
                 font-size: 2.75rem;
             }
-            
+
             .hero-subtitle {
                 font-size: 1.25rem;
             }
-            
+
             .hero-tagline {
                 font-size: 1.1rem;
             }
-            
+
+            /* Flip Cards - Dynamic height on mobile */
             .flip-cards-container {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
-            
+
+            .flip-card {
+                height: auto;
+                min-height: 420px;
+            }
+
+            .flip-card-front,
+            .flip-card-back {
+                position: relative;
+                min-height: 420px;
+                height: auto;
+                padding: 2rem 1.5rem;
+            }
+
+            .flip-card-back {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+
+            .flip-card-emoji {
+                font-size: 4rem;
+                margin-bottom: 1rem;
+            }
+
+            .flip-card-title {
+                font-size: 1.8rem;
+            }
+
+            .flip-card-back-title {
+                font-size: 1.3rem;
+            }
+
+            .flip-card-back-content {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .flip-card-back-metric {
+                font-size: 0.85rem;
+            }
+
+            /* Timeline - Cards on top, full width on mobile */
+            .timeline {
+                padding: 1rem 0;
+            }
+
+            .timeline::before {
+                display: none;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 2rem;
+            }
+
+            .timeline-dot {
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: none;
+                margin-bottom: 1rem;
+                width: 20px;
+                height: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 1rem);
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content,
+            .timeline-item:nth-child(odd) .timeline-content {
+                animation: fadeInUp 0.8s ease both;
+            }
+
             .metrics-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            
+
             .hamburger {
                 display: flex;
             }
-            
+
             .nav-links {
                 position: fixed;
                 top: 70px;
@@ -2263,41 +2345,42 @@
                 background: rgba(26, 34, 56, 0.98);
                 backdrop-filter: blur(10px);
                 flex-direction: column;
-                gap: 2rem;
-                padding: 3rem 2rem;
+                justify-content: flex-start;
+                gap: 0;
+                padding: 1rem 1.5rem;
                 border-left: 1px solid var(--border-color);
                 box-shadow: var(--shadow-lg);
                 transition: right 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
                 z-index: 999;
             }
-            
+
             .nav-links.active {
                 right: 0;
             }
-            
+
             .nav-links li {
                 width: 100%;
                 text-align: left;
             }
-            
+
             .nav-links a {
                 display: block;
-                font-size: 1.2rem;
-                padding: 1rem 0;
+                font-size: 1.1rem;
+                padding: 0.6rem 0;
             }
-            
+
             .section-title {
                 font-size: 2.5rem;
             }
-            
+
             .testimonials-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .cert-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .connect-grid {
                 grid-template-columns: 1fr;
             }
@@ -3069,7 +3152,58 @@
                 }
             });
         });
-        
+
+        // Dynamic Flip Card Height for Mobile
+        function adjustFlipCardHeights() {
+            const isMobile = window.innerWidth <= 768;
+            const flipCards = document.querySelectorAll('.flip-card');
+
+            flipCards.forEach(card => {
+                const front = card.querySelector('.flip-card-front');
+                const back = card.querySelector('.flip-card-back');
+
+                if (isMobile) {
+                    // Temporarily make both sides position:relative to measure natural height
+                    front.style.position = 'relative';
+                    back.style.position = 'relative';
+                    front.style.height = 'auto';
+                    back.style.height = 'auto';
+                    card.style.height = 'auto';
+
+                    // Get natural heights
+                    const frontHeight = front.scrollHeight;
+                    const backHeight = back.scrollHeight;
+                    const maxHeight = Math.max(frontHeight, backHeight);
+
+                    // Apply the max height to ensure both sides fit
+                    card.style.height = maxHeight + 'px';
+                    front.style.height = maxHeight + 'px';
+                    back.style.height = maxHeight + 'px';
+                    front.style.minHeight = maxHeight + 'px';
+                    back.style.minHeight = maxHeight + 'px';
+
+                    // Restore positioning for flip animation
+                    front.style.position = 'relative';
+                    back.style.position = 'absolute';
+                } else {
+                    // Reset to CSS defaults for desktop
+                    card.style.height = '';
+                    front.style.height = '';
+                    back.style.height = '';
+                    front.style.minHeight = '';
+                    back.style.minHeight = '';
+                    front.style.position = '';
+                    back.style.position = '';
+                }
+            });
+        }
+
+        // Run on load and resize
+        adjustFlipCardHeights();
+        window.addEventListener('resize', adjustFlipCardHeights);
+        // Also run after fonts load to ensure accurate measurements
+        document.fonts.ready.then(adjustFlipCardHeights);
+
         // Timeline Scroll Animation
         const timelineObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -3764,11 +3898,20 @@
                 height: startRect.height
             };
 
-            // 2. Calculate final centered position (8.5 x 11 paper-like ratio)
+            // 2. Calculate final centered position
             const viewW = window.innerWidth;
             const viewH = window.innerHeight;
-            const finalW = Math.min(viewW * 0.9, 750);
-            const finalH = Math.min(viewH * 0.92, finalW * 1.294); // 11/8.5 aspect ratio
+            const isMobile = viewW <= 768;
+
+            // On mobile: nearly full screen. On desktop: 8.5 x 11 paper-like ratio
+            let finalW, finalH;
+            if (isMobile) {
+                finalW = viewW * 0.95;
+                finalH = viewH * 0.92;
+            } else {
+                finalW = Math.min(viewW * 0.9, 750);
+                finalH = Math.min(viewH * 0.92, finalW * 1.294); // 11/8.5 aspect ratio
+            }
             const finalLeft = (viewW - finalW) / 2;
             const finalTop = (viewH - finalH) / 2;
 
