@@ -955,7 +955,7 @@
         }
         
         .timeline-content {
-            width: calc(50% - 50px);
+            width: calc(50% - 20px);
             background: var(--bg-card);
             padding: 2.5rem;
             border-radius: 16px;
@@ -998,7 +998,34 @@
         .timeline-company-logo {
             width: 70px;
             height: 70px;
-            margin-bottom: 1.5rem;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .timeline-header-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .timeline-header .timeline-role {
+            margin-bottom: 0;
+        }
+
+        .timeline-header .timeline-company {
+            margin-bottom: 0;
+            font-size: 1.1rem;
+        }
+
+        .timeline-header .timeline-dates {
+            margin-bottom: 0;
         }
         
         /* Randomized float for timeline logos */
@@ -2222,7 +2249,7 @@
             <h1 class="hero-name">
                 <span class="hero-name-gradient">Khary A. Mendez</span>
             </h1>
-            <p class="hero-subtitle">Technical Architect • Team Multiplier • Problem Solver</p>
+            <p class="hero-subtitle">Technical Leader • Team Multiplier • Problem Solver</p>
             <div class="hero-tagline">
                 <span class="typewriter-text"></span><span class="typewriter-cursor">|</span>
             </div>
@@ -2346,10 +2373,14 @@
                     <div class="work-flip-inner">
                         <!-- FRONT: existing card content -->
                         <div class="work-flip-front">
-                            <img src="assets/images/redhat-logo.svg" alt="Red Hat" class="timeline-company-logo">
-                            <h3 class="timeline-role">Senior Principal Consultant</h3>
-                            <div class="timeline-company">Red Hat, Inc.</div>
-                            <div class="timeline-dates">2011 - Present</div>
+                            <div class="timeline-header">
+                                <img src="assets/images/redhat-logo.svg" alt="Red Hat" class="timeline-company-logo">
+                                <div class="timeline-header-text">
+                                    <h3 class="timeline-role">Senior Principal Consultant</h3>
+                                    <div class="timeline-company">Red Hat, Inc.</div>
+                                    <div class="timeline-dates">2015 - Present</div>
+                                </div>
+                            </div>
                             <ul class="timeline-achievements">
                                 <li>Led 15+ enterprise engagements across federal agencies, defense contractors, and Fortune 500 companies</li>
                                 <li>Specialized in OpenShift/Kubernetes architecture, CI/CD automation, and cloud-native transformation</li>
@@ -2380,10 +2411,14 @@
                     <div class="work-flip-inner">
                         <!-- FRONT: existing card content -->
                         <div class="work-flip-front">
-                            <img src="assets/images/lockheed.svg" alt="Lockheed Martin" class="timeline-company-logo">
-                            <h3 class="timeline-role">Staff Software Engineer</h3>
-                            <div class="timeline-company">Lockheed Martin</div>
-                            <div class="timeline-dates">1998 - 2011</div>
+                            <div class="timeline-header">
+                                <img src="assets/images/lockheed.svg" alt="Lockheed Martin" class="timeline-company-logo">
+                                <div class="timeline-header-text">
+                                    <h3 class="timeline-role">Staff Software Engineer</h3>
+                                    <div class="timeline-company">Lockheed Martin</div>
+                                    <div class="timeline-dates">1998 - 2011</div>
+                                </div>
+                            </div>
                             <ul class="timeline-achievements">
                                 <li>13-year tenure across satellite systems, tactical networks, and space-based defense programs</li>
                                 <li>Progressed from Software Engineer to Staff Engineer, leading services and mentoring teams</li>
@@ -2413,10 +2448,14 @@
                     <div class="work-flip-inner">
                         <!-- FRONT: existing card content -->
                         <div class="work-flip-front">
-                            <img src="assets/montgomery_college.png" alt="Montgomery College" class="timeline-company-logo">
-                            <h3 class="timeline-role">Adjunct Professor</h3>
-                            <div class="timeline-company">Montgomery College</div>
-                            <div class="timeline-dates">2011</div>
+                            <div class="timeline-header">
+                                <img src="assets/montgomery_college.png" alt="Montgomery College" class="timeline-company-logo">
+                                <div class="timeline-header-text">
+                                    <h3 class="timeline-role">Adjunct Professor</h3>
+                                    <div class="timeline-company">Montgomery College</div>
+                                    <div class="timeline-dates">2011</div>
+                                </div>
+                            </div>
                             <ul class="timeline-achievements">
                                 <li>Taught introductory programming course covering C++ fundamentals and problem-solving</li>
                                 <li>Developed curriculum materials and provided extensive student mentorship</li>
@@ -2438,10 +2477,14 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <img src="assets/images/jhu-logo.png" alt="Johns Hopkins" class="timeline-company-logo" style="width: auto; height: 70px; object-fit: contain;">
-                    <h3 class="timeline-role">M.S. Computer Science</h3>
-                    <div class="timeline-company">Johns Hopkins University</div>
-                    <div class="timeline-dates">2002</div>
+                    <div class="timeline-header">
+                        <img src="assets/images/jhu-logo.png" alt="Johns Hopkins" class="timeline-company-logo" style="width: auto; height: 70px;">
+                        <div class="timeline-header-text">
+                            <h3 class="timeline-role">M.S. Computer Science</h3>
+                            <div class="timeline-company">Johns Hopkins University</div>
+                            <div class="timeline-dates">2002</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -2449,10 +2492,14 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <img src="assets/images/cmu-logo.svg" alt="Carnegie Mellon" class="timeline-company-logo">
-                    <h3 class="timeline-role">B.S. Computer Science</h3>
-                    <div class="timeline-company">Carnegie Mellon University</div>
-                    <div class="timeline-dates">1998</div>
+                    <div class="timeline-header">
+                        <img src="assets/images/cmu-logo.svg" alt="Carnegie Mellon" class="timeline-company-logo">
+                        <div class="timeline-header-text">
+                            <h3 class="timeline-role">B.S. Computer Science</h3>
+                            <div class="timeline-company">Carnegie Mellon University</div>
+                            <div class="timeline-dates">1998</div>
+                        </div>
+                    </div>
                     <ul class="timeline-achievements">
                         <li>Minor in Mathematics</li>
                     </ul>
@@ -2852,7 +2899,7 @@
     <script>
         // Typewriter Effect
         const typewriterText = document.querySelector('.typewriter-text');
-        const text = "Solving hard problems through systems thinking, mentorship, and teaching.";
+        const text = "Solving hard problems through systems thinking, resilience, and mentorship.";
         let charIndex = 0;
         
         function typeWriter() {
