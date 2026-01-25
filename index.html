@@ -807,14 +807,14 @@
         }
         
         .flip-card {
-            height: 480px;
+            height: 400px;
             position: relative;
             cursor: pointer;
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
         }
 
         .flip-card.flipped {
-            height: 580px;
+            height: 560px;
         }
         
         .flip-card:hover {
@@ -948,7 +948,6 @@
             text-align: left;
             justify-content: flex-start;
             padding: 2rem 2rem;
-            overflow-y: auto;
         }
 
         .flip-card-back-title {
@@ -964,17 +963,7 @@
 
         .flip-card-back-section {
             width: 100%;
-            margin-bottom: 1.25rem;
-        }
-
-        .flip-card-back-section-title {
-            font-family: var(--font-display);
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
         .flip-card-back-content {
@@ -1006,32 +995,22 @@
             background: rgba(0, 217, 255, 0.05);
             border-radius: 8px;
             border-left: 3px solid var(--accent-primary);
+            cursor: default;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .flip-card-back-metric:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(0, 217, 255, 0.12);
+            box-shadow: 0 8px 25px rgba(0, 217, 255, 0.2), 0 4px 10px rgba(0, 0, 0, 0.3);
+            border-left-color: var(--accent-secondary);
+            color: var(--text-primary);
         }
 
         .flip-card-back-metric span {
             flex-shrink: 0;
         }
         
-        .flip-back-btn {
-            padding: 0.7rem 1.5rem;
-            background: linear-gradient(135deg, #00D9FF 0%, #0077B6 100%);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: var(--font-body);
-            font-size: 0.9rem;
-            box-shadow: var(--shadow-sm);
-            margin-top: auto;
-            align-self: flex-start;
-        }
-
-        .flip-back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
         
         /* Professional Timeline */
         .timeline {
@@ -2290,12 +2269,12 @@
             }
 
             .flip-card {
-                height: 420px;
-                min-height: 420px;
+                height: 380px;
+                min-height: 380px;
             }
 
             .flip-card.flipped {
-                height: 520px;
+                height: 540px;
             }
 
             .flip-card-front,
@@ -2305,7 +2284,7 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                min-height: 420px;
+                min-height: 380px;
                 height: 100%;
                 padding: 2rem 1.5rem;
             }
@@ -2329,10 +2308,6 @@
                 padding-bottom: 0.5rem;
             }
 
-            .flip-card-back-section-title {
-                font-size: 0.8rem;
-                margin-bottom: 0.5rem;
-            }
 
             .flip-card-back-content {
                 font-size: 0.9rem;
@@ -2558,20 +2533,17 @@
                     <div class="flip-card-back">
                         <h3 class="flip-card-back-title">Deep Understanding</h3>
                         <div class="flip-card-back-section">
-                            <div class="flip-card-back-section-title">Real Example</div>
                             <div class="flip-card-back-content">
                                 Joined a troubled engagement midway through with a frustrated government contractor. Did a complete reset—built their architecture diagram in real-time, asked probing questions that forced clarity, and uncovered the true need: optimizing their enterprise middleware for diverse deployment scenarios.
                             </div>
                         </div>
                         <div class="flip-card-back-section">
-                            <div class="flip-card-back-section-title">Results</div>
                             <div class="flip-card-back-results">
                                 <div class="flip-card-back-metric"><span>📊</span> 40+ page tuning guide with optimization rubric</div>
                                 <div class="flip-card-back-metric"><span>🔄</span> Complete customer turnaround in 2 weeks</div>
                                 <div class="flip-card-back-metric"><span>⭐</span> "Khary was phenomenal to work with"</div>
                             </div>
                         </div>
-                        <button class="flip-back-btn" onclick="this.closest('.flip-card').classList.remove('flipped')">← Back</button>
                     </div>
                 </div>
             </div>
@@ -2587,20 +2559,17 @@
                     <div class="flip-card-back">
                         <h3 class="flip-card-back-title">Team Multiplication</h3>
                         <div class="flip-card-back-section">
-                            <div class="flip-card-back-section-title">Real Example</div>
                             <div class="flip-card-back-content">
                                 When onboarding customer teams, I have them do the work while I teach—building self-sufficiency so we can expand our footprint. Internally, I encouraged colleagues to present at our annual conference, submitted proposals on their behalf, and coached them through it. I mentor consultants and am a go-to resource for solving difficult problems.
                             </div>
                         </div>
                         <div class="flip-card-back-section">
-                            <div class="flip-card-back-section-title">Results</div>
                             <div class="flip-card-back-results">
                                 <div class="flip-card-back-metric"><span>🎤</span> Helped colleagues become conference speakers</div>
                                 <div class="flip-card-back-metric"><span>🚀</span> New team members now leading migrations</div>
                                 <div class="flip-card-back-metric"><span>🤝</span> Teams become self-sufficient, not dependent</div>
                             </div>
                         </div>
-                        <button class="flip-back-btn" onclick="this.closest('.flip-card').classList.remove('flipped')">← Back</button>
                     </div>
                 </div>
             </div>
@@ -2616,20 +2585,17 @@
                     <div class="flip-card-back">
                         <h3 class="flip-card-back-title">Production Results</h3>
                         <div class="flip-card-back-section">
-                            <div class="flip-card-back-section-title">Real Example</div>
                             <div class="flip-card-back-content">
                                 When a customer literally laughed at OpenShift requirements (no wildcard certs supported), we plowed through—found champions, and now run successfully with a backlog of demand. On another engagement, discovered developers were .NET, not Java. Created learning resources, ran intensive sessions, and they delivered the middleware migration on a strict deadline.
                             </div>
                         </div>
                         <div class="flip-card-back-section">
-                            <div class="flip-card-back-section-title">Results</div>
                             <div class="flip-card-back-results">
                                 <div class="flip-card-back-metric"><span>✅</span> OpenShift running for years with growing demand</div>
                                 <div class="flip-card-back-metric"><span>🎓</span> Upskilled entire team from zero to delivery</div>
                                 <div class="flip-card-back-metric"><span>🏆</span> First successful engagement with that customer</div>
                             </div>
                         </div>
-                        <button class="flip-back-btn" onclick="this.closest('.flip-card').classList.remove('flipped')">← Back</button>
                     </div>
                 </div>
             </div>
