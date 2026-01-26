@@ -1790,11 +1790,98 @@
             color: var(--accent-secondary);
         }
         
-        .cert-info {
+         .cert-info {
             font-size: 0.9rem;
             color: var(--text-secondary);
             font-family: var(--font-mono);
         }
+
+        /* Verification Cards - Compact Design */
+        .verify-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .verify-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .verify-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .verify-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .verify-card:hover::before {
+            left: 100%;
+        }
+
+        .verify-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-triple);
+            transform: translateY(-5px);
+        }
+
+        .verify-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .verify-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.3));
+        }
+
+        .verify-icon img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .verify-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            line-height: 1.2;
+        }
+
+        .verify-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            padding-left: 3.5rem; /* Align with icon */
+        }
+
+        /* Staggered animations for verification cards */
+        .verify-card:nth-child(1) { transition-delay: 0.1s; }
+        .verify-card:nth-child(2) { transition-delay: 0.2s; }
 
         /* GitHub Projects Section */
         .github-section {
@@ -3207,11 +3294,33 @@
                     <div class="cert-name">Red Hat Certified Engineer (RHCE)</div>
                     <div class="cert-info">June 2019</div>
                 </div>
-                <div class="cert-card">
+                 <div class="cert-card">
                     <img src="assets/images/redhat-logo.svg" alt="Red Hat" class="cert-logo">
                     <div class="cert-name">Red Hat Certified System Administrator (RHCSA)</div>
                     <div class="cert-info">October 2015</div>
                 </div>
+            </div>
+            
+            <!-- Verify Active Certifications -->
+            <h4 class="cert-category-label">Verify Active Certifications</h4>
+            <div class="verify-cards-grid">
+                <a href="https://www.credly.com/users/khary-mendez/badges" target="_blank" rel="noopener noreferrer" class="verify-card">
+                    <div class="verify-card-header">
+                        <div class="verify-icon">🏅</div>
+                        <div class="verify-title">Credly Verification</div>
+                    </div>
+                    <div class="verify-description">View verified digital credentials and badges</div>
+                </a>
+                
+                <a href="https://rhtapps.redhat.com/verify/?certId=150-047-298" target="_blank" rel="noopener noreferrer" class="verify-card">
+                    <div class="verify-card-header">
+                        <div class="verify-icon">
+                            <img src="assets/images/redhat-logo.svg" alt="Red Hat">
+                        </div>
+                        <div class="verify-title">Red Hat Verify</div>
+                    </div>
+                    <div class="verify-description">Official certification validation</div>
+                </a>
             </div>
         </div>
     </section>
@@ -3505,20 +3614,6 @@
                     <div class="connect-label">KAM Dynamics</div>
                     <div class="connect-description">Drone videography & technology consulting</div>
                 </a>
-                
-                <a href="https://www.credly.com/users/khary-mendez/badges" target="_blank" rel="noopener noreferrer" class="connect-card">
-                    <div class="connect-icon">🏅</div>
-                    <div class="connect-label">Credly</div>
-                    <div class="connect-description">Verified digital credentials and badges</div>
-                </a>
-                
-                <a href="https://rhtapps.redhat.com/verify/?certId=150-047-298" target="_blank" rel="noopener noreferrer" class="connect-card">
-                    <div class="connect-icon">
-                        <img src="assets/images/redhat-logo.svg" alt="Red Hat" style="width: 80px; height: 80px; object-fit: contain;">
-                    </div>
-                    <div class="connect-label">Red Hat Verify</div>
-                    <div class="connect-description">Official certification validation</div>
-                </a>
             </div>
         </div>
     </section>
@@ -3680,7 +3775,7 @@
             timelineObserver.observe(item);
         });
         
-        // Certifications Scroll Animation
+         // Certifications Scroll Animation
         const certObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
@@ -3697,9 +3792,31 @@
                 }
             });
         }, { threshold: 0.1 });
-        
+
         document.querySelectorAll('.cert-card').forEach(card => {
             certObserver.observe(card);
+        });
+
+        // Verification Cards Scroll Animation
+        const verifyObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    const grid = card.parentElement;
+                    const siblings = Array.from(grid.querySelectorAll('.verify-card'));
+                    const cardIndex = siblings.indexOf(card);
+                    
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, cardIndex * 150);
+                    
+                    verifyObserver.unobserve(card);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.verify-card').forEach(card => {
+            verifyObserver.observe(card);
         });
         
         // Testimonials Scroll Animation
