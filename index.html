@@ -3577,13 +3577,43 @@
             counterObserver.observe(counter);
         });
         
-        // Flip Card Functionality
+         // Flip Card Functionality
         document.querySelectorAll('.flip-card').forEach(card => {
             card.addEventListener('click', (e) => {
                 if (!e.target.closest('.flip-back-btn')) {
                     card.classList.toggle('flipped');
                 }
             });
+        });
+
+        // No-op click handlers for highlighted bullets on impact cards
+        function handleImpactBulletClick(e) {
+            e.stopPropagation();
+            console.log('Impact bullet clicked - no action taken');
+        }
+
+        document.querySelectorAll('.flip-card-back-metric').forEach(bullet => {
+            bullet.addEventListener('click', handleImpactBulletClick);
+        });
+
+        // No-op click handlers for skill pills on professional journey cards
+        function handleSkillPillClick(e) {
+            e.stopPropagation();
+            console.log('Skill pill clicked - no action taken');
+        }
+
+        document.querySelectorAll('.tech-badge').forEach(pill => {
+            pill.addEventListener('click', handleSkillPillClick);
+        });
+
+        // No-op click handlers for project cards on reverse side
+        function handleProjectCardClick(e) {
+            e.stopPropagation();
+            console.log('Project card clicked - no action taken');
+        }
+
+        document.querySelectorAll('.work-modal-project').forEach(project => {
+            project.addEventListener('click', handleProjectCardClick);
         });
 
         // Dynamic Flip Card Height for Mobile
