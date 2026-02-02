@@ -2770,8 +2770,32 @@
             }
 
             .metrics-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .metric-item {
+                padding: 1rem 0.75rem;
+                border-radius: 10px;
+            }
+
+            .metric-icon {
+                font-size: 1.75rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .metric-number {
+                font-size: 2rem;
+                margin-bottom: 0.25rem;
+            }
+
+            .metric-label {
+                font-size: 0.65rem;
+                letter-spacing: 1px;
+            }
+
+            .metric-item:hover {
+                transform: none;
             }
 
             .hamburger {
@@ -2878,27 +2902,137 @@
                 padding-bottom: 0.5rem;
             }
 
+            /* Verify Cards - Side by side on mobile */
+            .verify-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .verify-card {
+                padding: 0.75rem;
+                border-radius: 8px;
+            }
+
+            .verify-card-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 0.5rem;
+                margin-bottom: 0;
+            }
+
+            .verify-icon {
+                font-size: 1.5rem;
+            }
+
+            .verify-icon img {
+                width: 28px;
+                height: 28px;
+            }
+
+            .verify-title {
+                font-size: 0.75rem;
+                line-height: 1.2;
+            }
+
+            .verify-description {
+                display: none;
+            }
+
+            .verify-card:hover {
+                transform: none;
+            }
+
             .connect-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
             }
 
             .publications-showcase {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .publications-section {
+                padding: 3rem 1rem;
+            }
+
+            .publication-card {
+                display: flex;
+                flex-direction: row;
+                border-radius: 12px;
             }
 
             .publication-thumbnail {
-                height: 180px;
+                width: 120px;
+                min-width: 120px;
+                height: auto;
+                min-height: 100%;
+            }
+
+            .publication-thumbnail img {
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .publication-type-badge {
+                top: 0.5rem;
+                left: 0.5rem;
+                padding: 0.25rem 0.5rem;
+                font-size: 0.6rem;
+                letter-spacing: 0.5px;
+                gap: 0.25rem;
+            }
+
+            .publication-type-icon {
+                font-size: 0.7rem;
+            }
+
+            .publication-play-overlay,
+            .publication-view-overlay {
+                display: none;
+            }
+
+            .publication-content {
+                padding: 0.875rem 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .publication-content::before {
+                display: none;
             }
 
             .publication-title {
-                font-size: 1.2rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.375rem;
+                line-height: 1.25;
             }
 
-              .publication-description {
-                  font-size: 0.9rem;
-              }
+            .publication-description {
+                display: none;
+            }
 
-              .timeline-role {
+            .publication-meta {
+                gap: 0.75rem;
+                font-size: 0.7rem;
+            }
+
+            .publication-meta-icon {
+                font-size: 0.8rem;
+            }
+
+            .publication-link-indicator {
+                display: none;
+            }
+
+            .publication-card:hover {
+                transform: none;
+            }
+
+            .timeline-role {
                   font-size: 1.3rem;
               }
 
@@ -3010,27 +3144,31 @@
 
               /* Connect Section Mobile Optimizations */
               .connect-card {
-                  padding: 1.75rem 1.5rem;
+                  padding: 0.75rem 0.5rem;
               }
 
               .connect-icon {
-                  font-size: 3rem;
-                  margin-bottom: 0.75rem;
+                  font-size: 1.5rem;
+                  margin-bottom: 0.375rem;
               }
 
               .connect-icon img {
-                  height: 60px;
-                  width: auto;
-                  max-width: 90px;
+                  height: 32px !important;
+                  width: auto !important;
+                  max-width: 50px !important;
               }
 
               .connect-label {
-                  font-size: 1.3rem;
-                  margin-bottom: 0.25rem;
+                  font-size: 0.75rem;
+                  margin-bottom: 0;
               }
 
               .connect-description {
-                  font-size: 0.85rem;
+                  display: none;
+              }
+
+              .connect-card:hover {
+                  transform: none;
               }
 
               .bg-shape {
