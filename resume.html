@@ -966,6 +966,18 @@
             color: var(--text-secondary);
         }
 
+        /* ========== TEMPLATE: MARKDOWN ========== */
+        .resume-content.template-markdown {
+            font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
         /* ========== EXPORT BUTTONS ========== */
         .export-buttons {
             display: flex;
@@ -1623,6 +1635,7 @@
                     <option value="two-column">Compact Two-Column</option>
                     <option value="ats">ATS-Optimized</option>
                     <option value="executive">Executive Summary</option>
+                    <option value="markdown">Markdown</option>
                 </select>
             </div>
 
@@ -1638,6 +1651,14 @@
                 <div class="export-buttons">
                     <button id="download-text-btn" class="export-btn">Download .txt</button>
                     <button id="copy-text-btn" class="export-btn">Copy Text</button>
+                </div>
+            </div>
+
+            <div class="control-group" id="markdown-export-controls" style="display: none;">
+                <div class="control-group-label">Export</div>
+                <div class="export-buttons">
+                    <button id="download-md-btn" class="export-btn">Download .md</button>
+                    <button id="copy-md-btn" class="export-btn">Copy</button>
                 </div>
             </div>
         </div>
@@ -1910,12 +1931,135 @@
             `;
         }
 
+        function isHidden(sectionName) {
+            const checkbox = document.querySelector(`input[data-section="${sectionName}"]`);
+            return checkbox && !checkbox.checked;
+        }
+
+        function generateMarkdown() {
+            const p = RESUME_DATA.personal;
+            const m = RESUME_DATA.metrics;
+            const detailLevel = getCurrentDetailLevel();
+            let md = '';
+
+            // Header
+            md += `# ${p.name}\n\n`;
+            md += `**${p.title}**\n\n`;
+            md += `📍 ${p.location} • [LinkedIn](https://${p.linkedin}) • [GitHub](https://${p.github}) • [${p.website}](https://${p.website})\n\n`;
+            md += `---\n\n`;
+
+            // Summary
+            if (!isHidden('summary')) {
+                md += `## Summary\n\n`;
+                md += `${p.tagline} ${m.yearsExperience}+ years of experience in software engineering, cloud architecture, and technical leadership. Red Hat Certified Architect with ${m.certifications} professional certifications. Proven track record of enabling ${m.teamsEnabled}+ teams and delivering enterprise-scale solutions.\n\n`;
+            }
+
+            // Experience
+            if (!isHidden('experience')) {
+                md += `## Experience\n\n`;
+                RESUME_DATA.experience.forEach(job => {
+                    md += `### ${job.company}\n`;
+                    md += `**${job.role}** • ${job.dates}\n\n`;
+                    md += `${job.summary}\n\n`;
+
+                    if (detailLevel === 'full' && job.projects) {
+                        job.projects.forEach(proj => {
+                            md += `#### ${proj.name}\n`;
+                            md += `*${proj.dates}*\n\n`;
+                            md += `${proj.description}\n\n`;
+                            proj.bullets.forEach(b => {
+                                md += `- ${b}\n`;
+                            });
+                            md += '\n';
+                        });
+                    } else if (detailLevel === 'highlights') {
+                        job.highlights.forEach(h => {
+                            md += `- ${h}\n`;
+                        });
+                        md += '\n';
+                    }
+                });
+            }
+
+            // Education
+            if (!isHidden('education')) {
+                md += `## Education\n\n`;
+                RESUME_DATA.education.forEach(edu => {
+                    md += `**${edu.school}** - ${edu.degree}${edu.minor ? `, Minor in ${edu.minor}` : ''} (${edu.year})\n\n`;
+                });
+            }
+
+            // Certifications
+            if (!isHidden('certifications')) {
+                md += `## Certifications\n\n`;
+
+                const categories = [
+                    { key: 'architect', label: 'Architect Certifications' },
+                    { key: 'cloud', label: 'Cloud & Professional' },
+                    { key: 'redhat', label: 'Red Hat Specialist' }
+                ];
+
+                categories.forEach(cat => {
+                    const certs = RESUME_DATA.certifications[cat.key];
+                    if (certs && certs.length > 0) {
+                        md += `**${cat.label}:** ${certs.map(c => c.name).join(', ')}\n\n`;
+                    }
+                });
+            }
+
+            // Skills
+            if (!isHidden('skills')) {
+                md += `## Technical Skills\n\n`;
+
+                const skillCategories = [
+                    { key: 'platforms', label: 'Platforms' },
+                    { key: 'languages', label: 'Languages' },
+                    { key: 'devops', label: 'DevOps' },
+                    { key: 'middleware', label: 'Middleware' }
+                ];
+
+                skillCategories.forEach(cat => {
+                    md += `**${cat.label}:** \`${RESUME_DATA.skills[cat.key].join('\`, \`')}\`\n\n`;
+                });
+            }
+
+            // Publications
+            if (!isHidden('publications')) {
+                md += `## Publications\n\n`;
+                RESUME_DATA.publications.forEach(pub => {
+                    md += `**${pub.title}**`;
+                    if (pub.year) md += ` (${pub.year})`;
+                    if (pub.role) md += ` - ${pub.role}`;
+                    if (pub.publisher) md += ` - ${pub.publisher}`;
+                    md += '\n\n';
+                    md += `${pub.description}\n\n`;
+                });
+            }
+
+            // Testimonials
+            if (!isHidden('testimonials')) {
+                md += `## What Colleagues Say\n\n`;
+                RESUME_DATA.testimonials.forEach(t => {
+                    md += `> "${t.quote}"\n>\n`;
+                    md += `> — **${t.role}**, ${t.context}\n\n`;
+                });
+            }
+
+            return md.trim();
+        }
+
         function renderResume(detailLevel = 'full', template = 'modern') {
             const container = document.getElementById('resume-content');
 
             // Remove all template classes first
-            container.classList.remove('template-modern', 'template-classic', 'template-two-column', 'template-ats', 'template-executive');
+            container.classList.remove('template-modern', 'template-classic', 'template-two-column', 'template-ats', 'template-executive', 'template-markdown');
             container.classList.add(`template-${template}`);
+
+            // Handle markdown template specially
+            if (template === 'markdown') {
+                container.textContent = generateMarkdown();
+                return;
+            }
 
             // For two-column layout, we need a different DOM structure
             if (template === 'two-column') {
@@ -1998,6 +2142,14 @@
                 // Show/hide text export controls based on template
                 const textExportControls = document.getElementById('text-export-controls');
                 textExportControls.style.display = template === 'ats' ? 'flex' : 'none';
+
+                // Show/hide markdown export controls based on template
+                const markdownExportControls = document.getElementById('markdown-export-controls');
+                markdownExportControls.style.display = template === 'markdown' ? 'flex' : 'none';
+
+                // Hide print button for markdown template
+                const printBtn = document.querySelector('.print-btn');
+                printBtn.style.display = template === 'markdown' ? 'none' : 'inline-flex';
             });
 
             // Headshot toggle listener
@@ -2151,6 +2303,32 @@
                     btn.classList.add('copied');
                     setTimeout(() => {
                         btn.textContent = 'Copy Text';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+
+            // Download markdown button listener
+            document.getElementById('download-md-btn').addEventListener('click', () => {
+                const md = generateMarkdown();
+                const blob = new Blob([md], { type: 'text/markdown' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Khary_Mendez_Resume.md';
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+
+            // Copy markdown button listener
+            document.getElementById('copy-md-btn').addEventListener('click', () => {
+                const md = generateMarkdown();
+                navigator.clipboard.writeText(md).then(() => {
+                    const btn = document.getElementById('copy-md-btn');
+                    btn.textContent = 'Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = 'Copy';
                         btn.classList.remove('copied');
                     }, 2000);
                 });
