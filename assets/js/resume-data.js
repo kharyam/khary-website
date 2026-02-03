@@ -314,29 +314,29 @@ const RESUME_DATA = {
     // Certifications
     certifications: {
         cloud: [
-            { name: "Certified Scrum Master", issuer: "Scrum Alliance", logo: "assets/images/scrum-logo.svg" },
-            { name: "Certified Kubernetes Administrator (CKA)", issuer: "Cloud Native Computing Foundation", logo: "assets/images/cncf-logo.svg" },
-            { name: "Certified Kubernetes Application Developer (CKAD)", issuer: "Cloud Native Computing Foundation", logo: "assets/images/cncf-logo.svg" },
-            { name: "Certified Kubernetes Security Specialist (CKS)", issuer: "Cloud Native Computing Foundation", logo: "assets/images/cncf-logo.svg" },
-            { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", logo: "assets/images/aws-logo.svg" },
-            { name: "FAA Certified Remote Pilot (Part 107)", issuer: "Federal Aviation Administration", logo: "assets/images/faa-logo.svg" }
+            { name: "Certified Scrum Master", issuer: "Scrum Alliance", logo: "assets/images/scrum-logo.svg", detailsUrl: "https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster" },
+            { name: "Certified Kubernetes Administrator (CKA)", issuer: "Cloud Native Computing Foundation", logo: "assets/images/cncf-logo.svg", detailsUrl: "https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/" },
+            { name: "Certified Kubernetes Application Developer (CKAD)", issuer: "Cloud Native Computing Foundation", logo: "assets/images/cncf-logo.svg", detailsUrl: "https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/" },
+            { name: "Certified Kubernetes Security Specialist (CKS)", issuer: "Cloud Native Computing Foundation", logo: "assets/images/cncf-logo.svg", detailsUrl: "https://training.linuxfoundation.org/certification/certified-kubernetes-security-specialist/" },
+            { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", logo: "assets/images/aws-logo.svg", detailsUrl: "https://aws.amazon.com/certification/certified-cloud-practitioner/" },
+            { name: "FAA Certified Remote Pilot (Part 107)", issuer: "Federal Aviation Administration", logo: "assets/images/faa-logo.svg", detailsUrl: "https://www.faa.gov/uas/commercial_operators/become_a_drone_pilot" }
         ],
         architect: [
-            { name: "Red Hat Certified OpenShift Architect Level II", issuer: "Red Hat", date: "November 2024", featured: true, logo: "assets/images/redhat-logo.svg" },
-            { name: "Red Hat Certified Architect in Enterprise Applications Level II", issuer: "Red Hat", date: "November 2024", featured: true, logo: "assets/images/redhat-logo.svg" },
-            { name: "Red Hat Certified Architect in Infrastructure Level III", issuer: "Red Hat", date: "August 2023", featured: true, logo: "assets/images/redhat-logo.svg" }
+            { name: "Red Hat Certified OpenShift Architect Level II", issuer: "Red Hat", date: "November 2024", featured: true, logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/red-hat-certified-openshift-architect" },
+            { name: "Red Hat Certified Architect in Enterprise Applications Level II", issuer: "Red Hat", date: "November 2024", featured: true, logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/rhca#for-rhcemds--rhccds" },
+            { name: "Red Hat Certified Architect in Infrastructure Level III", issuer: "Red Hat", date: "August 2023", featured: true, logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/rhca#for-rhces" }
         ],
         redhat: [
-            { name: "Red Hat Certified Specialist in OpenShift AI", date: "November 2024", logo: "assets/images/redhat-logo.svg" },
-            { name: "Red Hat Certified Cloud-native Developer", date: "November 2024", logo: "assets/images/redhat-logo.svg" },
-            { name: "Red Hat Certified OpenShift Application Developer", date: "October 2024", logo: "assets/images/redhat-logo.svg" },
-            { name: "Red Hat Certified Specialist in OpenShift Virtualization", date: "August 2024", logo: "assets/images/redhat-logo.svg" },
-            { name: "Red Hat Certified Specialist in API Management", date: "August 2024", logo: "assets/images/redhat-logo.svg" },
-            { name: "Red Hat Certified Specialist in MultiCluster Management", date: "September 2023", logo: "assets/images/redhat-logo.svg" },
-            { name: "Red Hat Certified Specialist in Service Mesh", date: "August 2023", logo: "assets/images/redhat-logo.svg" },
-            { name: "Red Hat Certified Specialist in Enterprise Application Server Administration", date: "August 2023", logo: "assets/images/redhat-logo.svg" },
-            { name: "Red Hat Certified Engineer (RHCE)", date: "June 2019", logo: "assets/images/redhat-logo.svg" },
-            { name: "Red Hat Certified System Administrator (RHCSA)", date: "October 2015", logo: "assets/images/redhat-logo.svg" }
+            { name: "Red Hat Certified Specialist in OpenShift AI", date: "November 2024", logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/ex267-red-hat-certified-specialist-openshift-ai" },
+            { name: "Red Hat Certified Cloud-native Developer", date: "November 2024", logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/red-hat-certified-cloud-native-developer" },
+            { name: "Red Hat Certified OpenShift Application Developer", date: "October 2024", logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/rhcs-openshift-application-development" },
+            { name: "Red Hat Certified Specialist in OpenShift Virtualization", date: "August 2024", logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/red-hat-certified-specialist-openshift-virtualization" },
+            { name: "Red Hat Certified Specialist in API Management", date: "August 2024", logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/red-hat-certified-specialist-api-management" },
+            { name: "Red Hat Certified Specialist in MultiCluster Management", date: "September 2023", logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/red-hat-certified-specialist-multicluster-management" },
+            { name: "Red Hat Certified Specialist in Service Mesh", date: "August 2023", logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/rhcs-building-resilient-microservices" },
+            { name: "Red Hat Certified Specialist in Enterprise Application Server Administration", date: "August 2023", logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/rhcs-app-server-admin" },
+            { name: "Red Hat Certified Engineer (RHCE)", date: "June 2019", logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/rhce" },
+            { name: "Red Hat Certified System Administrator (RHCSA)", date: "October 2015", logo: "assets/images/redhat-logo.svg", detailsUrl: "https://www.redhat.com/en/services/certification/rhcsa" }
         ]
     },
 

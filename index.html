@@ -413,15 +413,16 @@
         
         /* Subtle pulse on nav items */
         .nav-links li {
-            animation: navPulse 4s ease-in-out infinite;
+            animation: navPulse 5.6s ease-in-out infinite;
         }
-        
+
         .nav-links li:nth-child(1) { animation-delay: 0s; }
         .nav-links li:nth-child(2) { animation-delay: 0.8s; }
         .nav-links li:nth-child(3) { animation-delay: 1.6s; }
         .nav-links li:nth-child(4) { animation-delay: 2.4s; }
         .nav-links li:nth-child(5) { animation-delay: 3.2s; }
         .nav-links li:nth-child(6) { animation-delay: 4s; }
+        .nav-links li:nth-child(7) { animation-delay: 4.8s; }
         
         @keyframes navPulse {
             0%, 92%, 100% { opacity: 1; }
@@ -1795,6 +1796,62 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
             font-family: var(--font-mono);
+        }
+
+        /* External link icon for cert cards */
+        .cert-link-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 6px;
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cert-link-icon:hover {
+            opacity: 1;
+            background: rgba(0, 217, 255, 0.2);
+            border-color: var(--accent-primary);
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(0, 217, 255, 0.4);
+        }
+
+        /* Featured cards use gold accent */
+        .cert-featured .cert-link-icon {
+            background: rgba(255, 183, 0, 0.1);
+            border-color: rgba(255, 183, 0, 0.3);
+            color: var(--accent-secondary);
+        }
+
+        .cert-featured .cert-link-icon:hover {
+            background: rgba(255, 183, 0, 0.2);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 12px rgba(255, 183, 0, 0.4);
+        }
+
+        /* Mobile: smaller icon */
+        @media (max-width: 768px) {
+            .cert-link-icon {
+                width: 24px;
+                height: 24px;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 0.5rem;
+            }
+            .cert-link-icon:hover {
+                transform: translateY(-50%) scale(1.1);
+            }
         }
 
         /* Verification Cards - Compact Design */
@@ -3481,11 +3538,15 @@
 
         // 4. Certifications Grid - render from RESUME_DATA.certifications
         function renderCertifications() {
+            // Helper to render link icon
+            const linkIcon = (url) => url ? `<a href="${url}" target="_blank" rel="noopener noreferrer" class="cert-link-icon" title="View certification details">↗</a>` : '';
+
             // Cloud & Professional
             const cloudGrid = document.querySelector('.cert-container .cert-grid');
             if (cloudGrid && RESUME_DATA.certifications.cloud) {
                 cloudGrid.innerHTML = RESUME_DATA.certifications.cloud.map(cert => `
                     <div class="cert-card">
+                        ${linkIcon(cert.detailsUrl)}
                         <img src="${cert.logo}" alt="${cert.issuer}" class="cert-logo">
                         <div class="cert-name">${cert.name}</div>
                         <div class="cert-info">${cert.issuer}</div>
@@ -3499,6 +3560,7 @@
                 certGrids[1].innerHTML = RESUME_DATA.certifications.architect.map(cert => `
                     <div class="cert-card${cert.featured ? ' cert-featured' : ''}">
                         ${cert.featured ? '<span class="cert-badge">Architect</span>' : ''}
+                        ${linkIcon(cert.detailsUrl)}
                         <img src="${cert.logo}" alt="Red Hat" class="cert-logo">
                         <div class="cert-name">${cert.name}</div>
                         ${cert.date ? `<div class="cert-info">${cert.date}</div>` : ''}
@@ -3510,6 +3572,7 @@
             if (certGrids[2] && RESUME_DATA.certifications.redhat) {
                 certGrids[2].innerHTML = RESUME_DATA.certifications.redhat.map(cert => `
                     <div class="cert-card">
+                        ${linkIcon(cert.detailsUrl)}
                         <img src="${cert.logo}" alt="Red Hat" class="cert-logo">
                         <div class="cert-name">${cert.name}</div>
                         ${cert.date ? `<div class="cert-info">${cert.date}</div>` : ''}
