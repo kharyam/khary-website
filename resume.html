@@ -782,20 +782,20 @@
 
         /* Executive Headshot */
         .template-executive .resume-header-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
+            position: relative;
             width: 100%;
         }
 
         .template-executive .resume-headshot {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
             width: 100px;
             height: 100px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--accent-primary);
-            flex-shrink: 0;
         }
 
         .template-executive .resume-headshot.hidden {
@@ -804,6 +804,7 @@
 
         .template-executive .resume-header-left {
             text-align: center;
+            width: 100%;
         }
 
         .template-executive .resume-name {
@@ -1377,6 +1378,7 @@
 
             .template-executive .resume-header-left {
                 text-align: center !important;
+                width: 100% !important;
             }
 
             .template-executive .resume-name {
@@ -1440,13 +1442,15 @@
 
             /* Executive Headshot print */
             .template-executive .resume-header-wrapper {
-                display: flex !important;
-                justify-content: center !important;
-                align-items: center !important;
-                gap: 1.5rem !important;
+                position: relative !important;
+                width: 100% !important;
             }
 
             .template-executive .resume-headshot {
+                position: absolute !important;
+                left: 0 !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
                 width: 80px !important;
                 height: 80px !important;
                 border: 2px solid #1a365d !important;
@@ -1938,12 +1942,26 @@
                 if (!document.querySelector('[data-section="experience"]')?.classList.contains('hidden')) {
                     text += 'EXPERIENCE\n';
                     text += '-'.repeat(40) + '\n';
+                    const detailLevel = getCurrentDetailLevel();
                     RESUME_DATA.experience.forEach(job => {
                         text += `${job.company} | ${job.role} | ${job.dates}\n`;
                         text += `${job.summary}\n`;
-                        job.highlights.forEach(h => {
-                            text += `  - ${h}\n`;
-                        });
+
+                        if (detailLevel === 'full' && job.projects) {
+                            // Full project details
+                            job.projects.forEach(proj => {
+                                text += `\n  PROJECT: ${proj.name} (${proj.dates})\n`;
+                                text += `  ${proj.description}\n`;
+                                proj.bullets.forEach(b => {
+                                    text += `    - ${b}\n`;
+                                });
+                            });
+                        } else if (detailLevel !== 'summary') {
+                            // Highlights mode (default)
+                            job.highlights.forEach(h => {
+                                text += `  - ${h}\n`;
+                            });
+                        }
                         text += '\n';
                     });
                 }
