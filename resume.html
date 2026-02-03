@@ -2104,6 +2104,15 @@
         // ========== TOGGLE CONTROLS ==========
 
         function updateSectionVisibility() {
+            const currentTemplate = getCurrentTemplate();
+            
+            // If we're in markdown mode, regenerate the markdown preview
+            if (currentTemplate === 'markdown') {
+                const container = document.getElementById('resume-content');
+                container.textContent = generateMarkdown();
+                return;
+            }
+            
             const checkboxes = document.querySelectorAll('.toggle-group input[type="checkbox"]');
             checkboxes.forEach(checkbox => {
                 const sectionName = checkbox.dataset.section;
