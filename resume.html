@@ -12,6 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <style>
         :root {
             /* Dark Theme Colors (screen) */
@@ -968,14 +971,108 @@
 
         /* ========== TEMPLATE: MARKDOWN ========== */
         .resume-content.template-markdown {
-            font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
-            font-size: 0.85rem;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 0.95rem;
             line-height: 1.6;
-            white-space: pre-wrap;
             background: #1a1a2e;
             color: #e0e0e0;
             padding: 2rem;
             border-radius: 8px;
+        }
+
+        .template-markdown h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .template-markdown h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .template-markdown h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .template-markdown h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .template-markdown p {
+            margin-bottom: 0.75rem;
+        }
+
+        .template-markdown strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .template-markdown em {
+            color: var(--text-secondary);
+        }
+
+        .template-markdown a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .template-markdown a:hover {
+            text-decoration: underline;
+        }
+
+        .template-markdown ul,
+        .template-markdown ol {
+            margin: 0.5rem 0 0.75rem 1.5rem;
+        }
+
+        .template-markdown li {
+            margin-bottom: 0.25rem;
+        }
+
+        .template-markdown hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 1rem 0;
+        }
+
+        .template-markdown code {
+            font-family: 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent-primary);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .template-markdown blockquote {
+            border-left: 3px solid var(--accent-primary);
+            margin: 0.75rem 0;
+            padding: 0.5rem 0 0.5rem 1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .template-markdown blockquote p {
+            margin-bottom: 0.25rem;
+        }
+
+        .template-markdown blockquote strong {
+            font-style: normal;
         }
 
         /* ========== EXPORT BUTTONS ========== */
@@ -1633,7 +1730,7 @@
                     <option value="modern" selected>Modern Professional</option>
                     <option value="classic">Classic Traditional</option>
                     <option value="two-column">Compact Two-Column</option>
-                    <option value="ats">ATS-Optimized</option>
+                    <option value="ats">ATS-Optimized (text)</option>
                     <option value="executive">Executive Summary</option>
                     <option value="markdown">Markdown</option>
                 </select>
@@ -2055,9 +2152,10 @@
             container.classList.remove('template-modern', 'template-classic', 'template-two-column', 'template-ats', 'template-executive', 'template-markdown');
             container.classList.add(`template-${template}`);
 
-            // Handle markdown template specially
+            // Handle markdown template specially - render as formatted HTML
             if (template === 'markdown') {
-                container.textContent = generateMarkdown();
+                const markdown = generateMarkdown();
+                container.innerHTML = marked.parse(markdown);
                 return;
             }
 
@@ -2109,7 +2207,7 @@
             // If we're in markdown mode, regenerate the markdown preview
             if (currentTemplate === 'markdown') {
                 const container = document.getElementById('resume-content');
-                container.textContent = generateMarkdown();
+                container.innerHTML = marked.parse(generateMarkdown());
                 return;
             }
             
