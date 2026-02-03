@@ -512,6 +512,443 @@
             text-decoration: underline;
         }
 
+        /* ========== TEMPLATE: MODERN PROFESSIONAL (default) ========== */
+        .resume-content.template-modern {
+            /* Default styles already applied */
+        }
+
+        /* ========== TEMPLATE: CLASSIC TRADITIONAL ========== */
+        .resume-content.template-classic {
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.6;
+        }
+
+        .template-classic .resume-header {
+            border-bottom: 1px solid #555;
+            padding-bottom: 1rem;
+        }
+
+        .template-classic .resume-name {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .template-classic .resume-title {
+            font-style: italic;
+        }
+
+        .template-classic .section-heading {
+            color: var(--text-primary);
+            border-bottom: 1px solid #555;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 1.1rem;
+        }
+
+        .template-classic .cert-tag,
+        .template-classic .skill-tag {
+            background: transparent;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+        }
+
+        .template-classic .cert-list,
+        .template-classic .skills-list {
+            display: block;
+        }
+
+        .template-classic .cert-tag::after,
+        .template-classic .skill-tag::after {
+            content: ', ';
+        }
+
+        .template-classic .cert-tag:last-child::after,
+        .template-classic .skill-tag:last-child::after {
+            content: '';
+        }
+
+        .template-classic .cert-tag.featured {
+            background: transparent;
+            font-weight: 600;
+        }
+
+        .template-classic .work-projects {
+            border-left: none;
+            padding-left: 0;
+            margin-left: 1.5rem;
+        }
+
+        /* ========== TEMPLATE: COMPACT TWO-COLUMN ========== */
+        .resume-content.template-two-column {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            grid-template-areas:
+                "header header"
+                "sidebar main";
+            gap: 1.5rem;
+        }
+
+        .template-two-column .resume-header {
+            grid-area: header;
+            flex-direction: column;
+            text-align: center;
+            gap: 0.5rem;
+        }
+
+        .template-two-column .resume-header-right {
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1rem;
+        }
+
+        .template-two-column .resume-header-right .resume-contact-item {
+            display: inline;
+        }
+
+        .template-two-column .resume-sidebar {
+            grid-area: sidebar;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .template-two-column .resume-main {
+            grid-area: main;
+        }
+
+        .template-two-column .section-heading {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.25rem;
+        }
+
+        .template-two-column .resume-section {
+            margin-bottom: 1rem;
+        }
+
+        .template-two-column .cert-tag,
+        .template-two-column .skill-tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.4rem;
+        }
+
+        .template-two-column .work-entry {
+            margin-bottom: 1rem;
+        }
+
+        .template-two-column .work-company {
+            font-size: 0.95rem;
+        }
+
+        .template-two-column .work-role {
+            font-size: 0.85rem;
+        }
+
+        .template-two-column .work-dates {
+            font-size: 0.8rem;
+        }
+
+        .template-two-column .work-summary,
+        .template-two-column .work-highlights {
+            font-size: 0.8rem;
+        }
+
+        .template-two-column .project-entry {
+            margin-bottom: 0.5rem;
+        }
+
+        .template-two-column .project-name,
+        .template-two-column .project-description,
+        .template-two-column .project-bullets {
+            font-size: 0.75rem;
+        }
+
+        .template-two-column .education-entry {
+            flex-direction: column;
+            gap: 0.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .template-two-column .education-school {
+            font-size: 0.9rem;
+        }
+
+        .template-two-column .education-degree,
+        .template-two-column .education-year {
+            font-size: 0.8rem;
+        }
+
+        .template-two-column .summary-text {
+            font-size: 0.85rem;
+        }
+
+        .template-two-column .publication-title {
+            font-size: 0.85rem;
+        }
+
+        .template-two-column .publication-meta,
+        .template-two-column .publication-description {
+            font-size: 0.75rem;
+        }
+
+        /* ========== TEMPLATE: ATS-OPTIMIZED ========== */
+        .resume-content.template-ats {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+        }
+
+        .template-ats .resume-header {
+            flex-direction: column;
+            text-align: left;
+            border-bottom: 2px solid var(--text-primary);
+        }
+
+        .template-ats .resume-header-right {
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .template-ats .resume-header-right .resume-contact-item {
+            display: inline;
+        }
+
+        .template-ats .resume-name {
+            color: var(--text-primary);
+        }
+
+        .template-ats .section-heading {
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.95rem;
+        }
+
+        .template-ats .cert-tag,
+        .template-ats .skill-tag {
+            background: transparent;
+            border: none;
+            padding: 0;
+            display: inline;
+        }
+
+        .template-ats .cert-list,
+        .template-ats .skills-list {
+            display: block;
+        }
+
+        .template-ats .cert-tag::after,
+        .template-ats .skill-tag::after {
+            content: ' | ';
+            color: var(--text-secondary);
+        }
+
+        .template-ats .cert-tag:last-child::after,
+        .template-ats .skill-tag:last-child::after {
+            content: '';
+        }
+
+        .template-ats .cert-tag.featured {
+            background: transparent;
+        }
+
+        .template-ats .work-projects {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .template-ats .resume-website-line {
+            display: none;
+        }
+
+        /* ========== TEMPLATE: EXECUTIVE SUMMARY ========== */
+        .resume-content.template-executive {
+            line-height: 1.6;
+        }
+
+        .template-executive .resume-header {
+            text-align: center;
+            flex-direction: column;
+            border-bottom: 3px solid var(--accent-primary);
+            padding-bottom: 1rem;
+            position: relative;
+        }
+
+        /* Executive Headshot */
+        .template-executive .resume-header-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .template-executive .resume-headshot {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-primary);
+            flex-shrink: 0;
+        }
+
+        .template-executive .resume-headshot.hidden {
+            display: none;
+        }
+
+        .template-executive .resume-header-left {
+            text-align: center;
+        }
+
+        .template-executive .resume-name {
+            font-size: 2rem;
+        }
+
+        .template-executive .resume-title {
+            font-size: 1.1rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        .template-executive .resume-header-right {
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .template-executive .resume-header-right .resume-contact-item {
+            display: inline;
+        }
+
+        .template-executive .summary-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .template-executive .metrics-callout {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .template-executive .metric-item {
+            text-align: center;
+        }
+
+        .template-executive .metric-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            display: block;
+        }
+
+        .template-executive .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .template-executive .section-heading {
+            font-size: 1.1rem;
+        }
+
+        .template-executive .work-company {
+            font-size: 1.1rem;
+        }
+
+        .template-executive .work-role {
+            font-size: 1rem;
+            font-style: normal;
+            color: var(--accent-primary);
+        }
+
+        .template-executive .work-summary {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .template-executive .work-projects {
+            display: none;
+        }
+
+        .template-executive .cert-category {
+            margin-bottom: 0.75rem;
+        }
+
+        .template-executive .skills-category {
+            display: inline;
+        }
+
+        .template-executive .skills-label {
+            display: none;
+        }
+
+        .template-executive .skills-list {
+            display: inline;
+        }
+
+        .template-executive .skill-tag {
+            display: inline;
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+
+        .template-executive .skill-tag::after {
+            content: ' | ';
+            color: var(--text-secondary);
+        }
+
+        .template-executive .skill-tag:last-child::after {
+            content: '';
+        }
+
+        .template-executive [data-section="skills"] .skills-category:not(:last-child)::after {
+            content: ' | ';
+            color: var(--text-secondary);
+        }
+
+        /* ========== EXPORT BUTTONS ========== */
+        .export-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .export-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .export-btn:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .export-btn.copied {
+            background: var(--accent-primary);
+            color: #000;
+        }
+
         /* ========== PRINT STYLES ========== */
         @media print {
             /* Page setup - remove browser headers/footers by using margin: 0 */
@@ -760,6 +1197,266 @@
                 padding-bottom: 0 !important;
             }
 
+            /* ========== TEMPLATE-SPECIFIC PRINT STYLES ========== */
+
+            /* Classic Traditional - serif font, no colors */
+            .template-classic {
+                font-family: Georgia, 'Times New Roman', serif !important;
+            }
+
+            .template-classic .resume-name {
+                color: #000 !important;
+            }
+
+            .template-classic .section-heading {
+                color: #000 !important;
+                border-color: #333 !important;
+                text-transform: none !important;
+                letter-spacing: 0 !important;
+            }
+
+            .template-classic .cert-tag,
+            .template-classic .skill-tag {
+                background: transparent !important;
+                border: none !important;
+            }
+
+            .template-classic .cert-tag.featured {
+                background: transparent !important;
+                border: none !important;
+            }
+
+            .template-classic .work-projects {
+                border-left: none !important;
+            }
+
+            /* Compact Two-Column print layout */
+            .template-two-column {
+                display: grid !important;
+                grid-template-columns: 200px 1fr !important;
+                grid-template-areas:
+                    "header header"
+                    "sidebar main" !important;
+                gap: 0.75rem !important;
+            }
+
+            .template-two-column .resume-header {
+                grid-area: header !important;
+                flex-direction: column !important;
+                text-align: center !important;
+            }
+
+            .template-two-column .resume-header-left {
+                text-align: center !important;
+            }
+
+            .template-two-column .resume-header-right {
+                text-align: center !important;
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 0.25rem 0.75rem !important;
+            }
+
+            .template-two-column .resume-header-right .resume-contact-item {
+                display: inline !important;
+            }
+
+            .template-two-column .resume-sidebar {
+                grid-area: sidebar !important;
+            }
+
+            .template-two-column .resume-main {
+                grid-area: main !important;
+            }
+
+            .template-two-column .section-heading {
+                font-size: 9pt !important;
+            }
+
+            .template-two-column .resume-section {
+                margin-bottom: 0.4rem !important;
+            }
+
+            .template-two-column .cert-tag,
+            .template-two-column .skill-tag {
+                font-size: 8pt !important;
+                padding: 0.1rem 0.3rem !important;
+            }
+
+            .template-two-column .work-company {
+                font-size: 9pt !important;
+            }
+
+            .template-two-column .work-role,
+            .template-two-column .work-dates {
+                font-size: 8pt !important;
+            }
+
+            .template-two-column .work-summary,
+            .template-two-column .work-highlights {
+                font-size: 8pt !important;
+            }
+
+            .template-two-column .project-name,
+            .template-two-column .project-description,
+            .template-two-column .project-bullets {
+                font-size: 7.5pt !important;
+            }
+
+            .template-two-column .education-school {
+                font-size: 9pt !important;
+            }
+
+            .template-two-column .education-degree,
+            .template-two-column .education-year {
+                font-size: 8pt !important;
+            }
+
+            .template-two-column .summary-text {
+                font-size: 8.5pt !important;
+            }
+
+            /* ATS-Optimized print - simple, parseable */
+            .template-ats {
+                font-family: Arial, Helvetica, sans-serif !important;
+            }
+
+            .template-ats .resume-header {
+                flex-direction: column !important;
+                text-align: left !important;
+                border-bottom: 2px solid #000 !important;
+            }
+
+            .template-ats .resume-header-left {
+                text-align: left !important;
+            }
+
+            .template-ats .resume-header-right {
+                text-align: left !important;
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 0.25rem 1rem !important;
+            }
+
+            .template-ats .resume-header-right .resume-contact-item {
+                display: inline !important;
+            }
+
+            .template-ats .resume-name {
+                color: #000 !important;
+            }
+
+            .template-ats .section-heading {
+                color: #000 !important;
+                border-color: #666 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.1em !important;
+            }
+
+            .template-ats .cert-tag,
+            .template-ats .skill-tag {
+                background: transparent !important;
+                border: none !important;
+            }
+
+            .template-ats .work-projects {
+                border-left: none !important;
+            }
+
+            .template-ats .resume-website-line {
+                display: none !important;
+            }
+
+            /* Executive Summary print */
+            .template-executive .resume-header {
+                flex-direction: column !important;
+                text-align: center !important;
+                border-bottom: 3px solid #1a365d !important;
+            }
+
+            .template-executive .resume-header-left {
+                text-align: center !important;
+            }
+
+            .template-executive .resume-name {
+                font-size: 18pt !important;
+            }
+
+            .template-executive .resume-title {
+                color: #1a365d !important;
+                font-size: 11pt !important;
+            }
+
+            .template-executive .resume-header-right {
+                text-align: center !important;
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                gap: 0.25rem 1rem !important;
+            }
+
+            .template-executive .resume-header-right .resume-contact-item {
+                display: inline !important;
+            }
+
+            .template-executive .summary-text {
+                font-size: 10.5pt !important;
+            }
+
+            .template-executive .metrics-callout {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 0.5rem !important;
+                margin: 0.5rem 0 !important;
+                padding: 0.5rem !important;
+                background: #f8f9fa !important;
+                border: 1px solid #ddd !important;
+                border-radius: 4px !important;
+            }
+
+            .template-executive .metric-value {
+                font-size: 14pt !important;
+                color: #1a365d !important;
+            }
+
+            .template-executive .metric-label {
+                font-size: 7pt !important;
+                color: #555 !important;
+            }
+
+            .template-executive .work-role {
+                color: #1a365d !important;
+            }
+
+            .template-executive .work-projects {
+                display: none !important;
+            }
+
+            .template-executive .skill-tag {
+                background: transparent !important;
+                border: none !important;
+            }
+
+            /* Executive Headshot print */
+            .template-executive .resume-header-wrapper {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                gap: 1.5rem !important;
+            }
+
+            .template-executive .resume-headshot {
+                width: 80px !important;
+                height: 80px !important;
+                border: 2px solid #1a365d !important;
+                border-radius: 50% !important;
+            }
+
+            .template-executive .resume-headshot.hidden {
+                display: none !important;
+            }
+
         }
 
         /* ========== RESPONSIVE ========== */
@@ -800,6 +1497,21 @@
             .resume-name {
                 font-size: 1.5rem;
             }
+
+            /* Two-column template reverts to single column on mobile */
+            .resume-content.template-two-column {
+                display: block;
+            }
+
+            .template-two-column .resume-sidebar,
+            .template-two-column .resume-main {
+                display: block;
+            }
+
+            /* Executive metrics stack on mobile */
+            .template-executive .metrics-callout {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -831,6 +1543,32 @@
                     <option value="summary">Summary only</option>
                 </select>
             </div>
+
+            <div class="control-group">
+                <div class="control-group-label">Template</div>
+                <select id="template-select" class="detail-select">
+                    <option value="modern" selected>Modern Professional</option>
+                    <option value="classic">Classic Traditional</option>
+                    <option value="two-column">Compact Two-Column</option>
+                    <option value="ats">ATS-Optimized</option>
+                    <option value="executive">Executive Summary</option>
+                </select>
+            </div>
+
+            <div class="control-group" id="headshot-control" style="display: none;">
+                <div class="control-group-label">Photo</div>
+                <div class="toggle-group">
+                    <label><input type="checkbox" id="headshot-toggle"> Include Headshot</label>
+                </div>
+            </div>
+
+            <div class="control-group" id="text-export-controls" style="display: none;">
+                <div class="control-group-label">Text Export</div>
+                <div class="export-buttons">
+                    <button id="download-text-btn" class="export-btn">Download .txt</button>
+                    <button id="copy-text-btn" class="export-btn">Copy Text</button>
+                </div>
+            </div>
         </div>
 
         <div class="print-controls">
@@ -856,8 +1594,33 @@
     <script>
         // ========== RENDER FUNCTIONS ==========
 
-        function renderHeader() {
+        function renderHeader(template = 'modern') {
             const p = RESUME_DATA.personal;
+            const showHeadshot = template === 'executive' && document.getElementById('headshot-toggle')?.checked;
+
+            // Executive template uses a wrapper for headshot positioning
+            if (template === 'executive') {
+                return `
+                    <header class="resume-header">
+                        <div class="resume-header-wrapper">
+                            <img src="assets/images/headshot.jpg" alt="${p.name}" class="resume-headshot${showHeadshot ? '' : ' hidden'}">
+                            <div class="resume-header-left">
+                                <h1 class="resume-name">${p.name}</h1>
+                                <div class="resume-title">${p.title}</div>
+                            </div>
+                        </div>
+                        <div class="resume-header-right">
+                            <span class="resume-contact-item">${p.location}</span>
+                            <a href="https://${p.linkedin}" target="_blank" class="resume-contact-item">${p.linkedin}</a>
+                            <a href="https://${p.github}" target="_blank" class="resume-contact-item">${p.github}</a>
+                            <span class="resume-contact-item resume-website-line">
+                                <span class="resume-contact-note">Full details at </span><a href="https://${p.website}" target="_blank">${p.website}</a>
+                            </span>
+                        </div>
+                    </header>
+                `;
+            }
+
             return `
                 <header class="resume-header">
                     <div class="resume-header-left">
@@ -876,11 +1639,33 @@
             `;
         }
 
-        function renderSummary() {
+        function renderSummary(template = 'modern') {
+            const metricsCallout = template === 'executive' ? `
+                <div class="metrics-callout">
+                    <div class="metric-item">
+                        <span class="metric-value">${RESUME_DATA.metrics.yearsExperience}+</span>
+                        <span class="metric-label">Years Experience</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value">${RESUME_DATA.metrics.certifications}</span>
+                        <span class="metric-label">Certifications</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value">${RESUME_DATA.metrics.teamsEnabled}+</span>
+                        <span class="metric-label">Teams Enabled</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value">${RESUME_DATA.metrics.projectsDelivered}+</span>
+                        <span class="metric-label">Projects</span>
+                    </div>
+                </div>
+            ` : '';
+
             return `
                 <section class="resume-section" data-section="summary">
                     <h2 class="section-heading">Summary</h2>
                     <p class="summary-text">${RESUME_DATA.personal.tagline} ${RESUME_DATA.metrics.yearsExperience}+ years of experience in software engineering, cloud architecture, and technical leadership. Red Hat Certified Architect with ${RESUME_DATA.metrics.certifications} professional certifications. Proven track record of enabling ${RESUME_DATA.metrics.teamsEnabled}+ teams and delivering enterprise-scale solutions.</p>
+                    ${metricsCallout}
                 </section>
             `;
         }
@@ -1033,19 +1818,49 @@
             `;
         }
 
-        function renderResume(detailLevel = 'full') {
+        function renderResume(detailLevel = 'full', template = 'modern') {
             const container = document.getElementById('resume-content');
-            container.innerHTML =
-                renderHeader() +
-                renderSummary() +
-                renderExperience(detailLevel) +
-                renderEducation() +
-                renderCertifications() +
-                renderSkills() +
-                renderPublications();
+
+            // Remove all template classes first
+            container.classList.remove('template-modern', 'template-classic', 'template-two-column', 'template-ats', 'template-executive');
+            container.classList.add(`template-${template}`);
+
+            // For two-column layout, we need a different DOM structure
+            if (template === 'two-column') {
+                container.innerHTML = `
+                    ${renderHeader(template)}
+                    <div class="resume-sidebar">
+                        ${renderEducation()}
+                        ${renderSkills()}
+                        ${renderCertifications()}
+                    </div>
+                    <div class="resume-main">
+                        ${renderSummary(template)}
+                        ${renderExperience(detailLevel)}
+                        ${renderPublications()}
+                    </div>
+                `;
+            } else {
+                container.innerHTML =
+                    renderHeader(template) +
+                    renderSummary(template) +
+                    renderExperience(detailLevel) +
+                    renderEducation() +
+                    renderCertifications() +
+                    renderSkills() +
+                    renderPublications();
+            }
 
             // Apply current toggle states
             updateSectionVisibility();
+        }
+
+        function getCurrentTemplate() {
+            return document.getElementById('template-select').value;
+        }
+
+        function getCurrentDetailLevel() {
+            return document.getElementById('detail-level').value;
         }
 
         // ========== TOGGLE CONTROLS ==========
@@ -1065,7 +1880,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             // Initial render
-            renderResume('full');
+            renderResume('full', 'modern');
 
             // Section toggle listeners
             document.querySelectorAll('.toggle-group input[type="checkbox"]').forEach(checkbox => {
@@ -1074,7 +1889,153 @@
 
             // Detail level listener
             document.getElementById('detail-level').addEventListener('change', (e) => {
-                renderResume(e.target.value);
+                renderResume(e.target.value, getCurrentTemplate());
+            });
+
+            // Template listener
+            document.getElementById('template-select').addEventListener('change', (e) => {
+                const template = e.target.value;
+                renderResume(getCurrentDetailLevel(), template);
+
+                // Show/hide headshot control based on template
+                const headshotControl = document.getElementById('headshot-control');
+                headshotControl.style.display = template === 'executive' ? 'flex' : 'none';
+
+                // Show/hide text export controls based on template
+                const textExportControls = document.getElementById('text-export-controls');
+                textExportControls.style.display = template === 'ats' ? 'flex' : 'none';
+            });
+
+            // Headshot toggle listener
+            document.getElementById('headshot-toggle').addEventListener('change', (e) => {
+                const headshot = document.querySelector('.resume-headshot');
+                if (headshot) {
+                    headshot.classList.toggle('hidden', !e.target.checked);
+                }
+            });
+
+            // Plain text generation function
+            function generatePlainText() {
+                const p = RESUME_DATA.personal;
+                const m = RESUME_DATA.metrics;
+
+                let text = '';
+
+                // Header
+                text += `${p.name.toUpperCase()}\n`;
+                text += `${p.title}\n`;
+                text += `${p.location} | ${p.linkedin} | ${p.github} | ${p.website}\n`;
+                text += '\n' + '='.repeat(60) + '\n\n';
+
+                // Summary (if visible)
+                if (!document.querySelector('[data-section="summary"]')?.classList.contains('hidden')) {
+                    text += 'SUMMARY\n';
+                    text += '-'.repeat(40) + '\n';
+                    text += `${p.tagline} ${m.yearsExperience}+ years of experience in software engineering, cloud architecture, and technical leadership. Red Hat Certified Architect with ${m.certifications} professional certifications. Proven track record of enabling ${m.teamsEnabled}+ teams and delivering enterprise-scale solutions.\n\n`;
+                }
+
+                // Experience (if visible)
+                if (!document.querySelector('[data-section="experience"]')?.classList.contains('hidden')) {
+                    text += 'EXPERIENCE\n';
+                    text += '-'.repeat(40) + '\n';
+                    RESUME_DATA.experience.forEach(job => {
+                        text += `${job.company} | ${job.role} | ${job.dates}\n`;
+                        text += `${job.summary}\n`;
+                        job.highlights.forEach(h => {
+                            text += `  - ${h}\n`;
+                        });
+                        text += '\n';
+                    });
+                }
+
+                // Education (if visible)
+                if (!document.querySelector('[data-section="education"]')?.classList.contains('hidden')) {
+                    text += 'EDUCATION\n';
+                    text += '-'.repeat(40) + '\n';
+                    RESUME_DATA.education.forEach(edu => {
+                        text += `${edu.school} - ${edu.degree}${edu.minor ? `, Minor in ${edu.minor}` : ''} (${edu.year})\n`;
+                    });
+                    text += '\n';
+                }
+
+                // Certifications (if visible)
+                if (!document.querySelector('[data-section="certifications"]')?.classList.contains('hidden')) {
+                    text += 'CERTIFICATIONS\n';
+                    text += '-'.repeat(40) + '\n';
+
+                    const categories = [
+                        { key: 'architect', label: 'Architect' },
+                        { key: 'cloud', label: 'Cloud & Professional' },
+                        { key: 'redhat', label: 'Red Hat Specialist' }
+                    ];
+
+                    categories.forEach(cat => {
+                        const certs = RESUME_DATA.certifications[cat.key];
+                        if (certs && certs.length > 0) {
+                            text += `${cat.label}: ${certs.map(c => c.name).join(' | ')}\n\n`;
+                        }
+                    });
+                }
+
+                // Skills (if visible)
+                if (!document.querySelector('[data-section="skills"]')?.classList.contains('hidden')) {
+                    text += 'TECHNICAL SKILLS\n';
+                    text += '-'.repeat(40) + '\n';
+
+                    const skillCategories = [
+                        { key: 'platforms', label: 'Platforms' },
+                        { key: 'languages', label: 'Languages' },
+                        { key: 'devops', label: 'DevOps' },
+                        { key: 'middleware', label: 'Middleware' }
+                    ];
+
+                    skillCategories.forEach(cat => {
+                        text += `${cat.label}: ${RESUME_DATA.skills[cat.key].join(' | ')}\n`;
+                    });
+                    text += '\n';
+                }
+
+                // Publications (if visible)
+                if (!document.querySelector('[data-section="publications"]')?.classList.contains('hidden')) {
+                    text += 'PUBLICATIONS\n';
+                    text += '-'.repeat(40) + '\n';
+                    RESUME_DATA.publications.forEach(pub => {
+                        text += `${pub.title}`;
+                        if (pub.year) text += ` (${pub.year})`;
+                        if (pub.role) text += ` - ${pub.role}`;
+                        if (pub.publisher) text += ` - ${pub.publisher}`;
+                        text += '\n';
+                        text += `  ${pub.description}\n\n`;
+                    });
+                }
+
+                return text.trim();
+            }
+
+            // Download text button listener
+            document.getElementById('download-text-btn').addEventListener('click', () => {
+                const text = generatePlainText();
+                const blob = new Blob([text], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Khary_Mendez_Resume.txt';
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+
+            // Copy text button listener
+            document.getElementById('copy-text-btn').addEventListener('click', () => {
+                const text = generatePlainText();
+                navigator.clipboard.writeText(text).then(() => {
+                    const btn = document.getElementById('copy-text-btn');
+                    btn.textContent = 'Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = 'Copy Text';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
             });
 
             // Fix orphaned headings before print
