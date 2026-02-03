@@ -4026,9 +4026,291 @@
     <script src="assets/js/resume-data.js"></script>
 
     <script>
-        // Typewriter Effect
+        // ========== DYNAMIC CONTENT RENDERING FROM RESUME_DATA ==========
+        // Render all repeated content from the shared data source
+
+        // 1. Metrics Dashboard - set data-target values from RESUME_DATA.metrics
+        function renderMetrics() {
+            const metricKeys = ['yearsExperience', 'certifications', 'teamsEnabled', 'projectsDelivered'];
+            document.querySelectorAll('.metric-number').forEach((el, i) => {
+                if (RESUME_DATA.metrics[metricKeys[i]] !== undefined) {
+                    el.setAttribute('data-target', RESUME_DATA.metrics[metricKeys[i]]);
+                }
+            });
+        }
+
+        // 2. Work Experience Timeline - render from RESUME_DATA.experience
+        function renderWorkExperience() {
+            const timeline = document.querySelector('#experience .timeline');
+            if (!timeline) return;
+
+            // Get existing education items (we'll append them after work items)
+            const educationItems = Array.from(timeline.querySelectorAll('.timeline-item:not(.work-card)'));
+
+            // Clear timeline
+            timeline.innerHTML = '';
+
+            // Render work experience cards
+            RESUME_DATA.experience.forEach(job => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item work-card';
+                item.setAttribute('data-work', job.id);
+                item.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content work-flip-container">
+                        <div class="work-flip-inner">
+                            <div class="work-flip-front">
+                                <div class="timeline-header">
+                                    <img src="${job.logo}" alt="${job.company}" class="timeline-company-logo">
+                                    <div class="timeline-header-text">
+                                        <h3 class="timeline-role">${job.role}</h3>
+                                        <div class="timeline-company">${job.company}</div>
+                                        <div class="timeline-dates">${job.dates}</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-impact">${job.summary}</div>
+                                <ul class="timeline-achievements">
+                                    ${job.highlights.map(h => `<li>${h}</li>`).join('')}
+                                </ul>
+                                <div class="timeline-tech-stack">
+                                    ${job.techStack.map(t => `<span class="tech-badge">${t}</span>`).join('')}
+                                </div>
+                                <div class="timeline-click-hint">Click for details</div>
+                            </div>
+                            <div class="work-flip-back"></div>
+                        </div>
+                    </div>
+                `;
+                timeline.appendChild(item);
+            });
+
+            // Re-append education items
+            educationItems.forEach(edu => timeline.appendChild(edu));
+        }
+
+        // 3. Education Entries - render from RESUME_DATA.education
+        function renderEducation() {
+            const timeline = document.querySelector('#experience .timeline');
+            if (!timeline) return;
+
+            // Remove existing education items first
+            timeline.querySelectorAll('.timeline-item:not(.work-card)').forEach(item => item.remove());
+
+            // Render education entries
+            RESUME_DATA.education.forEach(edu => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item';
+                const minorText = edu.minor ? `<ul class="timeline-achievements"><li>Minor in ${edu.minor}</li></ul>` : '';
+                const styleAttr = edu.logoStyle ? ` style="${edu.logoStyle}"` : '';
+                item.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <img src="${edu.logo}" alt="${edu.school}" class="timeline-company-logo"${styleAttr}>
+                            <div class="timeline-header-text">
+                                <h3 class="timeline-role">${edu.degree}</h3>
+                                <div class="timeline-company">${edu.school}</div>
+                                <div class="timeline-dates">${edu.year}</div>
+                            </div>
+                        </div>
+                        ${minorText}
+                    </div>
+                `;
+                timeline.appendChild(item);
+            });
+        }
+
+        // 4. Certifications Grid - render from RESUME_DATA.certifications
+        function renderCertifications() {
+            // Cloud & Professional
+            const cloudGrid = document.querySelector('.cert-container .cert-grid');
+            if (cloudGrid && RESUME_DATA.certifications.cloud) {
+                cloudGrid.innerHTML = RESUME_DATA.certifications.cloud.map(cert => `
+                    <div class="cert-card">
+                        <img src="${cert.logo}" alt="${cert.issuer}" class="cert-logo">
+                        <div class="cert-name">${cert.name}</div>
+                        <div class="cert-info">${cert.issuer}</div>
+                    </div>
+                `).join('');
+            }
+
+            // Architect - get the second cert-grid
+            const certGrids = document.querySelectorAll('.cert-container .cert-grid');
+            if (certGrids[1] && RESUME_DATA.certifications.architect) {
+                certGrids[1].innerHTML = RESUME_DATA.certifications.architect.map(cert => `
+                    <div class="cert-card${cert.featured ? ' cert-featured' : ''}">
+                        ${cert.featured ? '<span class="cert-badge">Architect</span>' : ''}
+                        <img src="${cert.logo}" alt="Red Hat" class="cert-logo">
+                        <div class="cert-name">${cert.name}</div>
+                        ${cert.date ? `<div class="cert-info">${cert.date}</div>` : ''}
+                    </div>
+                `).join('');
+            }
+
+            // Red Hat Specialist - get the third cert-grid
+            if (certGrids[2] && RESUME_DATA.certifications.redhat) {
+                certGrids[2].innerHTML = RESUME_DATA.certifications.redhat.map(cert => `
+                    <div class="cert-card">
+                        <img src="${cert.logo}" alt="Red Hat" class="cert-logo">
+                        <div class="cert-name">${cert.name}</div>
+                        ${cert.date ? `<div class="cert-info">${cert.date}</div>` : ''}
+                    </div>
+                `).join('');
+            }
+        }
+
+        // 5. Testimonials - render from RESUME_DATA.testimonials
+        function renderTestimonials() {
+            const grid = document.querySelector('.testimonials-grid');
+            if (!grid || !RESUME_DATA.testimonials) return;
+
+            grid.innerHTML = RESUME_DATA.testimonials.map(t => `
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">${t.quote}</p>
+                    <div class="testimonial-author">
+                        <div class="author-role">${t.role}</div>
+                        <div class="author-context">${t.context}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 6. Verification Links - render from RESUME_DATA.verificationLinks
+        function renderVerificationLinks() {
+            const grid = document.querySelector('.verify-cards-grid');
+            if (!grid || !RESUME_DATA.verificationLinks) return;
+
+            grid.innerHTML = RESUME_DATA.verificationLinks.map(link => {
+                const icon = link.iconSrc
+                    ? `<img src="${link.iconSrc}" alt="${link.title}">`
+                    : (link.icon === 'medal' ? '🏅' : '🔗');
+                return `
+                    <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="verify-card">
+                        <div class="verify-card-header">
+                            <div class="verify-icon">${icon}</div>
+                            <div class="verify-title">${link.title}</div>
+                        </div>
+                        <div class="verify-description">${link.description}</div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        // 7. Publications - render from RESUME_DATA.publications
+        function renderPublications() {
+            const showcase = document.querySelector('.publications-showcase');
+            if (!showcase || !RESUME_DATA.publications) return;
+
+            showcase.innerHTML = RESUME_DATA.publications.map(pub => {
+                const isVideo = pub.type === 'video';
+                const isBook = pub.type === 'book';
+                const badgeClass = isVideo ? ' video' : (isBook ? ' book' : '');
+                const typeIcon = isVideo ? '▶' : (isBook ? '📖' : '📄');
+                const overlay = isVideo
+                    ? '<div class="publication-play-overlay"></div>'
+                    : `<div class="publication-view-overlay">VIEW ${pub.type.toUpperCase()}</div>`;
+                const placeholderEmoji = isBook ? '📕' : (isVideo ? '🎬' : '📋');
+                const metaSecond = pub.role
+                    ? `<span class="publication-meta-item"><span class="publication-meta-icon">👥</span>${pub.role}</span>`
+                    : (pub.publisher ? `<span class="publication-meta-item"><span class="publication-meta-icon">🏢</span>${pub.publisher}</span>` : '');
+
+                return `
+                    <a href="${pub.url}" target="_blank" rel="noopener noreferrer" class="publication-card">
+                        <div class="publication-thumbnail">
+                            <div class="publication-thumbnail-placeholder">${placeholderEmoji}</div>
+                            <span class="publication-type-badge${badgeClass}">
+                                <span class="publication-type-icon">${typeIcon}</span>
+                                ${pub.type.charAt(0).toUpperCase() + pub.type.slice(1)}
+                            </span>
+                            ${overlay}
+                        </div>
+                        <div class="publication-content">
+                            <h3 class="publication-title">${pub.title}</h3>
+                            <p class="publication-description">${pub.description}</p>
+                            <div class="publication-meta">
+                                <span class="publication-meta-item">
+                                    <span class="publication-meta-icon">📅</span>
+                                    ${pub.year || pub.publisher || ''}
+                                </span>
+                                ${metaSecond}
+                            </div>
+                            <div class="publication-link-indicator">→</div>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        // Run all render functions on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMetrics();
+            renderWorkExperience();
+            renderEducation();
+            renderCertifications();
+            renderVerificationLinks();
+            renderTestimonials();
+            renderPublications();
+
+            // Re-attach observers and handlers after dynamic content is rendered
+            reattachObservers();
+            reattachWorkCardHandlers();
+        });
+
+        // Function to re-attach intersection observers after dynamic render
+        // This uses the observers defined later in the file
+        function reattachObservers() {
+            // Timeline observer - will be set after timelineObserver is defined
+            if (typeof timelineObserver !== 'undefined') {
+                document.querySelectorAll('.timeline-item').forEach(item => {
+                    timelineObserver.observe(item);
+                });
+            }
+
+            // Cert observer
+            if (typeof certObserver !== 'undefined') {
+                document.querySelectorAll('.cert-card').forEach(card => {
+                    certObserver.observe(card);
+                });
+            }
+
+            // Testimonial observer
+            if (typeof testimonialObserver !== 'undefined') {
+                document.querySelectorAll('.testimonial-card').forEach(card => {
+                    testimonialObserver.observe(card);
+                });
+            }
+
+            // Publication observer
+            if (typeof publicationObserver !== 'undefined') {
+                document.querySelectorAll('.publication-card').forEach(card => {
+                    publicationObserver.observe(card);
+                });
+            }
+
+            // Verify card observer
+            if (typeof verifyObserver !== 'undefined') {
+                document.querySelectorAll('.verify-card').forEach(card => {
+                    verifyObserver.observe(card);
+                });
+            }
+
+            // Tech badge handlers
+            document.querySelectorAll('.tech-badge').forEach(pill => {
+                pill.addEventListener('click', (e) => e.stopPropagation());
+            });
+        }
+
+        // Function to re-attach work card flip handlers after dynamic render
+        function reattachWorkCardHandlers() {
+            // This will be called after the flip card code is defined below
+            // It's handled in the existing flip card initialization
+        }
+
+        // ========== END DYNAMIC CONTENT RENDERING ==========
+
+        // Typewriter Effect - use tagline from RESUME_DATA
         const typewriterText = document.querySelector('.typewriter-text');
-        const text = "Solving hard problems through systems thinking, resilience, and mentorship.";
+        const text = RESUME_DATA.personal.tagline || "Solving hard problems through systems thinking, resilience, and mentorship.";
         let charIndex = 0;
         
         function typeWriter() {
@@ -4803,17 +5085,29 @@
             `;
         }
 
-        // Attach click handlers to work cards
-        document.querySelectorAll('.timeline-item.work-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                // Don't open if clicking close button
-                if (e.target.closest('.work-flip-close')) return;
-                // Don't open if already animating
-                if (!flipClone) {
-                    openFlipCard(card);
-                }
+        // Attach click handlers to work cards (called after dynamic render)
+        function attachWorkCardHandlers() {
+            document.querySelectorAll('.timeline-item.work-card').forEach(card => {
+                // Remove existing listeners to avoid duplicates
+                card.removeEventListener('click', handleWorkCardClick);
+                card.addEventListener('click', handleWorkCardClick);
             });
-        });
+        }
+
+        function handleWorkCardClick(e) {
+            // Don't open if clicking close button
+            if (e.target.closest('.work-flip-close')) return;
+            // Don't open if already animating
+            if (!flipClone) {
+                openFlipCard(e.currentTarget);
+            }
+        }
+
+        // Initial attachment (will be re-run after dynamic content loads)
+        attachWorkCardHandlers();
+
+        // Override reattachWorkCardHandlers to actually attach handlers
+        reattachWorkCardHandlers = attachWorkCardHandlers;
 
         // Close on overlay click
         flipOverlay.addEventListener('click', closeFlipCard);
