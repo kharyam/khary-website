@@ -490,6 +490,48 @@
             margin: 0;
         }
 
+        /* Testimonials */
+        .testimonial-entry {
+            margin-bottom: 1.25rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent-primary);
+        }
+
+        .testimonial-entry:last-child {
+            margin-bottom: 0;
+        }
+
+        .testimonial-quote {
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            font-style: italic;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .testimonial-attribution {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: baseline;
+        }
+
+        .testimonial-role {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+        }
+
+        .testimonial-context {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+        }
+
+        .testimonial-context::before {
+            content: "—";
+            margin-right: 0.25rem;
+        }
+
         /* Header website line with note */
         .resume-website-line {
             display: block;
@@ -1083,7 +1125,8 @@
             .project-description,
             .skills-label,
             .publication-meta,
-            .publication-description {
+            .publication-description,
+            .testimonial-context {
                 color: #555 !important;
             }
 
@@ -1095,6 +1138,29 @@
             .publication-description {
                 font-size: 9pt;
                 line-height: 1.35;
+            }
+
+            /* Testimonials print */
+            .testimonial-entry {
+                margin-bottom: 0.75rem;
+                padding-left: 0.75rem;
+                border-left: 1.5pt solid #1a365d;
+            }
+
+            .testimonial-quote {
+                font-size: 9pt;
+                line-height: 1.4;
+                color: #333 !important;
+            }
+
+            .testimonial-role {
+                font-size: 8pt;
+                color: #333 !important;
+            }
+
+            .testimonial-context {
+                font-size: 8pt;
+                color: #555 !important;
             }
 
             /* Header website line */
@@ -1535,7 +1601,8 @@
                     <label><input type="checkbox" data-section="education" checked> Education</label>
                     <label><input type="checkbox" data-section="certifications" checked> Certifications</label>
                     <label><input type="checkbox" data-section="skills" checked> Skills</label>
-                    <label><input type="checkbox" data-section="publications"> Publications</label>
+                    <label><input type="checkbox" data-section="publications" checked> Publications</label>
+                    <label><input type="checkbox" data-section="testimonials"> Testimonials</label>
                 </div>
             </div>
 
@@ -1815,9 +1882,30 @@
             `).join('');
 
             return `
-                <section class="resume-section hidden" data-section="publications">
+                <section class="resume-section" data-section="publications">
                     <h2 class="section-heading">Publications</h2>
                     ${pubsHtml}
+                </section>
+            `;
+        }
+
+        function renderTestimonials() {
+            if (!RESUME_DATA.testimonials || RESUME_DATA.testimonials.length === 0) return '';
+
+            const testimonialsHtml = RESUME_DATA.testimonials.map(t => `
+                <div class="testimonial-entry">
+                    <p class="testimonial-quote">"${t.quote}"</p>
+                    <div class="testimonial-attribution">
+                        <span class="testimonial-role">${t.role}</span>
+                        <span class="testimonial-context">${t.context}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <section class="resume-section hidden" data-section="testimonials">
+                    <h2 class="section-heading">What Colleagues Say</h2>
+                    ${testimonialsHtml}
                 </section>
             `;
         }
@@ -1842,6 +1930,7 @@
                         ${renderSummary(template)}
                         ${renderExperience(detailLevel)}
                         ${renderPublications()}
+                        ${renderTestimonials()}
                     </div>
                 `;
             } else {
@@ -1852,7 +1941,8 @@
                     renderEducation() +
                     renderCertifications() +
                     renderSkills() +
-                    renderPublications();
+                    renderPublications() +
+                    renderTestimonials();
             }
 
             // Apply current toggle states
@@ -2024,6 +2114,16 @@
                         if (pub.publisher) text += ` - ${pub.publisher}`;
                         text += '\n';
                         text += `  ${pub.description}\n\n`;
+                    });
+                }
+
+                // Testimonials (if visible)
+                if (!document.querySelector('[data-section="testimonials"]')?.classList.contains('hidden')) {
+                    text += 'WHAT COLLEAGUES SAY\n';
+                    text += '-'.repeat(40) + '\n';
+                    RESUME_DATA.testimonials.forEach(t => {
+                        text += `"${t.quote}"\n`;
+                        text += `  — ${t.role}, ${t.context}\n\n`;
                     });
                 }
 

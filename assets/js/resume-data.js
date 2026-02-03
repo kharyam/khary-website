@@ -414,6 +414,135 @@ const RESUME_DATA = {
         other: ["Git", "Docker", "Prometheus", "Grafana", "Helm"]
     },
 
+    // Impact Stories - methodology cards
+    impactStories: {
+        cards: [
+            {
+                id: "understand",
+                frontEmoji: "🎯",
+                frontTitle: "UNDERSTAND\nDEEPLY",
+                frontHint: "Click to explore",
+                backTitle: "Deep Understanding",
+                backContent: "Joined a troubled engagement midway through with a frustrated government contractor. Did a complete reset—built their architecture diagram in real-time, asked probing questions that forced clarity, and uncovered the true need: optimizing their enterprise middleware for diverse deployment scenarios.",
+                metrics: [
+                    { icon: "📊", text: "40+ page tuning guide with optimization rubric" },
+                    { icon: "🔄", text: "Complete customer turnaround in 2 weeks" },
+                    { icon: "⭐", text: "\"Khary was phenomenal to work with\"" }
+                ],
+                showOnResume: true
+            },
+            {
+                id: "multiply",
+                frontEmoji: "👥",
+                frontTitle: "MULTIPLY\nTHROUGH PEOPLE",
+                frontHint: "Click to explore",
+                backTitle: "Team Multiplication",
+                backContent: "When onboarding customer teams, I have them do the work while I teach—building self-sufficiency so we can expand our footprint. Internally, I encouraged colleagues to present at our annual conference, submitted proposals on their behalf, and coached them through it. I mentor consultants and am a go-to resource for solving difficult problems.",
+                metrics: [
+                    { icon: "🎤", text: "Helped colleagues become conference speakers" },
+                    { icon: "🚀", text: "New team members now leading migrations" },
+                    { icon: "🤝", text: "Teams become self-sufficient, not dependent" }
+                ],
+                showOnResume: true
+            },
+            {
+                id: "deliver",
+                frontEmoji: "✨",
+                frontTitle: "DELIVER\nRESULTS",
+                frontHint: "Click to explore",
+                backTitle: "Production Results",
+                backContent: "When a customer literally laughed at OpenShift installation requirements, we plowed through—found champions, and now run successfully with a backlog of demand. On another engagement, discovered developers were .NET, not Java. Created learning resources, ran intensive sessions, and they delivered the middleware migration on a strict deadline.",
+                metrics: [
+                    { icon: "✅", text: "OpenShift running for years with growing demand" },
+                    { icon: "🎓", text: "Upskilled entire team from zero to delivery" },
+                    { icon: "🏆", text: "First successful engagement with that customer" }
+                ],
+                showOnResume: true
+            }
+        ]
+    },
+
+    // GitHub Projects
+    projects: {
+        items: [
+            {
+                id: "litra-driver",
+                path: "~/projects/litra-driver",
+                name: "Litra Driver",
+                description: "Linux CLI and GUI for controlling Logitech Litra Glow & Beam lighting devices. Reverse-engineered USB protocols enable brightness and color temperature control without proprietary software. Originally built in Python, then rewritten in Go for improved performance.",
+                languages: [
+                    { name: "Python", dotClass: "python" },
+                    { name: "Go", dotClass: "go" }
+                ],
+                stats: [
+                    { type: "stars", value: "195+ stars", icon: "star" }
+                ],
+                features: ["USB Control", "CLI + GUI", "Reverse Engineering", "Cross-Platform"],
+                links: [
+                    { url: "https://github.com/kharyam/litra-driver", label: "Python Version", icon: "github" },
+                    { url: "https://github.com/kharyam/go-litra-driver", label: "Go Version", icon: "github" }
+                ]
+            },
+            {
+                id: "openshift-networking",
+                path: "~/projects/openshift-networking",
+                name: "OpenShift Networking Presentation",
+                description: "Interactive, web-based technical presentation on OpenShift networking. Features 20 animated slides, 12 interactive SVG diagrams with zoom/pan, presenter mode with speaker notes, and embedded live demos. Built with pure HTML5—no frameworks, no dependencies.",
+                languages: [
+                    { name: "HTML5 / SVG", dotClass: "html" }
+                ],
+                stats: [
+                    { type: "info", value: "20 slides", icon: "plus" },
+                    { type: "info", value: "12 diagrams", icon: "plus" }
+                ],
+                features: ["Interactive Diagrams", "Presenter Mode", "Live Demos", "AI-Assisted"],
+                links: [
+                    { url: "https://github.com/kharyam/openshift-networking-presentation", label: "View Source", icon: "github" },
+                    { url: "https://kharyam.github.io/openshift-networking-presentation/", label: "Live Demo", icon: "external" }
+                ]
+            }
+        ]
+    },
+
+    // Connect Links
+    connectLinks: {
+        items: [
+            {
+                id: "linkedin",
+                url: "https://linkedin.com/in/kharymendez",
+                icon: "💼",
+                iconType: "emoji",
+                label: "LinkedIn",
+                description: "Professional network and career highlights"
+            },
+            {
+                id: "github",
+                url: "https://github.com/kharyam",
+                icon: "💻",
+                iconType: "emoji",
+                label: "GitHub",
+                description: "Open source projects and code samples"
+            },
+            {
+                id: "kam-dynamics",
+                url: "https://kamdynamics.com",
+                icon: "assets/images/kam-logo.svg",
+                iconType: "image",
+                iconStyle: "height: 80px; width: auto; max-width: 120px;",
+                label: "KAM Dynamics",
+                description: "Drone videography & technology consulting"
+            },
+            {
+                id: "resume",
+                url: "resume.html",
+                icon: "📄",
+                iconType: "emoji",
+                label: "Resume",
+                description: "Printable PDF resume generator"
+            }
+        ]
+    },
+
     // Testimonials
     testimonials: [
         {
