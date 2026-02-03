@@ -407,7 +407,7 @@ const RESUME_DATA = {
 
     // Skills (aggregated from tech-badges across the site)
     skills: {
-        platforms: ["OpenShift", "Kubernetes", "AWS", "Linux", "RHEL"],
+        platforms: ["OpenShift", "Kubernetes", "Linux", "RHEL", "AWS"],
         languages: ["Java", "Python", "Go", "C++", "Bash"],
         devops: ["Ansible", "ArgoCD", "Jenkins", "Tekton", "GitHub Actions", "GitLab CI"],
         middleware: ["JBoss EAP", "AMQ", "Kafka", "Fuse", "3scale"],
