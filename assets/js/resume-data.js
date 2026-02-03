@@ -317,7 +317,8 @@ const RESUME_DATA = {
             { name: "Certified Kubernetes Application Developer (CKAD)", issuer: "Cloud Native Computing Foundation", logo: "assets/images/cncf-logo.svg" },
             { name: "Certified Kubernetes Security Specialist (CKS)", issuer: "Cloud Native Computing Foundation", logo: "assets/images/cncf-logo.svg" },
             { name: "AWS Certified Cloud Practitioner", issuer: "Amazon Web Services", logo: "assets/images/aws-logo.svg" },
-            { name: "Certified Scrum Master", issuer: "Scrum Alliance", logo: "assets/images/scrum-logo.svg" }
+            { name: "Certified Scrum Master", issuer: "Scrum Alliance", logo: "assets/images/scrum-logo.svg" },
+            { name: "FAA Certified Remote Pilot Certificate (Part 107)", issuer: "Federal Aviation Administration", logo: "assets/images/faa-logo.svg" }
         ],
         architect: [
             { name: "Red Hat Certified OpenShift Architect Level II", issuer: "Red Hat", date: "November 2024", featured: true, logo: "assets/images/redhat-logo.svg" },
