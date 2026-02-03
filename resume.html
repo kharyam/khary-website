@@ -1853,7 +1853,7 @@
             return `
                 <section class="resume-section" data-section="summary">
                     <h2 class="section-heading">Summary</h2>
-                    <p class="summary-text">${RESUME_DATA.personal.tagline} ${RESUME_DATA.metrics.yearsExperience}+ years of experience in software engineering, cloud architecture, and technical leadership. Red Hat Certified Architect with ${RESUME_DATA.metrics.certifications} professional certifications. Proven track record of enabling ${RESUME_DATA.metrics.teamsEnabled}+ teams and delivering enterprise-scale solutions.</p>
+                    <p class="summary-text">${RESUME_DATA.personal.summary}</p>
                     ${metricsCallout}
                 </section>
             `;
@@ -2048,7 +2048,7 @@
             // Summary
             if (!isHidden('summary')) {
                 md += `## Summary\n\n`;
-                md += `${p.tagline} ${m.yearsExperience}+ years of experience in software engineering, cloud architecture, and technical leadership. Red Hat Certified Architect with ${m.certifications} professional certifications. Proven track record of enabling ${m.teamsEnabled}+ teams and delivering enterprise-scale solutions.\n\n`;
+                md += `${p.summary}\n\n`;
             }
 
             // Experience
@@ -2284,7 +2284,7 @@
                 if (!document.querySelector('[data-section="summary"]')?.classList.contains('hidden')) {
                     text += 'SUMMARY\n';
                     text += '-'.repeat(40) + '\n';
-                    text += `${p.tagline} ${m.yearsExperience}+ years of experience in software engineering, cloud architecture, and technical leadership. Red Hat Certified Architect with ${m.certifications} professional certifications. Proven track record of enabling ${m.teamsEnabled}+ teams and delivering enterprise-scale solutions.\n\n`;
+                    text += `${p.summary}\n\n`;
                 }
 
                 // Experience (if visible)

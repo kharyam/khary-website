@@ -9,6 +9,7 @@ const RESUME_DATA = {
         title: "Senior Principal Consultant",
         tagline: "Solving hard problems through systems thinking, resilience, and mentorship.",
         subtitle: "Technical Leader | Team Multiplier | Problem Solver",
+        summary: "Solving hard problems through systems thinking, resilience, and mentorship. 25+ years of experience in software engineering, cloud architecture, and technical leadership. Red Hat Certified Architect with multiple professional certifications. Proven track record of enabling 50+ teams and delivering enterprise-scale solutions.",
         location: "Huntersville, NC",
         linkedin: "linkedin.com/in/kharymendez",
         github: "github.com/kharyam",
