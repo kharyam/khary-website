@@ -1406,20 +1406,16 @@
                 border-left: none !important;
             }
 
-            /* Compact Two-Column print layout */
+            /* Compact Two-Column print layout - use floats instead of grid for proper page breaks */
             .template-two-column {
-                display: grid !important;
-                grid-template-columns: 200px 1fr !important;
-                grid-template-areas:
-                    "header header"
-                    "sidebar main" !important;
-                gap: 0.75rem !important;
+                display: block !important;
             }
 
             .template-two-column .resume-header {
-                grid-area: header !important;
+                width: 100% !important;
                 flex-direction: column !important;
                 text-align: center !important;
+                margin-bottom: 0.75rem !important;
             }
 
             .template-two-column .resume-header-left {
@@ -1439,11 +1435,26 @@
             }
 
             .template-two-column .resume-sidebar {
-                grid-area: sidebar !important;
+                float: left !important;
+                width: 180px !important;
+                padding-right: 0.75rem !important;
             }
 
             .template-two-column .resume-main {
-                grid-area: main !important;
+                margin-left: 190px !important;
+            }
+
+            /* Clear floats after content */
+            .template-two-column::after {
+                content: "" !important;
+                display: table !important;
+                clear: both !important;
+            }
+
+            /* Keep sidebar sections together */
+            .template-two-column .resume-sidebar .resume-section {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
             }
 
             .template-two-column .section-heading {
@@ -1730,8 +1741,8 @@
                     <option value="modern" selected>Modern Professional</option>
                     <option value="classic">Classic Traditional</option>
                     <option value="two-column">Compact Two-Column</option>
-                    <option value="ats">ATS-Optimized (text)</option>
                     <option value="executive">Executive Summary</option>
+                    <option value="ats">ATS-Optimized / Text</option>
                     <option value="markdown">Markdown</option>
                 </select>
             </div>
