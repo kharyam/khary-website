@@ -1703,6 +1703,128 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
+        /* ========== HIDDEN CONTACT MODAL ========== */
+        .contact-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        .contact-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .contact-modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-primary);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            transform: scale(0.9);
+            transition: transform 0.2s ease;
+        }
+
+        .contact-modal-overlay.active .contact-modal {
+            transform: scale(1);
+        }
+
+        .contact-modal h3 {
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .contact-modal p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-modal-field {
+            margin-bottom: 1rem;
+        }
+
+        .contact-modal-field label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-modal-field input {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            padding: 0.75rem;
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .contact-modal-field input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .contact-modal-buttons {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-modal-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .contact-modal-btn.primary {
+            background: var(--accent-primary);
+            color: #000;
+            border: none;
+        }
+
+        .contact-modal-btn.primary:hover {
+            filter: brightness(1.1);
+        }
+
+        .contact-modal-btn.secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-modal-btn.secondary:hover {
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+        }
+
+        @media print {
+            .contact-modal-overlay {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1788,6 +1910,26 @@
         </div>
     </div>
 
+    <!-- Hidden Contact Info Modal -->
+    <div class="contact-modal-overlay" id="contact-modal">
+        <div class="contact-modal">
+            <h3>Contact Information</h3>
+            <p>Add email and phone for personal resume generation. These will not be saved permanently.</p>
+            <div class="contact-modal-field">
+                <label for="contact-email">Email</label>
+                <input type="email" id="contact-email" placeholder="your.email@example.com">
+            </div>
+            <div class="contact-modal-field">
+                <label for="contact-phone">Phone</label>
+                <input type="tel" id="contact-phone" placeholder="(555) 123-4567">
+            </div>
+            <div class="contact-modal-buttons">
+                <button class="contact-modal-btn secondary" id="contact-cancel">Cancel</button>
+                <button class="contact-modal-btn primary" id="contact-save">Save</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Load shared data -->
     <script src="assets/js/resume-data.js"></script>
 
@@ -1811,6 +1953,8 @@
                         </div>
                         <div class="resume-header-right">
                             <span class="resume-contact-item">${p.location}</span>
+                            ${p.email ? `<a href="mailto:${p.email}" class="resume-contact-item">${p.email}</a>` : ''}
+                            ${p.phone ? `<span class="resume-contact-item">${p.phone}</span>` : ''}
                             <a href="https://${p.linkedin}" target="_blank" class="resume-contact-item">${p.linkedin}</a>
                             <a href="https://${p.github}" target="_blank" class="resume-contact-item">${p.github}</a>
                             <span class="resume-contact-item resume-website-line">
@@ -1829,6 +1973,8 @@
                     </div>
                     <div class="resume-header-right">
                         <span class="resume-contact-item">${p.location}</span>
+                        ${p.email ? `<a href="mailto:${p.email}" class="resume-contact-item">${p.email}</a>` : ''}
+                        ${p.phone ? `<span class="resume-contact-item">${p.phone}</span>` : ''}
                         <a href="https://${p.linkedin}" target="_blank" class="resume-contact-item">${p.linkedin}</a>
                         <a href="https://${p.github}" target="_blank" class="resume-contact-item">${p.github}</a>
                         <span class="resume-contact-item resume-website-line">
@@ -2053,7 +2199,13 @@
             // Header
             md += `# ${p.name}\n\n`;
             md += `**${p.title}**\n\n`;
-            md += `📍 ${p.location} • [LinkedIn](https://${p.linkedin}) • [GitHub](https://${p.github}) • *Full details at* [${p.website}](https://${p.website})\n\n`;
+            let contactParts = [`📍 ${p.location}`];
+            if (p.email) contactParts.push(`✉️ ${p.email}`);
+            if (p.phone) contactParts.push(`📞 ${p.phone}`);
+            contactParts.push(`[LinkedIn](https://${p.linkedin})`);
+            contactParts.push(`[GitHub](https://${p.github})`);
+            contactParts.push(`*Full details at* [${p.website}](https://${p.website})`);
+            md += contactParts.join(' • ') + '\n\n';
             md += `---\n\n`;
 
             // Summary
@@ -2167,6 +2319,8 @@
             if (template === 'markdown') {
                 const markdown = generateMarkdown();
                 container.innerHTML = marked.parse(markdown);
+                // Re-attach long-press listener after render
+                setupLongPressListener();
                 return;
             }
 
@@ -2200,6 +2354,9 @@
 
             // Apply current toggle states
             updateSectionVisibility();
+
+            // Re-attach long-press listener after render
+            setupLongPressListener();
         }
 
         function getCurrentTemplate() {
@@ -2288,7 +2445,11 @@
                 // Header
                 text += `${p.name.toUpperCase()}\n`;
                 text += `${p.title}\n`;
-                text += `${p.location} | ${p.linkedin} | ${p.github} | ${p.website}\n`;
+                let contactLine = [p.location];
+                if (p.email) contactLine.push(p.email);
+                if (p.phone) contactLine.push(p.phone);
+                contactLine.push(p.linkedin, p.github, p.website);
+                text += contactLine.join(' | ') + '\n';
                 text += '\n' + '='.repeat(60) + '\n\n';
 
                 // Summary (if visible)
@@ -2491,7 +2652,107 @@
                     el.classList.remove('force-page-break');
                 });
             });
+
+            // ========== HIDDEN CONTACT INFO MODAL ==========
+            initContactModal();
         });
+
+        // ========== CONTACT MODAL (TOP-LEVEL) ==========
+        let longPressTimer = null;
+        const LONG_PRESS_DURATION = 800; // milliseconds
+
+        function showContactModal() {
+            const contactModal = document.getElementById('contact-modal');
+            const contactEmailInput = document.getElementById('contact-email');
+            // Populate fields with current values
+            contactEmailInput.value = RESUME_DATA.personal.email || '';
+            document.getElementById('contact-phone').value = RESUME_DATA.personal.phone || '';
+            contactModal.classList.add('active');
+            contactEmailInput.focus();
+        }
+
+        function hideContactModal() {
+            document.getElementById('contact-modal').classList.remove('active');
+        }
+
+        function saveContactInfo() {
+            RESUME_DATA.personal.email = document.getElementById('contact-email').value.trim();
+            RESUME_DATA.personal.phone = document.getElementById('contact-phone').value.trim();
+            hideContactModal();
+            // Re-render to show updated contact info
+            renderResume(getCurrentDetailLevel(), getCurrentTemplate());
+        }
+
+        function setupLongPressListener() {
+            const nameElement = document.querySelector('.resume-name');
+            if (!nameElement) return;
+
+            // Clear any previous timer
+            const clearLongPress = () => {
+                if (longPressTimer) {
+                    clearTimeout(longPressTimer);
+                    longPressTimer = null;
+                }
+            };
+
+            // Start long-press timer
+            const startLongPress = (e) => {
+                clearLongPress();
+                longPressTimer = setTimeout(() => {
+                    e.preventDefault();
+                    showContactModal();
+                }, LONG_PRESS_DURATION);
+            };
+
+            // Desktop: mouse events
+            nameElement.addEventListener('mousedown', startLongPress);
+            nameElement.addEventListener('mouseup', clearLongPress);
+            nameElement.addEventListener('mouseleave', clearLongPress);
+
+            // Mobile: touch events
+            nameElement.addEventListener('touchstart', startLongPress, { passive: true });
+            nameElement.addEventListener('touchend', clearLongPress);
+            nameElement.addEventListener('touchmove', clearLongPress);
+            nameElement.addEventListener('touchcancel', clearLongPress);
+
+            // Add visual hint on hover (subtle cursor change)
+            nameElement.style.cursor = 'default';
+        }
+
+        function initContactModal() {
+            const contactModal = document.getElementById('contact-modal');
+            const contactSaveBtn = document.getElementById('contact-save');
+            const contactCancelBtn = document.getElementById('contact-cancel');
+            const contactPhoneInput = document.getElementById('contact-phone');
+
+            // Modal button listeners
+            contactSaveBtn.addEventListener('click', saveContactInfo);
+            contactCancelBtn.addEventListener('click', hideContactModal);
+
+            // Close modal on overlay click
+            contactModal.addEventListener('click', (e) => {
+                if (e.target === contactModal) {
+                    hideContactModal();
+                }
+            });
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+                    hideContactModal();
+                }
+            });
+
+            // Save on Enter key in phone field
+            contactPhoneInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    saveContactInfo();
+                }
+            });
+
+            // Set up listener after initial render
+            setupLongPressListener();
+        }
     </script>
 </body>
 </html>

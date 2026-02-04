@@ -13,7 +13,9 @@ const RESUME_DATA = {
         location: "Huntersville, NC",
         linkedin: "linkedin.com/in/kharymendez",
         github: "github.com/kharyam",
-        website: "khary.net"
+        website: "khary.net",
+        email: "",
+        phone: ""
     },
 
     // Metrics (from dashboard)
