@@ -1946,8 +1946,27 @@
         </div>
     </div>
 
-    <!-- Load shared data -->
-    <script src="assets/js/resume-data.js"></script>
+    <!-- YAML Parsing Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+
+    <script>
+        // Global RESUME_DATA variable
+        let RESUME_DATA = null;
+
+        // Function to load resume data from YAML
+        async function loadResumeData() {
+            try {
+                const response = await fetch('assets/js/resume-data.yaml');
+                if (!response.ok) throw new Error('Failed to fetch resume-data.yaml');
+                const yamlText = await response.text();
+                RESUME_DATA = jsyaml.load(yamlText);
+                return RESUME_DATA;
+            } catch (error) {
+                console.error('Error loading resume data:', error);
+                return null;
+            }
+        }
+    </script>
 
     <script>
         // ========== RENDER FUNCTIONS ==========
@@ -2412,7 +2431,10 @@
 
         // ========== EVENT LISTENERS ==========
 
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            const data = await loadResumeData();
+            if (!data) return;
+
             // Initial render
             renderResume('full', 'modern');
 

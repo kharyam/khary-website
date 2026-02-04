@@ -3438,10 +3438,26 @@
         <p>© 2026 Khary A. Mendez | Red Hat Certified Architect | Carnegie Mellon & Johns Hopkins</p>
     </footer>
 
-    <!-- Shared Resume Data -->
-    <script src="assets/js/resume-data.js"></script>
+    <!-- YAML Parsing Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 
     <script>
+        // Global RESUME_DATA variable
+        let RESUME_DATA = null;
+
+        // Function to load resume data from YAML
+        async function loadResumeData() {
+            try {
+                const response = await fetch('assets/js/resume-data.yaml');
+                if (!response.ok) throw new Error('Failed to fetch resume-data.yaml');
+                const yamlText = await response.text();
+                RESUME_DATA = jsyaml.load(yamlText);
+                return RESUME_DATA;
+            } catch (error) {
+                console.error('Error loading resume data:', error);
+                return null;
+            }
+        }
         // ========== DYNAMIC CONTENT RENDERING FROM RESUME_DATA ==========
         // Render all repeated content from the shared data source
 
@@ -3772,7 +3788,10 @@
         }
 
         // Run all render functions on page load
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            const data = await loadResumeData();
+            if (!data) return;
+
             renderMetrics();
             renderWorkExperience();
             renderEducation();
@@ -3784,9 +3803,15 @@
             renderGitHubProjects();
             renderConnectLinks();
 
+            // Initialize workDetails after data is loaded
+            initWorkDetails();
+
             // Re-attach observers and handlers after dynamic content is rendered
             reattachObservers();
             reattachWorkCardHandlers();
+
+            // Initialize typewriter after data is loaded
+            initTypewriter();
         });
 
         // Function to re-attach intersection observers after dynamic render
@@ -3858,24 +3883,31 @@
         function reattachWorkCardHandlers() {
             // This will be called after the flip card code is defined below
             // It's handled in the existing flip card initialization
+            if (typeof attachWorkCardHandlers === 'function') {
+                attachWorkCardHandlers();
+            }
         }
 
         // ========== END DYNAMIC CONTENT RENDERING ==========
 
         // Typewriter Effect - use tagline from RESUME_DATA
-        const typewriterText = document.querySelector('.typewriter-text');
-        const text = RESUME_DATA.personal.tagline || "Solving hard problems through systems thinking, resilience, and mentorship.";
-        let charIndex = 0;
-        
-        function typeWriter() {
-            if (charIndex < text.length) {
-                typewriterText.textContent += text.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, 50);
+        function initTypewriter() {
+            const typewriterText = document.querySelector('.typewriter-text');
+            if (!typewriterText) return;
+            
+            const text = RESUME_DATA.personal.tagline || "Solving hard problems through systems thinking, resilience, and mentorship.";
+            let charIndex = 0;
+            
+            function typeWriter() {
+                if (charIndex < text.length) {
+                    typewriterText.textContent += text.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 50);
+                }
             }
+            
+            setTimeout(typeWriter, 1000);
         }
-        
-        setTimeout(typeWriter, 1000);
         
         // Number Counter Animation
         function animateCounter(element) {
@@ -4453,15 +4485,18 @@
         // Work Experience Flip Card Animation
         // Work experience detail data - derived from shared RESUME_DATA
         const workDetails = {};
-        RESUME_DATA.experience.forEach(job => {
-            workDetails[job.id] = {
-                logo: job.logo,
-                title: job.role,
-                company: job.company,
-                dates: job.dates,
-                projects: job.projects
-            };
-        });
+        function initWorkDetails() {
+            if (!RESUME_DATA) return;
+            RESUME_DATA.experience.forEach(job => {
+                workDetails[job.id] = {
+                    logo: job.logo,
+                    title: job.role,
+                    company: job.company,
+                    dates: job.dates,
+                    projects: job.projects
+                };
+            });
+        }
 
         // ========== WORK CARD FLIP ANIMATION ==========
         // Uses clone approach: clone element, append to body, animate
