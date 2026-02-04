@@ -199,6 +199,30 @@
             color: var(--text-secondary);
         }
 
+        .resume-contact-direct {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .resume-contact-direct a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .resume-contact-direct a:hover {
+            color: var(--accent-primary);
+        }
+
+        .contact-separator {
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+
         .resume-header-right {
             text-align: right;
             font-size: 0.85rem;
@@ -1168,6 +1192,16 @@
                 font-size: 10pt;
             }
 
+            .resume-contact-direct {
+                font-size: 9pt;
+                color: #4a5568 !important;
+                margin-top: 0.15rem;
+            }
+
+            .resume-contact-direct a {
+                color: #1a365d !important;
+            }
+
             .resume-header-right a {
                 color: #1a365d !important;
             }
@@ -1952,11 +1986,16 @@
                     <div class="resume-header-left">
                         <h1 class="resume-name">${p.name}</h1>
                         <div class="resume-title">${p.title}</div>
+                        ${(p.email || p.phone) ? `
+                            <div class="resume-contact-direct">
+                                ${p.email ? `<a href="mailto:${p.email}">${p.email}</a>` : ''}
+                                ${p.email && p.phone ? '<span class="contact-separator">|</span>' : ''}
+                                ${p.phone ? `<span>${p.phone}</span>` : ''}
+                            </div>
+                        ` : ''}
                     </div>
                     <div class="resume-header-right">
                         <span class="resume-contact-item">${p.location}</span>
-                        ${p.email ? `<a href="mailto:${p.email}" class="resume-contact-item">${p.email}</a>` : ''}
-                        ${p.phone ? `<span class="resume-contact-item">${p.phone}</span>` : ''}
                         <a href="https://${p.linkedin}" target="_blank" class="resume-contact-item">${p.linkedin}</a>
                         <a href="https://${p.github}" target="_blank" class="resume-contact-item">${p.github}</a>
                         <span class="resume-contact-item resume-website-line">
