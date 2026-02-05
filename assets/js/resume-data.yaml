@@ -431,10 +431,9 @@ impactStories:
       backTitle: "Deep Understanding"
       backContent: >
         Joined a troubled engagement midstream with a frustrated government contractor
-        and unclear technical direction. Rebuilt the architecture collaboratively in
-        real time, asked probing questions that exposed hidden assumptions, and
-        uncovered the real requirement: optimizing enterprise middleware for multiple
-        deployment models. 
+        and no clear technical direction. Reframed the problem collaboratively, asked
+        targeted questions that surfaced hidden assumptions, and clarified the true
+        requirement: optimizing enterprise middleware across multiple deployment models.
       metrics:
         - icon: "📊"
           text: "40+ page tuning guide with optimization rubric"
@@ -448,7 +447,13 @@ impactStories:
       frontTitle: "MULTIPLY\nTHROUGH PEOPLE"
       frontHint: "Click to explore"
       backTitle: "Team Multiplication"
-      backContent: "When onboarding customer teams, I have them do the work while I teach—building self-sufficiency so we can expand our footprint. Internally, I encouraged colleagues to present at our annual conference, submitted proposals on their behalf, and coached them through it. I mentor consultants and am a go-to resource for solving difficult problems."
+      backContent: >
+        When onboarding customer teams, I structure engagements so they do the work while
+        I teach—building confidence and long-term self-sufficiency rather than dependency.
+        Internally, I encourage consultants to share their expertise by presenting at our
+        annual conference, submitting proposals on their behalf, and coaching them through
+        delivery. I mentor across teams and am a trusted resource for navigating the most
+        challenging technical problems. 
       metrics:
         - icon: "🎤"
           text: "Helped colleagues become conference speakers"
@@ -462,7 +467,13 @@ impactStories:
       frontTitle: "DELIVER\nRESULTS"
       frontHint: "Click to explore"
       backTitle: "Production Results"
-      backContent: "When a customer literally laughed at OpenShift installation requirements, we plowed through—found champions, and now run successfully with a backlog of demand. On another engagement, discovered developers were .NET, not Java. Created learning resources, ran intensive sessions, and they delivered the middleware migration on a strict deadline."
+      backContent: >
+        When a customer initially dismissed OpenShift installation requirements as infeasible,
+        I worked through resistance to identify internal champions and establish a successful
+        production deployment—resulting in sustained adoption and a growing backlog of demand. 
+        In another engagement, discovered the development team was .NET rather than Java. 
+        Created targeted learning materials, led focused enablement sessions, and enabled the
+        team to deliver a middleware migration on a strict deadline. 
       metrics:
         - icon: "✅"
           text: "OpenShift running for years with growing demand"

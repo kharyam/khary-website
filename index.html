@@ -977,6 +977,7 @@
 
         .flip-card-back-content strong {
             color: var(--accent-secondary);
+            font-size: 1.05rem;
         }
 
         .flip-card-back-results {
@@ -1670,7 +1671,13 @@
             margin-bottom: 1.5rem;
             font-style: italic;
         }
-        
+
+        .testimonial-quote strong {
+            font-size: 1.15rem;
+            font-style: normal;
+            color: var(--text-primary);
+        }
+
         .testimonial-author {
             border-top: 1px solid var(--border-color);
             padding-top: 1rem;
@@ -1838,6 +1845,24 @@
             background: rgba(255, 183, 0, 0.2);
             border-color: var(--accent-secondary);
             box-shadow: 0 0 12px rgba(255, 183, 0, 0.4);
+        }
+
+        /* Subtle nudge animation for cert link icon - starts immediately, repeats every 3s */
+        @keyframes cert-link-nudge {
+            0% { transform: none; }
+            3% { transform: translateX(2px); }
+            6% { transform: translateX(-2px); }
+            9% { transform: translateX(2px); }
+            12% { transform: translateX(-1px); }
+            15%, 100% { transform: none; }
+        }
+
+        .cert-card:hover .cert-link-icon {
+            animation: cert-link-nudge 3s ease-in-out infinite;
+        }
+
+        .cert-card:hover .cert-link-icon:hover {
+            animation: none;
         }
 
         /* Mobile: smaller icon */
@@ -3602,9 +3627,18 @@
             const grid = document.querySelector('.testimonials-grid');
             if (!grid || !RESUME_DATA.testimonials) return;
 
+            // Helper to bold the first sentence for quick scanning
+            const boldFirstSentence = (text) => {
+                const match = text.match(/^([^.!?]+[.!?])\s*/);
+                if (match) {
+                    return `<strong>${match[1]}</strong> ${text.slice(match[0].length)}`;
+                }
+                return text;
+            };
+
             grid.innerHTML = RESUME_DATA.testimonials.map(t => `
                 <div class="testimonial-card">
-                    <p class="testimonial-quote">${t.quote}</p>
+                    <p class="testimonial-quote">${boldFirstSentence(t.quote)}</p>
                     <div class="testimonial-author">
                         <div class="author-role">${t.role}</div>
                         <div class="author-context">${t.context}</div>
@@ -3684,6 +3718,15 @@
             const container = document.querySelector('.flip-cards-container');
             if (!container || !RESUME_DATA.impactStories) return;
 
+            // Helper to bold the first sentence
+            const boldFirstSentence = (text) => {
+                const match = text.match(/^([^.!?]+[.!?])\s*/);
+                if (match) {
+                    return `<strong>${match[1]}</strong> ${text.slice(match[0].length)}`;
+                }
+                return text;
+            };
+
             container.innerHTML = RESUME_DATA.impactStories.cards.map(card => `
                 <div class="flip-card" data-impact="${card.id}">
                     <div class="flip-card-inner">
@@ -3695,7 +3738,7 @@
                         <div class="flip-card-back">
                             <h3 class="flip-card-back-title">${card.backTitle}</h3>
                             <div class="flip-card-back-section">
-                                <div class="flip-card-back-content">${card.backContent}</div>
+                                <div class="flip-card-back-content">${boldFirstSentence(card.backContent)}</div>
                             </div>
                             <div class="flip-card-back-section">
                                 <div class="flip-card-back-results">
