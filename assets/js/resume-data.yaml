@@ -4,9 +4,16 @@
 personal:
   name: "Khary A. Mendez"
   title: "Senior Principal Consultant"
-  tagline: "Solving hard problems through systems thinking, resilience, and mentorship."
+  tagline: "Bringing clarity to complexity through systems thinking, resilience, and mentorship."
   subtitle: "Technical Leader | Team Multiplier | Problem Solver"
-  summary: "Solving hard problems through systems thinking, resilience, and mentorship. 25+ years of experience in software engineering, cloud architecture, and technical leadership. Red Hat Certified Architect with multiple professional certifications. Proven track record of enabling 50+ teams and delivering enterprise-scale solutions."
+  summary: >
+    Senior Principal Consultant with 25+ years of experience in software engineering,
+    cloud architecture, and technical leadership. Red Hat Certified Architect with
+    deep expertise in OpenShift, Kubernetes, and enterprise platforms. Known for
+    bringing clarity to ambiguous problems, designing systems for production at
+    scale, and enabling teams to take long-term ownership of the platforms they run.
+    Trusted to lead calmly through high-pressure engagements and complex delivery
+    environments.
   location: "Huntersville, NC"
   linkedin: "linkedin.com/in/kharymendez"
   github: "github.com/kharyam"
@@ -138,7 +145,7 @@ experience:
           - "On-boarded development teams defining DevOps practices and processes"
       - name: "State Health Department"
         dates: "2015"
-        description: "Assisted in installation of BRMS and Fuse Service Works."
+        description: "Architected and guided installation of BRMS and Fuse Service Works."
         bullets:
           - "Prepared and delivered workshops on Git, BRMS, and continuous delivery"
           - "Stood up continuous delivery environment using Jenkins"
@@ -156,7 +163,8 @@ experience:
     role: "Staff Software Engineer"
     dates: "1998 - 2011"
     logo: "assets/images/lockheed.svg"
-    summary: "Mission-critical software for satellite systems and space-based defense programs"
+    summary: "Designed and delivered mission-critical software for satellite systems and space-based defense programs supporting international and defense customers."
+
     highlights:
       - "13-year tenure across satellite systems, tactical networks, and space-based defense programs"
       - "Progressed from Software Engineer to Staff Engineer and Architect, leading services and mentoring teams"
@@ -176,7 +184,7 @@ experience:
         dates: "2010 - 2011"
         description: "Developed SOA architecture for integration of environmental satellite systems."
         bullets:
-          - "Assisted in development of SOA architecture to support legacy and upcoming satellite systems (GOES-R)"
+          - "Contributed to the SOA architecture integrating legacy and next-generation satellite systems (GOES-R)."
           - "Developed SOA-based prototype using WSO2 ESB, Gadget Server (web portal), and Amazon EC2"
           - "Developed Java prototype to model environmental satellite data sectorization and resolution reduction"
       - name: "Warfighter Information Network Tactical (WIN-T)"
@@ -421,7 +429,12 @@ impactStories:
       frontTitle: "UNDERSTAND\nDEEPLY"
       frontHint: "Click to explore"
       backTitle: "Deep Understanding"
-      backContent: "Joined a troubled engagement midway through with a frustrated government contractor. Did a complete reset—built their architecture diagram in real-time, asked probing questions that forced clarity, and uncovered the true need: optimizing their enterprise middleware for diverse deployment scenarios."
+      backContent: >
+        Joined a troubled engagement midstream with a frustrated government contractor
+        and unclear technical direction. Rebuilt the architecture collaboratively in
+        real time, asked probing questions that exposed hidden assumptions, and
+        uncovered the real requirement: optimizing enterprise middleware for multiple
+        deployment models. 
       metrics:
         - icon: "📊"
           text: "40+ page tuning guide with optimization rubric"
@@ -464,7 +477,11 @@ projects:
     - id: "litra-driver"
       path: "~/projects/litra-driver"
       name: "Litra Driver"
-      description: "Linux CLI and GUI for controlling Logitech Litra Glow & Beam lighting devices. Reverse-engineered USB protocols enable brightness and color temperature control without proprietary software. Originally built in Python, then rewritten in Go for improved performance."
+      description: >
+        Open-source Linux CLI and GUI for controlling Logitech Litra Glow & Beam devices,
+        created to eliminate dependency on proprietary software. Reverse-engineered USB
+        protocols enable full brightness and color temperature control. Originally built
+        in Python, later rewritten in Go for performance and portability. 
       languages:
         - name: "Python"
           dotClass: "python"
