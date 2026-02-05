@@ -191,7 +191,7 @@ experience:
         dates: "2007 - 2010"
         description: "Designed and developed Java code within a Service Oriented Architecture."
         bullets:
-          - "Worked on role-based access control (Apache Rampart, Active Directory, OpenDS, WSO2 Identity Server)"
+          - "Established role-based access control using Apache Rampart, Active Directory, OpenDS, and WSO2 Identity Server"
           - "Developed report and workflow services (ActiveVOS/BPEL), serving as lead for all three services"
           - "Supported customer development efforts on-site for approximately 1 year"
       - name: "Space Based Infrared Satellite System (SBIRS)"
@@ -215,7 +215,7 @@ experience:
         description: "Designed, coded, and unit tested software for satellite systems."
         bullets:
           - "Developed software for the MSAS system (UNIX, C programming)"
-          - "Worked with SNMP and MIBs for monitoring network devices via custom software"
+          - "Led SNMP and MIB integration for monitoring network devices via custom software"
           - "Wrote and executed procedures for formal system test for the customer (NEC of Japan)"
           - "Supported system integration and test in Japan"
 
@@ -456,7 +456,7 @@ impactStories:
         challenging technical problems. 
       metrics:
         - icon: "🎤"
-          text: "Helped colleagues become conference speakers"
+          text: "Enabled colleagues to become conference speakers"
         - icon: "🚀"
           text: "New team members now leading migrations"
         - icon: "🤝"
@@ -469,7 +469,7 @@ impactStories:
       backTitle: "Production Results"
       backContent: >
         When a customer initially dismissed OpenShift installation requirements as infeasible,
-        I worked through resistance to identify internal champions and establish a successful
+        I led efforts through resistance to identify internal champions and establish a successful
         production deployment—resulting in sustained adoption and a growing backlog of demand. 
         In another engagement, discovered the development team was .NET rather than Java. 
         Created targeted learning materials, led focused enablement sessions, and enabled the
