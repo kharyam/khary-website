@@ -256,7 +256,7 @@ education:
 
 certifications:
   cloud:
-    - name: "Certified Scrum Master"
+    - name: "Certified Scrum Master (CSM)"
       issuer: "Scrum Alliance"
       logo: "assets/images/scrum-logo.svg"
       detailsUrl: "https://www.scrumalliance.org/get-certified/scrum-master-track/certified-scrummaster"
@@ -333,11 +333,11 @@ certifications:
       logo: "assets/images/redhat-logo.svg"
       detailsUrl: "https://www.redhat.com/en/services/certification/rhcs-app-server-admin"
     - name: "Red Hat Certified Engineer (RHCE)"
-      date: "June 2019"
+      date: "Since June 2019"
       logo: "assets/images/redhat-logo.svg"
       detailsUrl: "https://www.redhat.com/en/services/certification/rhce"
     - name: "Red Hat Certified System Administrator (RHCSA)"
-      date: "October 2015"
+      date: "Since October 2015"
       logo: "assets/images/redhat-logo.svg"
       detailsUrl: "https://www.redhat.com/en/services/certification/rhcsa"
 

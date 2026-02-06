@@ -1678,6 +1678,15 @@
             color: var(--text-primary);
         }
 
+        .testimonial-rest {
+            opacity: 0.12;
+            transition: opacity 0.5s ease;
+        }
+
+        .testimonial-card:hover .testimonial-rest {
+            opacity: 1;
+        }
+
         .testimonial-author {
             border-top: 1px solid var(--border-color);
             padding-top: 1rem;
@@ -2933,6 +2942,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .testimonial-rest {
+                opacity: 1;
+            }
+
             .certifications-section {
                 padding: 3rem 1rem;
             }
@@ -3422,7 +3435,7 @@
             <h2 class="section-title">
                 <span class="section-title-gradient">Open Source Projects</span>
             </h2>
-            <p class="section-subtitle">Personal projects and contributions to the developer community</p>
+            <p class="section-subtitle">Sample of personal projects and contributions to the developer community</p>
 
             <div class="github-grid">
                 <!-- Rendered dynamically from RESUME_DATA -->
@@ -3631,7 +3644,8 @@
             const boldFirstSentence = (text) => {
                 const match = text.match(/^([^.!?]+[.!?])\s*/);
                 if (match) {
-                    return `<strong>${match[1]}</strong> ${text.slice(match[0].length)}`;
+                    const rest = text.slice(match[0].length);
+                    return `<strong>${match[1]}</strong>${rest ? ` <span class="testimonial-rest">${rest}</span>` : ''}`;
                 }
                 return text;
             };
