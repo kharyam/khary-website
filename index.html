@@ -816,7 +816,7 @@
         }
 
         .flip-card.flipped {
-            height: 560px;
+            /* height set dynamically by JS to fit back content */
         }
         
         .flip-card:hover {
@@ -2735,7 +2735,7 @@
             }
 
             .flip-card.flipped {
-                height: 540px;
+                /* height set dynamically by JS to fit back content */
             }
 
             .flip-card-front,
@@ -3909,11 +3909,7 @@
 
             // Re-attach flip card handlers for impact stories
             document.querySelectorAll('.flip-card').forEach(card => {
-                card.addEventListener('click', (e) => {
-                    if (!e.target.closest('.flip-back-btn')) {
-                        card.classList.toggle('flipped');
-                    }
-                });
+                card.addEventListener('click', (e) => handleFlipCard(card, e));
             });
 
             // Re-attach impact bullet click handlers
@@ -3986,12 +3982,37 @@
         });
         
          // Flip Card Functionality
+        function handleFlipCard(card, e) {
+            if (e.target.closest('.flip-back-btn')) return;
+
+            const isFlipping = !card.classList.contains('flipped');
+
+            if (isFlipping) {
+                // Store current height so we can restore on unflip
+                card.dataset.unflippedHeight = card.style.height || '';
+            }
+
+            card.classList.toggle('flipped');
+
+            if (isFlipping) {
+                // Measure the back face's natural content height
+                const back = card.querySelector('.flip-card-back');
+                const savedPos = back.style.position;
+                const savedH = back.style.height;
+                back.style.position = 'relative';
+                back.style.height = 'auto';
+                const backHeight = back.scrollHeight;
+                back.style.position = savedPos || '';
+                back.style.height = savedH || '';
+                card.style.height = backHeight + 'px';
+            } else {
+                // Restore original height
+                card.style.height = card.dataset.unflippedHeight || '';
+            }
+        }
+
         document.querySelectorAll('.flip-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                if (!e.target.closest('.flip-back-btn')) {
-                    card.classList.toggle('flipped');
-                }
-            });
+            card.addEventListener('click', (e) => handleFlipCard(card, e));
         });
 
         // No-op click handlers for highlighted bullets on impact cards
@@ -4033,25 +4054,22 @@
                 const front = card.querySelector('.flip-card-front');
                 const back = card.querySelector('.flip-card-back');
 
+                // Skip flipped cards — their height is managed by handleFlipCard
+                if (card.classList.contains('flipped')) return;
+
                 if (isMobile) {
-                    // Temporarily make both sides position:relative to measure natural height
+                    // Measure front's natural height for the unflipped state
                     front.style.position = 'relative';
-                    back.style.position = 'relative';
                     front.style.height = 'auto';
-                    back.style.height = 'auto';
                     card.style.height = 'auto';
 
-                    // Get natural heights
                     const frontHeight = front.scrollHeight;
-                    const backHeight = back.scrollHeight;
-                    const maxHeight = Math.max(frontHeight, backHeight);
 
-                    // Apply the max height to ensure both sides fit
-                    card.style.height = maxHeight + 'px';
-                    front.style.height = maxHeight + 'px';
-                    back.style.height = maxHeight + 'px';
-                    front.style.minHeight = maxHeight + 'px';
-                    back.style.minHeight = maxHeight + 'px';
+                    card.style.height = frontHeight + 'px';
+                    front.style.height = frontHeight + 'px';
+                    front.style.minHeight = frontHeight + 'px';
+                    back.style.height = '';
+                    back.style.minHeight = '';
 
                     // Restore positioning for flip animation
                     front.style.position = 'relative';

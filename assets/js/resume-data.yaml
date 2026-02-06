@@ -468,19 +468,19 @@ impactStories:
       frontHint: "Click to explore"
       backTitle: "Production Results"
       backContent: >
-        When a customer initially dismissed OpenShift installation requirements as infeasible,
+        When a customer initially dismissed OpenShift architectural requirements as infeasible,
         I led efforts through resistance to identify internal champions and establish a successful
-        production deployment—resulting in sustained adoption and a growing backlog of demand. 
+        production deployment.  This resulted in sustained adoption and a growing backlog of demand. 
         In another engagement, discovered the development team was .NET rather than Java. 
         Created targeted learning materials, led focused enablement sessions, and enabled the
-        team to deliver a middleware migration on a strict deadline. 
+        team to deliver an architectural refactor on a strict deadline. 
       metrics:
         - icon: "✅"
           text: "OpenShift running for years with growing demand"
         - icon: "🎓"
-          text: "Upskilled entire team from zero to delivery"
+          text: "Upskilled an entire team from zero"
         - icon: "🏆"
-          text: "First successful engagement with that customer"
+          text: "Re-architected a system under tight timelines"
       showOnResume: true
 
 projects:
