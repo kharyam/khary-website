@@ -2054,7 +2054,7 @@
             </div>
             <div class="contact-modal-field">
                 <label for="contact-phone">Phone</label>
-                <input type="tel" id="contact-phone" placeholder="(555) 123-4567">
+                <input type="tel" id="contact-phone" placeholder="(123) 456-7890">
             </div>
             <div class="contact-modal-buttons">
                 <button class="contact-modal-btn secondary" id="contact-cancel">Cancel</button>
@@ -2935,6 +2935,18 @@
                 if (e.key === 'Enter') {
                     saveContactInfo();
                 }
+            });
+
+            // Auto-format phone number as (123) 456-7890
+            contactPhoneInput.addEventListener('input', () => {
+                const digits = contactPhoneInput.value.replace(/\D/g, '').slice(0, 10);
+                let formatted = '';
+                if (digits.length > 0) formatted = '(' + digits.slice(0, 3);
+                if (digits.length >= 3) formatted += ') ';
+                if (digits.length > 3) formatted += digits.slice(3, 6);
+                if (digits.length >= 6) formatted += '-';
+                if (digits.length > 6) formatted += digits.slice(6);
+                contactPhoneInput.value = formatted;
             });
 
             // Set up listener after initial render
