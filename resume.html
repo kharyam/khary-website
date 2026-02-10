@@ -1186,11 +1186,6 @@
                 margin-top: 0.4in;
             }
 
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-
             html, body {
                 /* Setting margin/padding to manage browser chrome */
                 margin: 0 !important;
@@ -1202,6 +1197,26 @@
                 color: #333 !important;
                 font-size: 10pt;
                 line-height: 1.4;
+            }
+
+            /* Selective print-color-adjust: only elements needing intentional color */
+            .cert-tag.featured,
+            .template-executive .metrics-callout,
+            .section-heading {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            /* Explicit white backgrounds on containers */
+            .resume-section,
+            .work-entry,
+            .work-projects,
+            .cert-category,
+            .skills-category,
+            .education-entry,
+            .publication-entry,
+            .testimonial-entry {
+                background: white !important;
             }
 
             .no-print {
@@ -1268,9 +1283,9 @@
                 color: #1a365d !important;
             }
 
-            /* Sections - allow breaks inside, just keep headings with content */
+            /* Sections - standardized vertical rhythm */
             .resume-section {
-                margin-bottom: 0.6rem;
+                margin-bottom: 0.5rem;
             }
 
             /* Section heading wrapper to keep heading with content */
@@ -1279,7 +1294,7 @@
                 border-color: #1a365d !important;
                 font-size: 11pt;
                 padding-bottom: 0.25rem;
-                margin-bottom: 0.4rem;
+                margin-bottom: 0.35rem;
                 /* Keep heading with following content - use both for browser compat */
                 page-break-after: avoid !important;
                 break-after: avoid !important;
@@ -1368,27 +1383,39 @@
 
             /* Reduce spacing */
             .work-entry {
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.4rem;
+            }
+
+            /* Visual separator between work entries (skip ATS) */
+            .work-entry + .work-entry {
+                border-top: 0.25pt solid #e0e0e0;
+                padding-top: 0.4rem;
+            }
+
+            .template-ats .work-entry + .work-entry {
+                border-top: none;
+                padding-top: 0;
             }
 
             .work-highlights li {
                 margin-bottom: 0.1rem;
             }
 
-            /* Tags */
+            /* Tags - visible on paper */
             .cert-tag,
             .skill-tag {
-                background: #f5f5f5 !important;
-                border-color: #ddd !important;
+                background: #f0f0f0 !important;
+                border-color: #ccc !important;
+                border-width: 0.5pt !important;
             }
 
             .cert-tag.featured {
                 background: #fff8e1 !important;
-                border-color: #ffc107 !important;
+                border-color: #e6a800 !important;
             }
 
             .work-projects {
-                border-color: #ddd !important;
+                border-left: none !important;
             }
 
             /* Smart page break control */
@@ -1409,8 +1436,25 @@
                 break-inside: auto;
             }
 
-            /* But keep the header row together with role */
+            /* Keep work header and role together as a unit */
+            .work-header {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+
+            .work-role {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+
             .work-header + .work-role {
+                page-break-before: avoid;
+                break-before: avoid;
+            }
+
+            /* Keep at least first bullet with its header */
+            .work-highlights li:first-child,
+            .project-bullets li:first-child {
                 page-break-before: avoid;
                 break-before: avoid;
             }
@@ -1438,6 +1482,18 @@
                 text-decoration: none !important;
             }
 
+            /* Subtle link underlines for templates with visual identity */
+            .template-modern a,
+            .template-classic a,
+            .template-executive a {
+                border-bottom: 0.3pt solid #999;
+            }
+
+            /* No underlines in header contact links */
+            .resume-header a {
+                border-bottom: none !important;
+            }
+
             /* JavaScript-controlled page break for orphaned headings */
             .force-page-break {
                 page-break-before: always !important;
@@ -1457,20 +1513,33 @@
 
             /* ========== TEMPLATE-SPECIFIC PRINT STYLES ========== */
 
+            /* Modern Professional */
+            .template-modern .summary-text {
+                font-size: 9.5pt;
+            }
+
+            .template-modern .section-heading {
+                border-bottom: 2pt solid #1a365d !important;
+            }
+
             /* Classic Traditional - serif font, no colors */
             .template-classic {
                 font-family: Georgia, 'Times New Roman', serif !important;
+                font-size: 10.5pt;
             }
 
             .template-classic .resume-name {
                 color: #000 !important;
+                font-variant: small-caps;
             }
 
             .template-classic .section-heading {
                 color: #000 !important;
                 border-color: #333 !important;
+                border-bottom-width: 0.5pt !important;
                 text-transform: none !important;
                 letter-spacing: 0 !important;
+                font-variant: small-caps;
             }
 
             .template-classic .cert-tag,
@@ -1482,6 +1551,19 @@
             .template-classic .cert-tag.featured {
                 background: transparent !important;
                 border: none !important;
+            }
+
+            .template-classic .work-company {
+                font-weight: 700;
+            }
+
+            .template-classic .work-role {
+                font-weight: 600;
+                font-style: normal;
+            }
+
+            .template-classic .project-name {
+                font-weight: 700;
             }
 
             .template-classic .work-projects {
@@ -1547,8 +1629,34 @@
                 margin-bottom: 0.4rem !important;
             }
 
-            .template-two-column .cert-tag,
-            .template-two-column .skill-tag {
+            /* Sidebar tags as inline comma-separated text to save vertical space */
+            .template-two-column .resume-sidebar .cert-list,
+            .template-two-column .resume-sidebar .skills-list {
+                display: inline !important;
+            }
+
+            .template-two-column .resume-sidebar .cert-tag,
+            .template-two-column .resume-sidebar .skill-tag {
+                display: inline !important;
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                font-size: 8pt !important;
+            }
+
+            .template-two-column .resume-sidebar .cert-tag::after,
+            .template-two-column .resume-sidebar .skill-tag::after {
+                content: ', ' !important;
+            }
+
+            .template-two-column .resume-sidebar .cert-tag:last-child::after,
+            .template-two-column .resume-sidebar .skill-tag:last-child::after {
+                content: '' !important;
+            }
+
+            /* Main area tags keep their pill styling */
+            .template-two-column .resume-main .cert-tag,
+            .template-two-column .resume-main .skill-tag {
                 font-size: 8pt !important;
                 padding: 0.1rem 0.3rem !important;
             }
@@ -1570,7 +1678,7 @@
             .template-two-column .project-name,
             .template-two-column .project-description,
             .template-two-column .project-bullets {
-                font-size: 7.5pt !important;
+                font-size: 8pt !important;
             }
 
             .template-two-column .education-school {
@@ -1686,12 +1794,12 @@
             }
 
             .template-executive .metric-value {
-                font-size: 14pt !important;
+                font-size: 13pt !important;
                 color: #1a365d !important;
             }
 
             .template-executive .metric-label {
-                font-size: 7pt !important;
+                font-size: 8pt !important;
                 color: #555 !important;
             }
 
@@ -2794,15 +2902,20 @@
                     el.classList.remove('force-page-break');
                 });
 
-                // Skip forced breaks for executive template - its compact layout
-                // makes screen-based position estimates unreliable; CSS break rules suffice
-                if (getCurrentTemplate() === 'executive') return;
-
                 const content = document.getElementById('resume-content');
+                const isExecutive = getCurrentTemplate() === 'executive';
 
-                // Page height in pixels (approximate for print layout)
-                const pageHeight = 960;
-                const minContentAfterHeading = 100;
+                // Dynamically measure page height using a probe element
+                const probe = document.createElement('div');
+                probe.style.cssText = 'position:absolute;width:1in;height:1in;left:-9999px;top:-9999px;';
+                document.body.appendChild(probe);
+                const pxPerInch = probe.offsetWidth;
+                document.body.removeChild(probe);
+                // Letter page = 11in, minus 0.5in top + 0.6in bottom margins = 9.9in usable
+                const pageHeight = pxPerInch * 9.9;
+
+                // Executive uses a more conservative threshold
+                const minContentAfterHeading = isExecutive ? 150 : 100;
 
                 // Walk through visible sections
                 const elements = content.querySelectorAll('.resume-section:not(.hidden)');
