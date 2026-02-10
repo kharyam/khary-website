@@ -158,6 +158,31 @@ experience:
           - "Recommended and configured continuous integration environment (Jenkins, Sonar, Maven, Nexus)"
           - "Coordinated with and educated team members across multiple groups"
 
+  - id: "montgomery"
+    company: "Montgomery College"
+    role: "Adjunct Professor"
+    dates: "2011"
+    logo: "assets/images/montgomery_college.png"
+    summary: "Shaping future software engineers through hands-on curriculum and mentorship"
+    highlights:
+      - "Taught (in-person) introductory programming course covering C++ fundamentals and problem-solving"
+      - "Developed curriculum materials and provided extensive student mentorship"
+    techStack:
+      - "C++"
+      - "Visual Studio"
+      - "Teaching"
+    projects:
+      - name: "CS140: Introduction to Programming and Problem Solving using C++"
+        dates: "Jan 2011 - May 2011"
+        description: "Taught introductory computer science course in the Computer Science and Information Interactive Technologies department."
+        bullets:
+          - "Lectured weekly on the basics of programming concepts and problem-solving techniques"
+          - "Created and evaluated labs, quizzes, and exams"
+          - "Taught the process of creating, compiling, executing, and debugging programs in Microsoft Visual Studio"
+          - "Spent extensive time before and after class teaching and mentoring students"
+          - "<b>Student testimonial:</b> <i>\"I did not understand any of the information prior to attending Prof. Mendez class. He is very articulate and is able to break down information so even a person like me with no background in computers can understand it.\"</i>"
+
+
   - id: "lockheed"
     company: "Lockheed Martin"
     role: "Staff Software Engineer"
@@ -218,30 +243,6 @@ experience:
           - "Led SNMP and MIB integration for monitoring network devices via custom software"
           - "Wrote and executed procedures for formal system test for the customer (NEC of Japan)"
           - "Supported system integration and test in Japan"
-
-  - id: "montgomery"
-    company: "Montgomery College"
-    role: "Adjunct Professor"
-    dates: "2011"
-    logo: "assets/images/montgomery_college.png"
-    summary: "Shaping future software engineers through hands-on curriculum and mentorship"
-    highlights:
-      - "Taught (in-person) introductory programming course covering C++ fundamentals and problem-solving"
-      - "Developed curriculum materials and provided extensive student mentorship"
-    techStack:
-      - "C++"
-      - "Visual Studio"
-      - "Teaching"
-    projects:
-      - name: "CS140: Introduction to Programming and Problem Solving using C++"
-        dates: "Jan 2011 - May 2011"
-        description: "Taught introductory computer science course in the Computer Science and Information Interactive Technologies department."
-        bullets:
-          - "Lectured weekly on the basics of programming concepts and problem-solving techniques"
-          - "Created and evaluated labs, quizzes, and exams"
-          - "Taught the process of creating, compiling, executing, and debugging programs in Microsoft Visual Studio"
-          - "Spent extensive time before and after class teaching and mentoring students"
-          - "<b>Student testimonial:</b> <i>\"I did not understand any of the information prior to attending Prof. Mendez class. He is very articulate and is able to break down information so even a person like me with no background in computers can understand it.\"</i>"
 
 education:
   - school: "Johns Hopkins University"
