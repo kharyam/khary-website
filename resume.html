@@ -2780,6 +2780,10 @@
                     el.classList.remove('force-page-break');
                 });
 
+                // Skip forced breaks for executive template - its compact layout
+                // makes screen-based position estimates unreliable; CSS break rules suffice
+                if (getCurrentTemplate() === 'executive') return;
+
                 const content = document.getElementById('resume-content');
 
                 // Page height in pixels (approximate for print layout)
