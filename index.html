@@ -428,6 +428,7 @@
         .nav-links li:nth-child(5) { animation-delay: 3.2s; }
         .nav-links li:nth-child(6) { animation-delay: 4s; }
         .nav-links li:nth-child(7) { animation-delay: 4.8s; }
+        .nav-links li:nth-child(8) { animation-delay: 5.6s; }
         
         @keyframes navPulse {
             0%, 92%, 100% { opacity: 1; }
@@ -3279,6 +3280,29 @@
                   opacity: 0.02;
               }
           }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            z-index: 1001;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 8px rgba(0, 217, 255, 0.5);
+        }
+
+        /* Nav Active Section Highlighting */
+        .nav-links a.nav-active {
+            color: var(--accent-primary);
+            text-shadow: var(--glow-primary);
+        }
+
+        .nav-links a.nav-active::before {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -3293,6 +3317,9 @@
         <div class="bg-shape bg-shape-3"></div>
     </div>
     
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-content">
@@ -3310,6 +3337,7 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#publications">Publications</a></li>
                 <li><a href="#connect">Connect</a></li>
+                <li><a href="resume.html">Resume</a></li>
             </ul>
         </div>
     </nav>
@@ -4784,6 +4812,50 @@
                 closeFlipCard();
             }
         });
+
+        // ============================================
+        // SCROLL PROGRESS & NAV HIGHLIGHTING
+        // ============================================
+
+        // Scroll Progress Indicator
+        const scrollProgressBar = document.getElementById('scroll-progress');
+        if (scrollProgressBar) {
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                scrollProgressBar.style.width = scrollPercent + '%';
+            }, { passive: true });
+        }
+
+        // Navbar Active Section Highlighting
+        (() => {
+            const navHighlightLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+            const navSections = document.querySelectorAll('section[id]');
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navHighlightLinks.forEach(link => {
+                            link.classList.remove('nav-active');
+                            if (link.getAttribute('href') === '#' + id) {
+                                link.classList.add('nav-active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-40% 0px -55% 0px' });
+
+            navSections.forEach(section => sectionObserver.observe(section));
+
+            // Clear highlights when scrolled to top (hero)
+            window.addEventListener('scroll', () => {
+                if (window.scrollY < 200) {
+                    navHighlightLinks.forEach(link => link.classList.remove('nav-active'));
+                }
+            }, { passive: true });
+        })();
     </script>
 </body>
 </html>
