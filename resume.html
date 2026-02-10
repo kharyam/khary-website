@@ -1689,6 +1689,12 @@
                 display: none !important;
             }
 
+            .template-executive .cert-category,
+            .template-executive .skills-category {
+                break-inside: auto !important;
+                page-break-inside: auto !important;
+            }
+
             .template-executive .skill-tag {
                 background: transparent !important;
                 border: none !important;
@@ -2841,6 +2847,10 @@
             const nameElement = document.querySelector('.resume-name');
             if (!nameElement) return;
 
+            let touchStartX = 0;
+            let touchStartY = 0;
+            const MOVE_TOLERANCE = 10; // px - ignore small finger drift
+
             // Clear any previous timer
             const clearLongPress = () => {
                 if (longPressTimer) {
@@ -2850,17 +2860,11 @@
             };
 
             // Start long-press timer
-            const startLongPress = (e) => {
+            const startLongPress = () => {
                 clearLongPress();
                 longPressTimer = setTimeout(() => {
                     showContactModal();
                 }, LONG_PRESS_DURATION);
-            };
-
-            // Touch-specific handler: prevent default to suppress text selection
-            const startLongPressTouch = (e) => {
-                e.preventDefault();
-                startLongPress(e);
             };
 
             // Desktop: mouse events
@@ -2868,15 +2872,33 @@
             nameElement.addEventListener('mouseup', clearLongPress);
             nameElement.addEventListener('mouseleave', clearLongPress);
 
-            // Mobile: touch events (non-passive to allow preventDefault)
-            nameElement.addEventListener('touchstart', startLongPressTouch, { passive: false });
+            // Mobile: touch events
+            nameElement.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                startLongPress();
+            }, { passive: false });
+
+            nameElement.addEventListener('touchmove', (e) => {
+                // Only cancel if finger moved beyond tolerance
+                const dx = e.touches[0].clientX - touchStartX;
+                const dy = e.touches[0].clientY - touchStartY;
+                if (Math.abs(dx) > MOVE_TOLERANCE || Math.abs(dy) > MOVE_TOLERANCE) {
+                    clearLongPress();
+                }
+            });
+
             nameElement.addEventListener('touchend', clearLongPress);
-            nameElement.addEventListener('touchmove', clearLongPress);
             nameElement.addEventListener('touchcancel', clearLongPress);
 
-            // Prevent text selection on long-press (mobile)
+            // Suppress context menu on long-press (mobile browsers)
+            nameElement.addEventListener('contextmenu', (e) => e.preventDefault());
+
+            // Prevent text selection on long-press
             nameElement.style.webkitUserSelect = 'none';
             nameElement.style.userSelect = 'none';
+            nameElement.style.webkitTouchCallout = 'none';
             nameElement.style.cursor = 'default';
         }
 
