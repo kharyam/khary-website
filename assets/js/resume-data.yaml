@@ -226,7 +226,7 @@ experience:
     logo: "assets/images/montgomery_college.png"
     summary: "Shaping future software engineers through hands-on curriculum and mentorship"
     highlights:
-      - "Taught introductory programming course covering C++ fundamentals and problem-solving"
+      - "Taught (in-person) introductory programming course covering C++ fundamentals and problem-solving"
       - "Developed curriculum materials and provided extensive student mentorship"
     techStack:
       - "C++"
@@ -241,6 +241,7 @@ experience:
           - "Created and evaluated labs, quizzes, and exams"
           - "Taught the process of creating, compiling, executing, and debugging programs in Microsoft Visual Studio"
           - "Spent extensive time before and after class teaching and mentoring students"
+          - "<b>Student testimonial:</b> <i>\"I did not understand any of the information prior to attending Prof. Mendez class. He is very articulate and is able to break down information so even a person like me with no background in computers can understand it.\"</i>"
 
 education:
   - school: "Johns Hopkins University"
