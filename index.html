@@ -374,9 +374,8 @@
         }
         
         .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 1rem 2rem;
             list-style: none;
             max-width: 65%;
@@ -418,7 +417,7 @@
         
         /* Subtle pulse on nav items */
         .nav-links li {
-            animation: navPulse 5.6s ease-in-out infinite;
+            animation: navPulse 6.4s ease-in-out infinite;
         }
 
         .nav-links li:nth-child(1) { animation-delay: 0s; }
@@ -2726,16 +2725,29 @@
                  line-height: 1.5;
              }
 
+             .hero {
+                 padding: 80px 1.5rem 2rem;
+             }
+
+             .hero-headshot {
+                 width: 160px;
+                 height: 160px;
+                 margin-bottom: 1.25rem;
+             }
+
              .hero-name {
-                 font-size: 2.75rem;
+                 font-size: 2.25rem;
+                 margin-bottom: 0.5rem;
              }
 
              .hero-subtitle {
                  font-size: 1.25rem;
+                 margin-bottom: 1.5rem;
              }
 
              .hero-tagline {
                  font-size: 1.1rem;
+                 margin-bottom: 1.5rem;
              }
 
             /* Flip Cards - Dynamic height on mobile */
@@ -2796,6 +2808,10 @@
              }
 
              /* Additional font size reductions for mobile compactness */
+             .section {
+                 padding: 6rem 0.75rem;
+             }
+
              .section-title {
                  font-size: 2.2rem;
              }
@@ -2863,9 +2879,9 @@
             }
 
             .timeline-content {
-                width: calc(100% - 1rem);
+                width: 100%;
                 margin-left: 0;
-                padding: 1.5rem;
+                padding: 1rem;
             }
 
             .timeline-item:nth-child(even) .timeline-content,
@@ -3172,7 +3188,7 @@
               }
 
               .timeline-content {
-                  padding: 1.25rem;
+                  padding: 1rem;
               }
 
               /* Skill Pills Optimization */
