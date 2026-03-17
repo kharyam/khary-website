@@ -820,10 +820,6 @@
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
         }
 
-        .flip-card.flipped {
-            /* height set dynamically by JS to fit back content */
-        }
-        
         .flip-card:hover {
             transform: scale(1.08);
             z-index: 20;
@@ -2081,28 +2077,18 @@
             margin-left: 3px;
             vertical-align: text-bottom;
             opacity: 0.6;
-            animation: blink1 1s step-end infinite;
+            animation: blink 1s step-end infinite;
         }
 
         .github-card:nth-child(2) .github-cursor {
-            animation: blink2 1.3s step-end infinite;
+            animation: blink 1.3s step-end infinite;
         }
 
         .github-card:nth-child(3) .github-cursor {
-            animation: blink3 0.8s step-end infinite;
+            animation: blink 0.8s step-end infinite;
         }
 
-        @keyframes blink1 {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 0; }
-        }
-
-        @keyframes blink2 {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 0; }
-        }
-
-        @keyframes blink3 {
+        @keyframes blink {
             0%, 100% { opacity: 0.6; }
             50% { opacity: 0; }
         }
@@ -2650,12 +2636,6 @@
             vertical-align: middle;
         }
         
-        .connect-logo {
-            display: block;
-            margin: 0 auto;
-            vertical-align: middle;
-        }
-        
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
@@ -2830,10 +2810,6 @@
 
              .publication-description {
                  font-size: 0.8rem;
-             }
-
-             .metric-value {
-                 font-size: 3.5rem;
              }
 
              .metric-label {
@@ -3928,40 +3904,11 @@
                 });
             }
 
-            // Cert observer
-            if (typeof certObserver !== 'undefined') {
-                document.querySelectorAll('.cert-card').forEach(card => {
-                    certObserver.observe(card);
-                });
-            }
-
-            // Testimonial observer
-            if (typeof testimonialObserver !== 'undefined') {
-                document.querySelectorAll('.testimonial-card').forEach(card => {
-                    testimonialObserver.observe(card);
-                });
-            }
-
-            // Publication observer
-            if (typeof publicationObserver !== 'undefined') {
-                document.querySelectorAll('.publication-card').forEach(card => {
-                    publicationObserver.observe(card);
-                });
-            }
-
-            // Verify card observer
-            if (typeof verifyObserver !== 'undefined') {
-                document.querySelectorAll('.verify-card').forEach(card => {
-                    verifyObserver.observe(card);
-                });
-            }
-
-            // Connect card observer
-            if (typeof connectObserver !== 'undefined') {
-                document.querySelectorAll('.connect-card').forEach(card => {
-                    connectObserver.observe(card);
-                });
-            }
+            createStaggeredObserver('.cert-card',         100, 0.1);
+            createStaggeredObserver('.verify-card',        150, 0.15);
+            createStaggeredObserver('.testimonial-card',   150, 0.1);
+            createStaggeredObserver('.connect-card',       120, 0.1);
+            createStaggeredObserver('.publication-card',   150, 0.15);
 
             // Tech badge handlers
             document.querySelectorAll('.tech-badge').forEach(pill => {
@@ -4167,115 +4114,27 @@
             timelineObserver.observe(item);
         });
         
-         // Certifications Scroll Animation
-        const certObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    const card = entry.target;
-                    const grid = card.parentElement;
-                    const siblings = Array.from(grid.querySelectorAll('.cert-card'));
-                    const cardIndex = siblings.indexOf(card);
-                    
-                    setTimeout(() => {
-                        card.classList.add('visible');
-                    }, cardIndex * 100);
-                    
-                    certObserver.unobserve(card);
-                }
-            });
-        }, { threshold: 0.1 });
+        // Staggered card scroll animation factory
+        function createStaggeredObserver(cardSelector, delay, threshold) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const card = entry.target;
+                        const siblings = Array.from(card.parentElement.querySelectorAll(cardSelector));
+                        const cardIndex = siblings.indexOf(card);
+                        setTimeout(() => card.classList.add('visible'), cardIndex * delay);
+                        observer.unobserve(card);
+                    }
+                });
+            }, { threshold });
+            document.querySelectorAll(cardSelector).forEach(card => observer.observe(card));
+        }
 
-        document.querySelectorAll('.cert-card').forEach(card => {
-            certObserver.observe(card);
-        });
-
-        // Verification Cards Scroll Animation
-        const verifyObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    const card = entry.target;
-                    const grid = card.parentElement;
-                    const siblings = Array.from(grid.querySelectorAll('.verify-card'));
-                    const cardIndex = siblings.indexOf(card);
-                    
-                    setTimeout(() => {
-                        card.classList.add('visible');
-                    }, cardIndex * 150);
-                    
-                    verifyObserver.unobserve(card);
-                }
-            });
-        }, { threshold: 0.15 });
-
-        document.querySelectorAll('.verify-card').forEach(card => {
-            verifyObserver.observe(card);
-        });
-        
-        // Testimonials Scroll Animation
-        const testimonialObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    const card = entry.target;
-                    const grid = card.parentElement;
-                    const siblings = Array.from(grid.querySelectorAll('.testimonial-card'));
-                    const cardIndex = siblings.indexOf(card);
-                    
-                    setTimeout(() => {
-                        card.classList.add('visible');
-                    }, cardIndex * 150);
-                    
-                    testimonialObserver.unobserve(card);
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.testimonial-card').forEach(card => {
-            testimonialObserver.observe(card);
-        });
-        
-        // Connect Cards Scroll Animation
-        const connectObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    const card = entry.target;
-                    const grid = card.parentElement;
-                    const siblings = Array.from(grid.querySelectorAll('.connect-card'));
-                    const cardIndex = siblings.indexOf(card);
-                    
-                    setTimeout(() => {
-                        card.classList.add('visible');
-                    }, cardIndex * 120);
-                    
-                    connectObserver.unobserve(card);
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.connect-card').forEach(card => {
-            connectObserver.observe(card);
-        });
-
-        // Publications Scroll Animation
-        const publicationObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    const card = entry.target;
-                    const grid = card.parentElement;
-                    const siblings = Array.from(grid.querySelectorAll('.publication-card'));
-                    const cardIndex = siblings.indexOf(card);
-
-                    setTimeout(() => {
-                        card.classList.add('visible');
-                    }, cardIndex * 150);
-
-                    publicationObserver.unobserve(card);
-                }
-            });
-        }, { threshold: 0.15 });
-
-        document.querySelectorAll('.publication-card').forEach(card => {
-            publicationObserver.observe(card);
-        });
+        createStaggeredObserver('.cert-card',         100, 0.1);
+        createStaggeredObserver('.verify-card',        150, 0.15);
+        createStaggeredObserver('.testimonial-card',   150, 0.1);
+        createStaggeredObserver('.connect-card',       120, 0.1);
+        createStaggeredObserver('.publication-card',   150, 0.15);
 
         // Particle System
         const canvas = document.getElementById('particles-canvas');

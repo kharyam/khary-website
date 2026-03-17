@@ -428,9 +428,9 @@ impactStories:
   cards:
     - id: "understand"
       frontEmoji: "🎯"
-      frontTitle: "UNDERSTAND\nDEEPLY"
+      frontTitle: "DEFINE WHAT\nMATTERS"
       frontHint: "Click to explore"
-      backTitle: "Deep Understanding"
+      backTitle: "Define What Matters"
       backContent: >
         Joined a troubled engagement midstream with a frustrated government contractor
         and no clear technical direction. Reframed the problem collaboratively, asked
@@ -446,9 +446,9 @@ impactStories:
       showOnResume: true
     - id: "multiply"
       frontEmoji: "👥"
-      frontTitle: "MULTIPLY\nTHROUGH PEOPLE"
+      frontTitle: "ELEVATE\nTHE TEAM"
       frontHint: "Click to explore"
-      backTitle: "Team Multiplication"
+      backTitle: "Elevate the Team"
       backContent: >
         When onboarding customer teams, I structure engagements so they do the work while
         I teach—building confidence and long-term self-sufficiency rather than dependency.
@@ -468,7 +468,7 @@ impactStories:
       frontEmoji: "✨"
       frontTitle: "DELIVER\nRESULTS"
       frontHint: "Click to explore"
-      backTitle: "Production Results"
+      backTitle: "Deliver Results"
       backContent: >
         When a customer initially dismissed OpenShift architectural requirements as infeasible,
         I led efforts through resistance to identify internal champions and establish a successful
