@@ -17,6 +17,8 @@ personal:
   linkedin: "linkedin.com/in/kharymendez"
   github: "github.com/kharyam"
   website: "khary.net"
+  email: ""
+  phone: ""
 
 metrics:
   yearsExperience: 25
@@ -429,6 +431,7 @@ impactStories:
       frontHint: "Click to explore"
       backTitle: "Define What Matters"
       backContent: >
+        Establish clarity and direction where it is absent or uncertain.
         Joined a troubled engagement midstream with a frustrated government contractor
         and no clear technical direction. Reframed the problem, surfaced hidden assumptions,
         and clarified the true requirement: optimizing enterprise middleware across multiple
@@ -548,13 +551,13 @@ connectLinks:
       icon: "💼"
       iconType: "emoji"
       label: "LinkedIn"
-      description: "Professional network and career highlights"
+      description: "Career history, leadership perspective, and professional network"
     - id: "github"
       url: "https://github.com/kharyam"
       icon: "💻"
       iconType: "emoji"
       label: "GitHub"
-      description: "Open source projects and code samples"
+      description: "Open-source work, experiments, and practical tooling"
     - id: "kam-dynamics"
       url: "https://kamdynamics.com"
       icon: "assets/images/kam-logo.svg"
@@ -567,7 +570,7 @@ connectLinks:
       icon: "📄"
       iconType: "emoji"
       label: "Resume"
-      description: "Multi-format resume generator"
+      description: "Interactive, multi-format resume"
 
 testimonials:
   - quote: "Deep technical expertise across virtually all subject areas in Computer Science. His breadth and depth are impressive—Application Development, Infrastructure, Networking, Artificial Intelligence, DevOps. The go-to expert in all domains. His calm tone and humble attitude make him a pleasure to work with."
