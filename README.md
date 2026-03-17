@@ -23,8 +23,11 @@ A modern, professional personal brand website showcasing technical expertise, le
 ```
 /
 ├── index.html              # Main HTML file (contains all CSS and JS inline)
+├── resume.html             # Dedicated resume/CV page
 ├── sitemap.xml             # XML sitemap for search engines
 ├── robots.txt              # Search engine crawler instructions
+├── CNAME                   # Custom domain (khary.net)
+├── favicon.ico             # Site favicon
 ├── assets/
 │   └── images/             # Logos and headshot
 │       ├── headshot.jpg
@@ -32,13 +35,11 @@ A modern, professional personal brand website showcasing technical expertise, le
 │       ├── aws-logo.svg
 │       ├── cncf-logo.svg
 │       └── ...
-├── css/                    # External CSS files (not currently linked)
-├── js/                     # External JS files (not currently linked)
 ├── archive/                # Old prototypes and documentation
+├── CLAUDE.md               # Claude Code project instructions
+├── AGENTS.md               # AI agent conventions and design reference
 └── README.md               # This file
 ```
-
-**Note**: The website uses a single-file architecture where all styles and scripts are embedded directly in `index.html`. The `css/` and `js/` folders contain modular versions that are not currently in use.
 
 ## Website Sections
 
@@ -48,9 +49,10 @@ A modern, professional personal brand website showcasing technical expertise, le
 4. **Professional Journey** - Timeline of career experience with company logos
 5. **Testimonials** - Grid of colleague testimonials with staggered scroll animations
 6. **Certifications** - Categorized certification cards (Architecture, Kubernetes, Cloud, DevOps)
-7. **Publications** - Technical content, tutorials, and collaborative works
-8. **Connect** - Social links (LinkedIn, GitHub, KAM Dynamics, Credly, Red Hat Verify)
-9. **Footer** - Copyright and credentials summary
+7. **Projects** - GitHub activity and open source contributions
+8. **Publications** - Technical content, tutorials, and collaborative works
+9. **Connect** - Social links (LinkedIn, GitHub, KAM Dynamics, Credly, Red Hat Verify)
+10. **Footer** - Copyright and credentials summary
 
 ## Quick Start
 
@@ -88,32 +90,32 @@ Edit the CSS custom properties in the `<style>` section of `index.html`:
 
 ### Updating Content
 
-**Hero Section** (line ~2244):
+**Hero Section** (line ~3363):
 - Update name, subtitle, and tagline text
 - Replace `assets/images/headshot.jpg` with your photo
 
-**Metrics** (line ~2263):
+**Metrics** (line ~3382):
 - Update `data-target` values for each counter
 - Change metric labels
 
-**Impact Stories** (line ~2289):
+**Impact Stories** (line ~3408):
 - Edit flip card titles and descriptions
 - Update back-of-card content and metrics
 
-**Experience Timeline** (line ~2362):
+**Experience Timeline** (line ~3420):
 - Add/remove timeline items
 - Update company logos, titles, dates, and descriptions
 
-**Testimonials** (line ~2512):
+**Testimonials** (line ~3432):
 - Replace quotes and attributions
 
-**Certifications** (line ~2584):
+**Certifications** (line ~3446):
 - Add/remove certification cards by category
 
-**Publications** (line ~2702):
+**Publications** (line ~3494):
 - Add/remove publication cards with links
 
-**Connect Links** (line ~2849):
+**Connect Links** (line ~3508):
 - Update social media URLs
 
 ### Adding a New Timeline Entry
