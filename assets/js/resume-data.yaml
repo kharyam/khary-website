@@ -4,22 +4,19 @@
 personal:
   name: "Khary A. Mendez"
   title: "Senior Principal Consultant"
-  tagline: "Bringing clarity to complexity through systems thinking, resilience, and mentorship."
-  subtitle: "Technical Leader | Team Multiplier | Problem Solver"
+  tagline: "Defining what matters, elevating teams, and delivering results in complex systems."
+  subtitle: "Technical Leader | Team Multiplier | Systems Thinker"
   summary: >
     Senior Principal Consultant with 25+ years of experience in software engineering,
-    cloud architecture, and technical leadership. Red Hat Certified Architect with
-    deep expertise in OpenShift, Kubernetes, and enterprise platforms. Known for
-    bringing clarity to ambiguous problems, designing systems for production at
-    scale, and enabling teams to take long-term ownership of the platforms they run.
-    Trusted to lead calmly through high-pressure engagements and complex delivery
-    environments.
+    cloud architecture, and technical leadership. Red Hat Certified Architect specializing
+    in OpenShift, Kubernetes, and enterprise platforms.
+    Known for cutting through ambiguity, defining what matters, and leading teams to deliver
+    production systems at scale. Enables teams to take long-term ownership of the platforms
+    they run and is trusted to lead calmly through high-pressure, complex environments.
   location: "Huntersville, NC"
   linkedin: "linkedin.com/in/kharymendez"
   github: "github.com/kharyam"
   website: "khary.net"
-  email: ""
-  phone: ""
 
 metrics:
   yearsExperience: 25
@@ -37,8 +34,8 @@ experience:
     highlights:
       - "Led 15+ enterprise engagements across federal agencies, defense contractors, and Fortune 500 companies"
       - "Specialized in OpenShift/Kubernetes architecture, CI/CD automation, and cloud-native transformation"
-      - "Trusted advisor and mentor to customer teams and Red Hat consultants alike"
-      - "Delivered middleware integration solutions and established DevOps best practices"
+      - "Trusted advisor and mentor to customer teams and Red Hat consultants"
+      - "Designed middleware integration solutions and established DevOps best practices"
     techStack:
       - "OpenShift"
       - "Kubernetes"
@@ -54,39 +51,39 @@ experience:
         dates: "2021 - Present"
         description: "Lead consultant supporting enterprise-wide OpenShift 4.x migration initiative."
         bullets:
-          - "Mentor, train, and guide teams unfamiliar with container technology"
-          - "Assist teams with updating code and configuration to support OpenShift 4.x"
-          - "Enable and support Red Hat consultants migrating application teams to OpenShift"
+          - "Enabled teams to modernize applications and configurations for OpenShift 4.x adoption"
+          - "Guided teams in adapting code and architecture for containerized environments"
+          - "Scaled migration efforts by enabling Red Hat consultants across multiple teams"
           - "Technologies: Java, EAP, SpringBoot, Tekton, Jenkins, GitHub Actions, ArgoCD, Kafka, AMQ"
       - name: "Government Software Contractor"
         dates: "2025"
         description: "Joined a troubled engagement mid-project to turn around customer relationship and deliver results."
         bullets:
-          - "Conducted architecture reset—built system diagrams in real-time to drive clarity on requirements"
-          - "Created comprehensive 40+ page EAP tuning guide with optimization rubric for diverse deployment scenarios"
-          - "Enabled customer to diagnose and configure middleware for their government stakeholders"
+          - "Reframed the architecture and built system diagrams in real-time to drive clarity on requirements"
+          - "Created a 40+ page EAP tuning guide with an optimization rubric for diverse deployment scenarios"
+          - "Enabled the customer to independently diagnose and optimize middleware performance"
           - "Achieved complete customer turnaround: \"Khary was phenomenal to work with\""
       - name: "Customer Success Application Services Team"
         dates: "2020 - 2022"
         description: "Internal Red Hat team focused on application development support and enablement."
         bullets:
-          - "Provide support, guidance, and mentoring to projects oriented around application development"
-          - "Created container images, documentation, and pipeline components for trusted software supply chain"
-          - "Review technical content and documentation created by the team"
+          - "Guided application development teams through architecture, design, and delivery challenges"
+          - "Built reusable container images, documentation, and pipeline components for secure supply chains"
+          - "Reviewed and elevated technical content across the organization"
       - name: "State Health Department Vaccination Systems"
         dates: "2021"
         description: "Supported development and release management for critical public health applications."
         bullets:
-          - "Provide support for release management using OpenShift, Jenkins, GitLab, ArgoCD"
-          - "Implement new features, enhancements, and fixes to the Java code base"
-          - "Mentor and support team members"
+          - "Led release management workflows across OpenShift, Jenkins, GitLab, and ArgoCD"
+          - "Delivered enhancements and fixes to critical Java applications under tight timelines"
+          - "Mentored team members in modern DevOps practices"
       - name: "Federal Healthcare Agency"
         dates: "2020 - 2021"
         description: "Assisted with OpenShift 4 rollout to a large federal healthcare organization."
         bullets:
-          - "Requirements gathering and discovery from development and infrastructure teams"
-          - "Architecture design primarily in the area of CI/CD"
-          - "Education of customer in the areas of OpenShift, security, and CoreOS"
+          - "Led discovery and requirements alignment across development and infrastructure teams"
+          - "Designed CI/CD architecture for enterprise platform adoption"
+          - "Enabled teams through training in OpenShift, security, and CoreOS"
       - name: "Defense Contractor - Submarine Systems"
         dates: "2020"
         description: "Provided architectural design guidance for tactical systems running on OpenShift 4.x."
@@ -433,9 +430,9 @@ impactStories:
       backTitle: "Define What Matters"
       backContent: >
         Joined a troubled engagement midstream with a frustrated government contractor
-        and no clear technical direction. Reframed the problem collaboratively, asked
-        targeted questions that surfaced hidden assumptions, and clarified the true
-        requirement: optimizing enterprise middleware across multiple deployment models.
+        and no clear technical direction. Reframed the problem, surfaced hidden assumptions,
+        and clarified the true requirement: optimizing enterprise middleware across multiple
+        deployment models.      
       metrics:
         - icon: "📊"
           text: "40+ page tuning guide with optimization rubric"
@@ -450,12 +447,12 @@ impactStories:
       frontHint: "Click to explore"
       backTitle: "Elevate the Team"
       backContent: >
-        When onboarding customer teams, I structure engagements so they do the work while
-        I teach—building confidence and long-term self-sufficiency rather than dependency.
+        When onboarding customer teams, I structure engagements so teams do the work while
+        I coach— building confidence and long-term self-sufficiency rather than dependency.
         Internally, I encourage consultants to share their expertise by presenting at our
         annual conference, submitting proposals on their behalf, and coaching them through
-        delivery. I mentor across teams and am a trusted resource for navigating the most
-        challenging technical problems. 
+        delivery. I mentor across teams and am a trusted resource for navigating complex
+        technical challenges.
       metrics:
         - icon: "🎤"
           text: "Enabled colleagues to become conference speakers"
@@ -470,12 +467,13 @@ impactStories:
       frontHint: "Click to explore"
       backTitle: "Deliver Results"
       backContent: >
+        Turn resistance and misalignment into successful production outcomes.
         When a customer initially dismissed OpenShift architectural requirements as infeasible,
         I led efforts through resistance to identify internal champions and establish a successful
-        production deployment.  This resulted in sustained adoption and a growing backlog of demand. 
-        In another engagement, discovered the development team was .NET rather than Java. 
-        Created targeted learning materials, led focused enablement sessions, and enabled the
-        team to deliver an architectural refactor on a strict deadline. 
+        production deployment, resulting in sustained adoption and a growing backlog of demand.
+        In another engagement, I discovered the development team was trained in.NET rather than
+        Java. Created targeted learning materials, led focused enablement sessions, and enabled
+        the team to deliver an architectural refactor on a strict deadline.
       metrics:
         - icon: "✅"
           text: "OpenShift running for years with growing demand"
