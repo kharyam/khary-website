@@ -266,6 +266,10 @@ certifications:
       issuer: Federal Aviation Administration
       logo: assets/images/faa-logo.svg
       detailsUrl: https://www.faa.gov/uas/commercial_operators/become_a_drone_pilot
+    - name: "Machine Learning: From Data to Decisions (64 hours)"
+      issuer: MIT Professional Education
+      logo: https://brand.mit.edu/sites/default/files/styles/tile_narrow/public/2023-08/logo-colors-mit-red.png?itok=k08Ir4pB
+      detailsUrl: https://professional.mit.edu/course-catalog/machine-learning-data-decisions
   architect:
     - name: Red Hat Certified OpenShift Architect Level II
       issuer: Red Hat
